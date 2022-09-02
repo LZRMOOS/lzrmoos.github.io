@@ -55,7 +55,7 @@ body {
 }
 
 :root {
-  --swiper-theme-color: rgb(31, 76, 82);
+  --swiper-theme-color: rgb(255, 196, 184);
   --swiper-navigation-size: 30px;
 }
 </style>

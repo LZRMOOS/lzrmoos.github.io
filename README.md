@@ -27,4 +27,8 @@ https://blog.logrocket.com/automatically-build-deploy-vuejs-app-github-pages/
 
 https://swiperjs.com/demos
 
+parallax
 https://codepen.io/digistate/pen/aEqzBB
+
+lazy loading
+https://codepen.io/coded_fae/pen/MWeBjBe

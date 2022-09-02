@@ -9,7 +9,7 @@
 <style scoped>
 h1 {
     text-align: left;
-    color: black;
+    color: rgb(76, 76, 76);
     font-size: 18px;
     margin: 0px;
     padding: 8px;
