@@ -1,6 +1,6 @@
 <template>
   <HeaderBar />
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld />
 </template>
 
 <script>
@@ -18,13 +18,25 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
+
+h1, h2, h3, h4, p{
+  font-family: Anson;
+  font-size: 20px;
+  color: rgb(96, 99, 105);
+}
+
+@font-face {
+  font-family: 'Anson';
+  src: url(assets/Roboto-Regular.ttf);
+}
+
 body { 
   margin: 0; 
   overflow: hidden;
@@ -33,11 +45,13 @@ body {
 
 .swiper-button-prev {
     color: white;
-    opacity: 60%; 
+    opacity: 60%;
+    transform:translateX(50px); 
 }
 .swiper-button-next {
     color: white;
     opacity: 60%;
+    transform:translateX(-50px);
 }
 
 :root {

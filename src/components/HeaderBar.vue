@@ -1,5 +1,5 @@
 <template>
-    weimoarphoto
+    <h1>wei moar photography</h1>
 </template>
 
 <script>
@@ -8,8 +8,11 @@
 
 <style scoped>
 h1 {
-    color: red;
+    text-align: left;
+    color: black;
+    font-size: 18px;
     margin: 0px;
-    padding: 0px;
+    padding: 8px;
+    font-family: 'Anson';
 }
 </style>

@@ -26,3 +26,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 https://blog.logrocket.com/automatically-build-deploy-vuejs-app-github-pages/
 
 https://swiperjs.com/demos
+
+https://codepen.io/digistate/pen/aEqzBB
