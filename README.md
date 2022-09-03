@@ -38,6 +38,10 @@ https://codepen.io/coded_fae/pen/MWeBjBe
 ### navbar
 https://codepen.io/hunzaboy/pen/yoPKQW
 
+### fontawesome
+https://fontawesome.com/docs/web/use-with/vue/add-icons
+https://fontawesome.com/icons/instagram?s=solid&f=brands
+
 ## images 
 regex \[\/img.*
 
