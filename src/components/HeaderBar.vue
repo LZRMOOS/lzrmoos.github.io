@@ -5,20 +5,23 @@
             <a class="navbar-item" href="http://lzrmoos.com/vuejstest">
                 <h1>wei moar photography</h1>
             </a>
-            <a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-                <font-awesome-icon icon="fa-brands fa-github" />
+            <a class="navbar-item is-hidden-desktop" href="https://www.instagram.com/weidvi/" target="_blank">
+                    <font-awesome-icon icon="fa-brands fa-instagram" />
             </a>
         
-            <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
+        <div class="navbar-start">
+            
+        </div>
         
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link is-active" href="/galleries">
+                <a class="navbar-item">
                     Galleries
                 </a>
                 <!-- navbar-dropdowns -->
@@ -35,16 +38,16 @@
                 </div>
             </div>
             <div class="navbar-item">
-                <a class="navbar-link is-arrowless">
+                <a class="navbar-link is-arrowless" href="/contact/">
                     Contact
                 </a>
             </div>
             <!-- contact, github, ig, etc for desktop -->
             <div class="navbar-end">
-                <a class="navbar-item" href="https://github.com/lzrmoos" target="_blank">
+                <!-- <a class="navbar-item" href="https://github.com/lzrmoos" target="_blank">
                         <font-awesome-icon icon="fa-brands fa-github" />
-                </a>
-                <a class="navbar-item" href="https://www.instagram.com/lzrmoos/" target="_blank">
+                </a> -->
+                <a class="navbar-item" href="https://www.instagram.com/weidvi/" target="_blank">
                         <font-awesome-icon icon="fa-brands fa-instagram" />
                 </a>
             </div>
@@ -53,6 +56,27 @@
 </template>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Add a click event on each of them
+$navbarBurgers.forEach( el => {
+  el.addEventListener('click', () => {
+
+    // Get the target from the "data-target" attribute
+    const target = el.dataset.target;
+    const $target = document.getElementById(target);
+
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    el.classList.toggle('is-active');
+    $target.classList.toggle('is-active');
+
+  });
+});
+
+});
 </script>
 
 <style scoped>

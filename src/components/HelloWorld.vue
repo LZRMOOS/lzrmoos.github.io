@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <swiper
       :parallax="true"
-      :speed="1000"
+      :speed="700"
       :loop="true"
       :preload-images="false"
       :lazy="true"
