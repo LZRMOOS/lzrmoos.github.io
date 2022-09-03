@@ -35,6 +35,9 @@ https://codepen.io/digistate/pen/aEqzBB
 ### lazy loading
 https://codepen.io/coded_fae/pen/MWeBjBe
 
+### navbar
+https://codepen.io/hunzaboy/pen/yoPKQW
+
 ## images 
 regex \[\/img.*
 
