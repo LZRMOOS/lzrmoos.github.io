@@ -1,5 +1,5 @@
 
 <template>
-    <h1>Things Page WIP</h1>
+    <h1>WIP</h1>
 </template>
   

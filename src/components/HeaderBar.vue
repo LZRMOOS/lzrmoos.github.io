@@ -20,17 +20,16 @@
         </div>
         
         <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-item has-dropdown is-hoverable">
+            <!-- <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-item">
                     Galleries
                 </a>
-                <!-- navbar-dropdowns -->
                 <div class="navbar-dropdown ">
                     <router-link class="navbar-item" to="/galleries/people">People</router-link>
                     <router-link class="navbar-item" to="/galleries/places">Places</router-link>
                     <router-link class="navbar-item" to="/galleries/things">Things</router-link>
                 </div>
-            </div>
+            </div> -->
             <div class="navbar-item">
                 <router-link class="navbar-item is-arrowless" to="/contact">Contact</router-link>
             </div>
@@ -39,7 +38,7 @@
                 <!-- <a class="navbar-item" href="https://github.com/lzrmoos" target="_blank">
                         <font-awesome-icon icon="fa-brands fa-github" />
                 </a> -->
-                <a class="navbar-item" href="https://www.instagram.com/weidvi/" target="_blank">
+                <a class="navbar-item is-hidden-touch" href="https://www.instagram.com/weidvi/" target="_blank">
                         <font-awesome-icon icon="fa-brands fa-instagram" />
                 </a>
             </div>
