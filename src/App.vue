@@ -27,9 +27,15 @@ export default {
   margin-top: 0px;
 }
 
-h1, h2, h3, h4, p{
+h1, h2, h3, h4 {
   font-family: Anson;
   font-size: 20px;
+  color: rgb(96, 99, 105);
+}
+
+p {
+  font-family: Anson;
+  font-size: 12px;
   color: rgb(96, 99, 105);
 }
 

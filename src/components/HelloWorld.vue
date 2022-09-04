@@ -180,7 +180,6 @@ export default {
   height:100%;
   background-size: cover;
   background-position:center;
-  width:100%;
 }
 .swiper-pagination-progressbar {
   background-color: rgb(234, 234, 234);
