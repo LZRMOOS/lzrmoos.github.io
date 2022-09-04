@@ -1,17 +1,18 @@
 <template>
-  <HeaderBar />
-  <HelloWorld />
+  <!-- <HeaderBar /> -->
+  <!-- <HelloWorld /> -->
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import HeaderBar from './components/HeaderBar.vue';
+// import HelloWorld from './components/HelloWorld.vue'
+// import HeaderBar from './components/HeaderBar.vue';
 
 export default {
   name: 'App',
   components: {
-    HeaderBar,
-    HelloWorld
+    // HeaderBar,
+    // HelloWorld
 }
 }
 </script>

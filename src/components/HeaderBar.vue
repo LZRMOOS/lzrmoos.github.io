@@ -38,9 +38,7 @@
                 </div>
             </div>
             <div class="navbar-item">
-                <a class="navbar-link is-arrowless" href="/contact/">
-                    Contact
-                </a>
+                <router-link class="navbar-link is-arrowless" to="/contact">Contact</router-link>
             </div>
             <!-- contact, github, ig, etc for desktop -->
             <div class="navbar-end">
