@@ -2,9 +2,9 @@
     <nav class="navbar is-transparent">
         <!-- Leftmost title header -->
         <div class="navbar-brand">
-            <a class="navbar-item" href="http://lzrmoos.com/vuejstest">
+            <router-link class="navbar-item" to="/">
                 <h1>wei moar photography</h1>
-            </a>
+            </router-link>
             <a class="navbar-item is-hidden-desktop" href="https://www.instagram.com/weidvi/" target="_blank">
                     <font-awesome-icon icon="fa-brands fa-instagram" />
             </a>
@@ -26,19 +26,13 @@
                 </a>
                 <!-- navbar-dropdowns -->
                 <div class="navbar-dropdown ">
-                    <a class="navbar-item " href="/galleries/people/">
-                        People
-                    </a>
-                    <a class="navbar-item " href="/galleries/places/">
-                        Places
-                    </a>
-                    <a class="navbar-item " href="/galleries/things/">
-                        Things
-                    </a>
+                    <router-link class="navbar-item" to="/galleries/people">People</router-link>
+                    <router-link class="navbar-item" to="/galleries/places">Places</router-link>
+                    <router-link class="navbar-item" to="/galleries/things">Things</router-link>
                 </div>
             </div>
             <div class="navbar-item">
-                <router-link class="navbar-link is-arrowless" to="/contact">Contact</router-link>
+                <router-link class="navbar-item is-arrowless" to="/contact">Contact</router-link>
             </div>
             <!-- contact, github, ig, etc for desktop -->
             <div class="navbar-end">
