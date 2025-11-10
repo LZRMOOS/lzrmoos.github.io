@@ -249,13 +249,13 @@ export default {
   display: flex;
   gap: 8px;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
   overflow-x: auto;
   width: 100%;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
   justify-content: center;
 }
 
@@ -268,7 +268,7 @@ export default {
 }
 
 .thumbnail-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 2px;
 }
 

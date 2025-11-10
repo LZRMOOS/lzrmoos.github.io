@@ -71,6 +71,16 @@ $navbarBurgers.forEach( el => {
     background-color: white !important;
 }
 
+/* Navbar brand items */
+.navbar-brand .navbar-item {
+    color: #4c4c4c !important;
+}
+
+.navbar-brand .navbar-item:hover {
+    color: #4c4c4c !important;
+    background-color: transparent !important;
+}
+
 h1 {
     text-align: left;
     color: #4c4c4c;
@@ -84,14 +94,14 @@ h1 {
     font-family: 'Anson', sans-serif;
     font-size: 16px;
     font-weight: 500;
-    color: #4c4c4c;
+    color: #4c4c4c !important;
     transition: all 0.3s ease;
     position: relative;
     padding: 0.5rem 1rem;
 }
 
 .navbar-item.has-dropdown .navbar-link:hover {
-    color: #4c4c4c;
+    color: #4c4c4c !important;
     background-color: transparent;
 }
 
@@ -100,14 +110,14 @@ h1 {
     font-family: 'Anson', sans-serif;
     font-size: 16px;
     font-weight: 500;
-    color: #4c4c4c;
+    color: #4c4c4c !important;
     transition: all 0.3s ease;
     position: relative;
     padding: 0.5rem 1rem;
 }
 
 .navbar-menu > .navbar-item:hover {
-    color: #4c4c4c;
+    color: #4c4c4c !important;
     background-color: transparent;
 }
 
