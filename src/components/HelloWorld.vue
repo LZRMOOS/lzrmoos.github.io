@@ -9,7 +9,7 @@
     :loop="true"
     :slides-per-view="1"
     :autoplay="{
-      delay: 2500,
+      delay: 5000,
       disableOnInteraction: true,
     }" 
     :navigation="true"
@@ -135,7 +135,10 @@ export default {
   background-position:center;
 }
 .swiper-pagination-progressbar {
-  background-color: rgb(234, 234, 234);
-  opacity: 90%;
+  background-color: rgba(234, 234, 234, 0.3);
+}
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: linear-gradient(90deg, #ff9500 0%, #ff10f0 100%);
 }
 </style>
