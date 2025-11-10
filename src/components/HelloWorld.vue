@@ -31,77 +31,80 @@
         </swiper-slide>
         -->
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330438555_3415a00ee3_o.jpg)">
-            <img alt="goleta beach" src="https://live.staticflickr.com/65535/52330438555_3415a00ee3_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330438555_3415a00ee3_o.jpg">
+            <img alt="goleta beach" data-src="https://live.staticflickr.com/65535/52330438555_3415a00ee3_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330287498_2ea00b5fde_o.jpg)">
-            <img alt="stephen climbing" src="https://live.staticflickr.com/65535/52330287498_2ea00b5fde_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330287498_2ea00b5fde_o.jpg">
+            <img alt="stephen climbing" data-src="https://live.staticflickr.com/65535/52330287498_2ea00b5fde_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330050636_0358e37456_o.jpg)">
-            <img alt="lake underwater" src="https://live.staticflickr.com/65535/52330050636_0358e37456_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330050636_0358e37456_o.jpg">
+            <img alt="lake underwater" data-src="https://live.staticflickr.com/65535/52330050636_0358e37456_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330310759_798e48876e_o.jpg)">
-            <img alt="co springs" src="https://live.staticflickr.com/65535/52330310759_798e48876e_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330310759_798e48876e_o.jpg">
+            <img alt="co springs" data-src="https://live.staticflickr.com/65535/52330310759_798e48876e_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52329056137_7b679b43ce_o.jpg)">
-            <img alt="neuswanstein" src="https://live.staticflickr.com/65535/52329056137_7b679b43ce_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330011091_eea62ab8b4_o.jpg)">
-            <img alt="natalie rock" src="https://live.staticflickr.com/65535/52330011091_eea62ab8b4_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52329056137_7b679b43ce_o.jpg">
+            <img alt="neuswanstein" data-src="https://live.staticflickr.com/65535/52329056137_7b679b43ce_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330481470_ce41c24974_o.jpg)">
-            <img alt="sworks enduro" src="https://live.staticflickr.com/65535/52330481470_ce41c24974_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330011091_eea62ab8b4_o.jpg">
+            <img alt="natalie rock" data-src="https://live.staticflickr.com/65535/52330011091_eea62ab8b4_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330251238_482f9d3a74_o.jpg)"></figure>
-          <img alt="molly paint beach" src="https://live.staticflickr.com/65535/52330251238_482f9d3a74_o.jpg" class="entity-img swiper-lazy" />
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330252843_9af3d6b127_o.jpg)"></figure>
-          <img alt="milkyway" src="https://live.staticflickr.com/65535/52330252843_9af3d6b127_o.jpg" />
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52329056197_9ba3df2333_o.jpg)">
-            <img alt="john fiesta" src="https://live.staticflickr.com/65535/52329056197_9ba3df2333_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330481470_ce41c24974_o.jpg">
+            <img alt="sworks enduro" data-src="https://live.staticflickr.com/65535/52330481470_ce41c24974_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330311839_3f3f126212_o.jpg)">
-            <img alt="glacier np" src="https://live.staticflickr.com/65535/52330311839_3f3f126212_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330251238_482f9d3a74_o.jpg">
+            <img alt="molly paint beach" data-src="https://live.staticflickr.com/65535/52330251238_482f9d3a74_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330252518_d4b4c91787_o.jpg)">
-            <img alt="munich" src="https://live.staticflickr.com/65535/52330252518_d4b4c91787_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330252843_9af3d6b127_o.jpg">
+            <img alt="milkyway" data-src="https://live.staticflickr.com/65535/52330252843_9af3d6b127_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
         <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(https://live.staticflickr.com/65535/52330311254_767fdf6916_o.jpg)">
-            <img alt="arc de triomphe" src="https://live.staticflickr.com/65535/52330311254_767fdf6916_o.jpg" class="entity-img swiper-lazy" />
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52329056197_9ba3df2333_o.jpg">
+            <img alt="john fiesta" data-src="https://live.staticflickr.com/65535/52329056197_9ba3df2333_o.jpg" class="entity-img swiper-lazy" />
+          </figure>
+          <div class="swiper-lazy-preloader"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330311839_3f3f126212_o.jpg">
+            <img alt="glacier np" data-src="https://live.staticflickr.com/65535/52330311839_3f3f126212_o.jpg" class="entity-img swiper-lazy" />
+          </figure>
+          <div class="swiper-lazy-preloader"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330252518_d4b4c91787_o.jpg">
+            <img alt="munich" data-src="https://live.staticflickr.com/65535/52330252518_d4b4c91787_o.jpg" class="entity-img swiper-lazy" />
+          </figure>
+          <div class="swiper-lazy-preloader"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330311254_767fdf6916_o.jpg">
+            <img alt="arc de triomphe" data-src="https://live.staticflickr.com/65535/52330311254_767fdf6916_o.jpg" class="entity-img swiper-lazy" />
           </figure>
           <div class="swiper-lazy-preloader"></div>
         </swiper-slide>
@@ -112,7 +115,7 @@
 
 <script>
 // Import Swiper core and required modules
-import { Keyboard, Navigation, Autoplay, Pagination } from "swiper";
+import { Keyboard, Navigation, Autoplay, Pagination, Lazy } from "swiper";
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -131,7 +134,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Keyboard, Navigation, Autoplay, Pagination],
+      modules: [Keyboard, Navigation, Autoplay, Pagination, Lazy],
     };
   }
 };
