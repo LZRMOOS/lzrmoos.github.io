@@ -1,121 +1,40 @@
 <template>
   <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <swiper
-      :parallax="true"
-      :speed="700"
-      :loop="true"
-      :preload-images="false"
-      :lazy="true"
-      :slides-per-view="1"
-      :autoplay="{
-        delay: 2500,
-        disableOnInteraction: true,
-      }" 
-      :navigation="true"
-      :modules="modules"
-      :keyboard="{
-        enabled: true,
-      }"
-      :pagination="{
-        clickable: true,
-        type: 'progressbar'
-      }"
-      class="mySwiper"
-      >
-        <!-- 
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" style="background-image:url(URL)">
-            <img alt="goleta beach" src="URL" class="entity-img swiper-lazy" />
-          </figure>
-        </swiper-slide>
-        -->
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330438555_3415a00ee3_o.jpg">
-            <img alt="goleta beach" data-src="https://live.staticflickr.com/65535/52330438555_3415a00ee3_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330287498_2ea00b5fde_o.jpg">
-            <img alt="stephen climbing" data-src="https://live.staticflickr.com/65535/52330287498_2ea00b5fde_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330050636_0358e37456_o.jpg">
-            <img alt="lake underwater" data-src="https://live.staticflickr.com/65535/52330050636_0358e37456_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330310759_798e48876e_o.jpg">
-            <img alt="co springs" data-src="https://live.staticflickr.com/65535/52330310759_798e48876e_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52329056137_7b679b43ce_o.jpg">
-            <img alt="neuswanstein" data-src="https://live.staticflickr.com/65535/52329056137_7b679b43ce_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330011091_eea62ab8b4_o.jpg">
-            <img alt="natalie rock" data-src="https://live.staticflickr.com/65535/52330011091_eea62ab8b4_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330481470_ce41c24974_o.jpg">
-            <img alt="sworks enduro" data-src="https://live.staticflickr.com/65535/52330481470_ce41c24974_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330251238_482f9d3a74_o.jpg">
-            <img alt="molly paint beach" data-src="https://live.staticflickr.com/65535/52330251238_482f9d3a74_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330252843_9af3d6b127_o.jpg">
-            <img alt="milkyway" data-src="https://live.staticflickr.com/65535/52330252843_9af3d6b127_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52329056197_9ba3df2333_o.jpg">
-            <img alt="john fiesta" data-src="https://live.staticflickr.com/65535/52329056197_9ba3df2333_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330311839_3f3f126212_o.jpg">
-            <img alt="glacier np" data-src="https://live.staticflickr.com/65535/52330311839_3f3f126212_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330252518_d4b4c91787_o.jpg">
-            <img alt="munich" data-src="https://live.staticflickr.com/65535/52330252518_d4b4c91787_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <figure class="slide-bgimg swiper-lazy" data-background="https://live.staticflickr.com/65535/52330311254_767fdf6916_o.jpg">
-            <img alt="arc de triomphe" data-src="https://live.staticflickr.com/65535/52330311254_767fdf6916_o.jpg" class="entity-img swiper-lazy" />
-          </figure>
-          <div class="swiper-lazy-preloader"></div>
-        </swiper-slide>
-      </swiper>
-    </div>
+    <div v-if="loading" class="loading-message">Loading images...</div>
+    <div v-else-if="error" class="error-message">{{ error }}</div>
+    <swiper
+    v-else
+    :parallax="true"
+    :speed="700"
+    :loop="true"
+    :slides-per-view="1"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: true,
+    }" 
+    :navigation="true"
+    :modules="modules"
+    :keyboard="{
+      enabled: true,
+    }"
+    :pagination="{
+      clickable: true,
+      type: 'progressbar'
+    }"
+    class="mySwiper"
+    >
+      <swiper-slide v-for="(image, index) in images" :key="index">
+        <figure class="slide-bgimg" :style="`background-image: url(${image.url})`">
+          <img :alt="image.alt" :src="image.url" class="entity-img" />
+        </figure>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
 <script>
 // Import Swiper core and required modules
-import { Keyboard, Navigation, Autoplay, Pagination, Lazy } from "swiper";
+import { Keyboard, Navigation, Autoplay, Pagination } from "swiper/modules";
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -125,17 +44,34 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// SwiperCore.use([Navigation]);
 export default {
   name: 'HelloWorld',
   components: {
     Swiper,
     SwiperSlide,
   },
-  setup() {
+  data() {
     return {
-      modules: [Keyboard, Navigation, Autoplay, Pagination, Lazy],
+      images: [],
+      loading: true,
+      error: null,
+      modules: [Keyboard, Navigation, Autoplay, Pagination],
     };
+  },
+  async mounted() {
+    try {
+      // Fetch images from JSON file
+      const response = await fetch('/images.json');
+      if (!response.ok) {
+        throw new Error('Failed to load images');
+      }
+      this.images = await response.json();
+      this.loading = false;
+    } catch (err) {
+      this.error = 'Failed to load images: ' + err.message;
+      this.loading = false;
+      console.error('Error loading images:', err);
+    }
   }
 };
 </script>
@@ -149,19 +85,33 @@ export default {
 }
 
 .swiper-container {
-  /* width:auto !important; */
-  /* height:auto; */
-  /* object-fit:cover; */
-  /* object-position:center; */
   width:100%;
   height:100vh;
   float:left;
-
 }
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+}
+
+.loading-message,
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.error-message {
+  color: #dc3545;
+}
+
 .swiper-slide {
   overflow: hidden;
-  /* width:auto; */
-  /* height:auto; */
 }
 .slide-bgimg {
     position:absolute;
