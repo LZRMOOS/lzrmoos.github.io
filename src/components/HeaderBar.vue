@@ -79,6 +79,16 @@ $navbarBurgers.forEach( el => {
 .navbar-brand .navbar-item:hover {
     color: #4c4c4c !important;
     background-color: transparent !important;
+    opacity: 0.7;
+}
+
+.navbar-brand .navbar-item:focus,
+.navbar-brand .navbar-item:active {
+    color: #4c4c4c !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    opacity: 0.7;
 }
 
 h1 {
@@ -103,6 +113,16 @@ h1 {
 .navbar-item.has-dropdown .navbar-link:hover {
     color: #4c4c4c !important;
     background-color: transparent;
+    opacity: 0.7;
+}
+
+.navbar-item.has-dropdown .navbar-link:focus,
+.navbar-item.has-dropdown .navbar-link:active {
+    color: #4c4c4c !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    opacity: 0.7;
 }
 
 /* Top-level navbar items (like Contact) */
@@ -119,6 +139,16 @@ h1 {
 .navbar-menu > .navbar-item:hover {
     color: #4c4c4c !important;
     background-color: transparent;
+    opacity: 0.7;
+}
+
+.navbar-menu > .navbar-item:focus,
+.navbar-menu > .navbar-item:active {
+    color: #4c4c4c !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    opacity: 0.7;
 }
 
 /* Dropdown menu styling */
@@ -168,13 +198,20 @@ h1 {
 }
 
 .navbar-dropdown .navbar-item:hover {
-    background-color: #f5f5f5 !important;
+    background-color: transparent !important;
     color: #4c4c4c !important;
-    padding-left: 2rem;
+    opacity: 0.7;
 }
 
 .navbar-dropdown .navbar-item:hover::before {
-    transform: scaleY(1);
+    transform: scaleY(0);
+}
+
+.navbar-dropdown .navbar-item:focus,
+.navbar-dropdown .navbar-item:active {
+    outline: none !important;
+    box-shadow: none !important;
+    opacity: 0.7;
 }
 
 /* Active route styling */

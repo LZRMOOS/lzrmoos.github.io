@@ -53,7 +53,6 @@
             class="thumbnail-image"
             :style="`background-image: url(${image.url})`"
           ></div>
-          <div class="thumbnail-label">{{ index + 1 }}</div>
         </div>
       </div>
     </div>
@@ -248,8 +247,8 @@ export default {
 .thumbnail-container {
   display: flex;
   gap: 8px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.7);
+  padding: 8px;
+  background: rgb(255, 255, 255);
   backdrop-filter: blur(10px);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
   overflow-x: auto;
@@ -306,18 +305,6 @@ export default {
   transform: scale(1.1);
 }
 
-.thumbnail-label {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-weight: 600;
-}
-
 @media (max-width: 768px) {
   .thumbnail-item {
     width: 60px;
@@ -326,12 +313,7 @@ export default {
   
   .thumbnail-container {
     gap: 6px;
-    padding: 8px 12px;
-  }
-  
-  .thumbnail-label {
-    font-size: 8px;
-    padding: 1px 4px;
+    padding: 6px;
   }
 }
 </style>
