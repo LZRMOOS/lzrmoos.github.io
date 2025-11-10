@@ -1,9 +1,14 @@
 <template>
-  <div class="carousel-container">
+  <div 
+    class="carousel-container"
+    @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
+  >
     <div v-if="loading" class="loading-message">Loading images...</div>
     <div v-else-if="error" class="error-message">{{ error }}</div>
     <swiper
       v-else
+      ref="swiperRef"
       :parallax="true"
       :speed="transitionSpeed"
       :loop="true"
@@ -14,6 +19,8 @@
       :keyboard="keyboardConfig"
       :pagination="paginationConfig"
       class="image-swiper"
+      @swiper="onSwiper"
+      @slideChange="onSlideChange"
     >
       <swiper-slide v-for="(image, index) in images" :key="index">
         <figure 
@@ -26,6 +33,30 @@
         </figure>
       </swiper-slide>
     </swiper>
+    
+    <!-- Navigation Card -->
+    <div 
+      v-if="!loading && !error && images.length > 0"
+      class="thumbnail-nav" 
+      :class="{ 'visible': showThumbnails }"
+    >
+      <div class="thumbnail-container">
+        <div
+          v-for="(image, index) in images"
+          :key="index"
+          class="thumbnail-item"
+          :class="{ 'active': index === currentRealIndex }"
+          @click="goToSlide(index)"
+          :title="image.alt"
+        >
+          <div 
+            class="thumbnail-image"
+            :style="`background-image: url(${image.url})`"
+          ></div>
+          <div class="thumbnail-label">{{ index + 1 }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -64,6 +95,10 @@ export default {
         clickable: true,
         type: 'progressbar',
       },
+      swiperInstance: null,
+      currentRealIndex: 0,
+      showThumbnails: false,
+      hideTimeout: null,
     };
   },
   async mounted() {
@@ -84,6 +119,50 @@ export default {
         this.loading = false;
       }
     },
+    onSwiper(swiper) {
+      this.swiperInstance = swiper;
+      this.currentRealIndex = swiper.realIndex;
+    },
+    onSlideChange(swiper) {
+      this.currentRealIndex = swiper.realIndex;
+    },
+    goToSlide(index) {
+      if (this.swiperInstance) {
+        this.swiperInstance.slideToLoop(index);
+      }
+    },
+    handleMouseMove(event) {
+      const windowHeight = window.innerHeight;
+      const mouseY = event.clientY;
+      const bottomThreshold = windowHeight - 150; // Show when mouse is within 150px of bottom
+      
+      if (mouseY >= bottomThreshold) {
+        this.showThumbnails = true;
+        this.resetHideTimeout();
+      } else {
+        this.showThumbnails = false;
+        this.clearHideTimeout();
+      }
+    },
+    handleMouseLeave() {
+      this.showThumbnails = false;
+      this.clearHideTimeout();
+    },
+    resetHideTimeout() {
+      this.clearHideTimeout();
+      this.hideTimeout = setTimeout(() => {
+        this.showThumbnails = false;
+      }, 2000);
+    },
+    clearHideTimeout() {
+      if (this.hideTimeout) {
+        clearTimeout(this.hideTimeout);
+        this.hideTimeout = null;
+      }
+    },
+  },
+  beforeUnmount() {
+    this.clearHideTimeout();
   },
 };
 </script>
@@ -146,6 +225,114 @@ export default {
   height: 100%;
   background-size: cover;
   background-position: center;
+}
+
+/* Thumbnail Navigation */
+.thumbnail-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.thumbnail-nav.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.thumbnail-container {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  justify-content: center;
+}
+
+.thumbnail-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.thumbnail-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnail-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.thumbnail-item {
+  position: relative;
+  flex-shrink: 0;
+  width: 80px;
+  height: 60px;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.thumbnail-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.thumbnail-item.active {
+  border-color: #ff40ff;
+  box-shadow: 0 0 12px rgba(255, 64, 255, 0.5);
+}
+
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-item:hover .thumbnail-image {
+  transform: scale(1.1);
+}
+
+.thumbnail-label {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .thumbnail-item {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .thumbnail-container {
+    gap: 6px;
+    padding: 8px 12px;
+  }
+  
+  .thumbnail-label {
+    font-size: 8px;
+    padding: 1px 4px;
+  }
 }
 </style>
 
