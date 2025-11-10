@@ -1,42 +1,38 @@
 <template>
   <HeaderBar />
-  <!-- <HelloWorld /> -->
   <router-view></router-view>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import HeaderBar from './components/HeaderBar.vue';
 
 export default {
   name: 'App',
   components: {
     HeaderBar,
-    // HelloWorld
-}
+  }
 }
 </script>
 
 <style>
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 h1, h2, h3, h4 {
-  font-family: Anson;
+  font-family: Anson, sans-serif;
   font-size: 20px;
-  color: rgb(96, 99, 105);
+  color: #60636a;
 }
 
 p {
-  font-family: Anson;
+  font-family: Anson, sans-serif;
   font-size: 12px;
-  color: rgb(96, 99, 105);
+  color: #60636a;
 }
 
 @font-face {
@@ -50,15 +46,23 @@ body {
   height: 100vh;
 }
 
-.swiper-button-prev {
-    color: white;
-    opacity: 60%;
-    transform:translateX(50px); 
-}
+/* Swiper navigation button styling */
+.swiper-button-prev,
 .swiper-button-next {
-    color: white;
-    opacity: 60%;
-    transform:translateX(-50px);
+  color: #ff69b4 !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  color: #ff69b4 !important;
+}
+
+.swiper-button-prev {
+  transform: translateX(50px);
+}
+
+.swiper-button-next {
+  transform: translateX(-50px);
 }
 
 :root {

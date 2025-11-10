@@ -1,20 +1,14 @@
 <template>
-  <HelloWorld />
+  <ImageCarousel />
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld.vue";
+import ImageCarousel from "../components/ImageCarousel.vue";
+
 export default {
-  name: "App",
+  name: "HomePage",
   components: {
-    HelloWorld,
+    ImageCarousel,
   },
 };
 </script>
-
-<style>
-:root {
-  --swiper-theme-color: rgb(255, 196, 184);
-  --swiper-navigation-size: 30px;
-}
-</style>
