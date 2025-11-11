@@ -3,7 +3,6 @@
     <div class="container">
       <div class="contact-card has-text-centered">
         <div class="contact-content">
-          <h4>wei dai</h4>
           <p>
             Contact me on
             <a
