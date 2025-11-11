@@ -92,6 +92,15 @@ $navbarBurgers.forEach( el => {
     opacity: 0.7;
 }
 
+/* Hamburger menu styling */
+.navbar-burger {
+    color: #4c4c4c !important;
+}
+
+.navbar-burger span {
+    background-color: #4c4c4c !important;
+}
+
 h1 {
     text-align: left;
     color: #4c4c4c;
@@ -152,7 +161,7 @@ h1 {
     opacity: 0.7;
 }
 
-/* Dropdown menu styling */
+/* Dropdown menu styling - Desktop */
 .navbar-dropdown {
     border: none !important;
     border-radius: 0;
@@ -161,17 +170,34 @@ h1 {
     margin-top: 0;
     background: white !important;
     background-color: white !important;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
     min-width: 200px;
 }
 
-.navbar-item.has-dropdown.is-hoverable:hover .navbar-dropdown {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+/* Desktop hover behavior */
+@media screen and (min-width: 1024px) {
+    .navbar-dropdown {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    .navbar-item.has-dropdown.is-hoverable:hover .navbar-dropdown {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Smooth arrow rotation effect */
+    .navbar-item.has-dropdown .navbar-link::after {
+        border-color: #4c4c4c;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-item.has-dropdown:hover .navbar-link::after {
+        border-color: #4c4c4c;
+        transform: rotate(180deg);
+    }
 }
 
 /* Dropdown items styling */
@@ -180,7 +206,7 @@ h1 {
     font-size: 15px;
     padding: 0.75rem 1.5rem;
     color: #4c4c4c !important;
-    background-color: transparent !important;
+    background-color: white !important;
     transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
@@ -199,9 +225,8 @@ h1 {
 }
 
 .navbar-dropdown .navbar-item:hover {
-    background-color: transparent !important;
+    background-color: #f9f9f9 !important;
     color: #4c4c4c !important;
-    opacity: 0.7;
 }
 
 .navbar-dropdown .navbar-item:hover::before {
@@ -212,7 +237,7 @@ h1 {
 .navbar-dropdown .navbar-item:active {
     outline: none !important;
     box-shadow: none !important;
-    opacity: 0.7;
+    background-color: #f9f9f9 !important;
 }
 
 /* Active route styling */
@@ -222,14 +247,58 @@ h1 {
     font-weight: 500;
 }
 
-/* Smooth arrow rotation effect */
-.navbar-item.has-dropdown .navbar-link::after {
-    border-color: #4c4c4c;
-    transition: all 0.3s ease;
-}
+/* Mobile-specific styles */
+@media screen and (max-width: 1023px) {
+    /* Mobile menu background */
+    .navbar-menu {
+        background-color: white !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
 
-.navbar-item.has-dropdown:hover .navbar-link::after {
-    border-color: #4c4c4c;
-    transform: rotate(180deg);
+    /* Mobile menu items */
+    .navbar-menu .navbar-item {
+        color: #4c4c4c !important;
+        padding: 1rem 1.5rem;
+    }
+
+    /* Projects dropdown link on mobile */
+    .navbar-item.has-dropdown .navbar-link {
+        color: #4c4c4c !important;
+        background-color: white !important;
+    }
+
+    /* Ensure dropdown is always visible on mobile (no opacity transitions) */
+    .navbar-dropdown {
+        background-color: #f9f9f9 !important;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        box-shadow: none !important;
+        padding-left: 1rem;
+    }
+
+    /* Mobile dropdown items */
+    .navbar-dropdown .navbar-item {
+        padding: 0.75rem 1.5rem;
+        color: #4c4c4c !important;
+        background-color: #f9f9f9 !important;
+        font-size: 14px;
+    }
+
+    .navbar-dropdown .navbar-item:active,
+    .navbar-dropdown .navbar-item:focus {
+        background-color: #f0f0f0 !important;
+        color: #4c4c4c !important;
+    }
+
+    /* Remove arrow on mobile */
+    .navbar-item.has-dropdown .navbar-link::after {
+        display: none;
+    }
+
+    /* Better spacing for mobile */
+    h1 {
+        font-size: 16px;
+    }
 }
 </style>
