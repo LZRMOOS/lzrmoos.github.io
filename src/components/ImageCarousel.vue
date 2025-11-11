@@ -76,6 +76,16 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  props: {
+    imageSource: {
+      type: String,
+      default: IMAGES_JSON_PATH,
+    },
+    showNavByDefault: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       images: [],
@@ -96,7 +106,7 @@ export default {
       },
       swiperInstance: null,
       currentRealIndex: 0,
-      showThumbnails: false,
+      showThumbnails: this.showNavByDefault,
       hideTimeout: null,
     };
   },
@@ -106,7 +116,7 @@ export default {
   methods: {
     async loadImages() {
       try {
-        const response = await fetch(IMAGES_JSON_PATH);
+        const response = await fetch(this.imageSource);
         if (!response.ok) {
           throw new Error(`Failed to load images: ${response.statusText}`);
         }
@@ -131,6 +141,9 @@ export default {
       }
     },
     handleMouseMove(event) {
+      // Skip mouse behavior for pages with showNavByDefault (nav always visible)
+      if (this.showNavByDefault) return;
+      
       const windowHeight = window.innerHeight;
       const mouseY = event.clientY;
       const bottomThreshold = windowHeight - 150; // Show when mouse is within 150px of bottom
@@ -144,6 +157,9 @@ export default {
       }
     },
     handleMouseLeave() {
+      // Skip mouse behavior for pages with showNavByDefault (nav always visible)
+      if (this.showNavByDefault) return;
+      
       this.showThumbnails = false;
       this.clearHideTimeout();
     },

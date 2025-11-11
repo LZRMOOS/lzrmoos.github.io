@@ -5,6 +5,7 @@ import peoplePage from "@/views/PeoplePage.vue";
 import placesPage from "@/views/PlacesPage.vue";
 import thingsPage from "@/views/ThingsPage.vue";
 import pepePage from "@/views/PepePage.vue";
+import f1Page from "@/views/F1Page.vue";
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: "/galleries/pepe",
     name: "Pepe",
     component: pepePage,
+  },
+  {
+    path: "/galleries/f1",
+    name: "F1",
+    component: f1Page,
   },
 ];
 
