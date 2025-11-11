@@ -2,13 +2,6 @@
   <div class="contact-page">
     <div class="container">
       <div class="contact-card has-text-centered">
-        <figure class="profile-image is-3by3 is-inline-block">
-          <img
-            src="https://live.staticflickr.com/65535/52330006126_ef9e4c225f.jpg"
-            alt="Wei Dai profile photo"
-          />
-        </figure>
-
         <div class="contact-content">
           <h4>wei dai</h4>
           <p>
