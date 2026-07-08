@@ -1,6 +1,5 @@
 <template>
     <nav class="navbar is-transparent">
-        <!-- Leftmost title header -->
         <div class="navbar-brand">
             <router-link class="navbar-item" to="/">
                 <h1>wei moar photography</h1>
@@ -8,7 +7,7 @@
             <a class="navbar-item is-hidden-desktop" href="https://www.instagram.com/weidvi/" target="_blank">
                 <font-awesome-icon icon="fa-brands fa-instagram" />
             </a>
-        
+
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -20,24 +19,15 @@
             <div class="navbar-start">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link is-arrowless">
-                        Projects
+                        [ Projects ]
                     </a>
                     <div class="navbar-dropdown">
-                        <!-- <router-link class="navbar-item" to="/galleries/people">People</router-link> -->
-                        <!-- <router-link class="navbar-item" to="/galleries/places">Places</router-link> -->
-                        <!-- <router-link class="navbar-item" to="/galleries/things">Things</router-link> -->
                         <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
-                        <router-link class="navbar-item" to="/galleries/dropbox">Dropbox album</router-link>
                         <router-link class="navbar-item" to="/galleries/pepe">Pepe Slack Emojis</router-link>
                     </div>
                 </div>
-                <router-link class="navbar-item" to="/blog">Posts</router-link>
-                <router-link class="navbar-item" to="/contact">Contact</router-link>
-            </div>
-            <div class="navbar-end">
-                <a class="navbar-item is-hidden-touch" href="https://www.instagram.com/weidvi/" target="_blank">
-                    <font-awesome-icon icon="fa-brands fa-instagram" />
-                </a>
+                <router-link class="navbar-item" to="/blog">[ Posts ]</router-link>
+                <router-link class="navbar-item" to="/contact">[ Contact ]</router-link>
             </div>
         </div>
     </nav>
@@ -46,21 +36,14 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-// Get all "navbar-burger" elements
 const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-// Add a click event on each of them
 $navbarBurgers.forEach( el => {
   el.addEventListener('click', () => {
-
-    // Get the target from the "data-target" attribute
     const target = el.dataset.target;
     const $target = document.getElementById(target);
-
-    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
     el.classList.toggle('is-active');
     $target.classList.toggle('is-active');
-
   });
 });
 
@@ -68,122 +51,113 @@ $navbarBurgers.forEach( el => {
 </script>
 
 <style scoped>
-/* Override any dark theme */
 .navbar {
     background-color: white !important;
+    padding: 8px 20px;
 }
 
-/* Navbar brand items */
 .navbar-brand .navbar-item {
-    color: #4c4c4c !important;
+    color: #1a1a1a !important;
 }
 
 .navbar-brand .navbar-item:hover {
-    color: #4c4c4c !important;
+    color: #0625ee !important;
     background-color: transparent !important;
-    opacity: 0.7;
 }
 
 .navbar-brand .navbar-item:focus,
 .navbar-brand .navbar-item:active {
-    color: #4c4c4c !important;
+    color: #1a1a1a !important;
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
-    opacity: 0.7;
 }
 
-/* Hamburger menu styling */
 .navbar-burger {
-    color: #4c4c4c !important;
+    color: #1a1a1a !important;
 }
 
 .navbar-burger span {
-    background-color: #4c4c4c !important;
+    background-color: #1a1a1a !important;
 }
 
 h1 {
     text-align: left;
-    color: #4c4c4c;
-    font-size: 18px;
+    color: #1a1a1a;
+    font-size: 16px;
     margin: 0;
     font-family: 'Anson', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
-/* Modern dropdown styling */
 .navbar-item.has-dropdown {
     padding: 0;
 }
 
 .navbar-item.has-dropdown .navbar-link {
-    font-family: 'Anson', sans-serif;
-    font-size: 16px;
+    font-family: 'Anson', monospace;
+    font-size: 13px;
     font-weight: 500;
-    color: #4c4c4c !important;
-    transition: all 0.3s ease;
+    color: #1a1a1a !important;
+    letter-spacing: 0.06em;
+    transition: color 0.3s ease;
     position: relative;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
 }
 
 .navbar-item.has-dropdown .navbar-link:hover {
-    color: #4c4c4c !important;
+    color: #0625ee !important;
     background-color: transparent;
-    opacity: 0.7;
 }
 
 .navbar-item.has-dropdown .navbar-link:focus,
 .navbar-item.has-dropdown .navbar-link:active {
-    color: #4c4c4c !important;
+    color: #1a1a1a !important;
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
-    opacity: 0.7;
 }
 
-/* Top-level navbar items (like Contact) */
 .navbar-menu > .navbar-start > .navbar-item {
-    font-family: 'Anson', sans-serif;
-    font-size: 16px;
+    font-family: 'Anson', monospace;
+    font-size: 13px;
     font-weight: 500;
-    color: #4c4c4c !important;
-    transition: all 0.3s ease;
+    color: #1a1a1a !important;
+    letter-spacing: 0.06em;
+    transition: color 0.3s ease;
     position: relative;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
 }
 
 .navbar-menu > .navbar-start > .navbar-item:hover {
-    color: #4c4c4c !important;
+    color: #0625ee !important;
     background-color: transparent !important;
-    opacity: 0.7;
 }
 
 .navbar-menu > .navbar-start > .navbar-item:focus,
 .navbar-menu > .navbar-start > .navbar-item:active {
-    color: #4c4c4c !important;
+    color: #1a1a1a !important;
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
-    opacity: 0.7;
 }
 
-/* Dropdown menu styling - Desktop */
 .navbar-dropdown {
-    border: none !important;
+    border: 1px solid #e8e8e8 !important;
     border-radius: 0;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    padding: 0.5rem 0;
+    box-shadow: none;
+    padding: 12px 0;
     margin-top: 0;
     background: white !important;
-    background-color: white !important;
-    min-width: 200px;
+    min-width: 240px;
 }
 
-/* Desktop hover behavior */
 @media screen and (min-width: 1024px) {
     .navbar-dropdown {
         opacity: 0;
-        transform: translateY(-10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(-8px);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         pointer-events: none;
     }
 
@@ -193,49 +167,37 @@ h1 {
         pointer-events: auto;
     }
 
-    /* Smooth arrow rotation effect */
     .navbar-item.has-dropdown .navbar-link::after {
-        border-color: #4c4c4c;
-        transition: all 0.3s ease;
-    }
-
-    .navbar-item.has-dropdown:hover .navbar-link::after {
-        border-color: #4c4c4c;
-        transform: rotate(180deg);
+        display: none;
     }
 }
 
-/* Dropdown items styling */
 .navbar-dropdown .navbar-item {
-    font-family: 'Anson', sans-serif;
-    font-size: 15px;
-    padding: 0.75rem 1.5rem;
-    color: #4c4c4c !important;
+    font-family: 'Anson', monospace;
+    font-size: 12px;
+    padding: 10px 20px;
+    color: #777 !important;
     background-color: white !important;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
+    letter-spacing: 0.08em;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
 }
 
 .navbar-dropdown .navbar-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    background: linear-gradient(135deg, #ff8c52, #ff40ff);
-    transform: scaleY(0);
-    transition: transform 0.25s ease;
+    content: '→';
+    margin-right: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: #0625ee;
 }
 
 .navbar-dropdown .navbar-item:hover {
-    background-color: #f9f9f9 !important;
-    color: #4c4c4c !important;
+    background-color: white !important;
+    color: #0625ee !important;
 }
 
 .navbar-dropdown .navbar-item:hover::before {
-    transform: scaleY(0);
+    opacity: 1;
 }
 
 .navbar-dropdown .navbar-item:focus,
@@ -245,65 +207,55 @@ h1 {
     background-color: #f9f9f9 !important;
 }
 
-/* Active route styling */
 .navbar-dropdown .navbar-item.router-link-active {
-    color: #4c4c4c !important;
+    color: #0625ee !important;
     background-color: #f5f5f5 !important;
-    font-weight: 500;
 }
 
-/* Mobile-specific styles */
 @media screen and (max-width: 1023px) {
-    /* Mobile menu background */
     .navbar-menu {
         background-color: white !important;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
     }
 
-    /* Mobile menu items */
     .navbar-menu .navbar-item {
-        color: #4c4c4c !important;
-        padding: 1rem 1.5rem;
+        color: #1a1a1a !important;
+        padding: 0.75rem 1.25rem;
     }
 
-    /* Projects dropdown link on mobile */
     .navbar-item.has-dropdown .navbar-link {
-        color: #4c4c4c !important;
+        color: #1a1a1a !important;
         background-color: white !important;
     }
 
-    /* Ensure dropdown is always visible on mobile (no opacity transitions) */
     .navbar-dropdown {
-        background-color: #f9f9f9 !important;
+        background-color: #fafafa !important;
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto !important;
         box-shadow: none !important;
-        padding-left: 1rem;
+        padding-left: 0.75rem;
     }
 
-    /* Mobile dropdown items */
     .navbar-dropdown .navbar-item {
-        padding: 0.75rem 1.5rem;
-        color: #4c4c4c !important;
-        background-color: #f9f9f9 !important;
-        font-size: 14px;
+        padding: 0.6rem 1.25rem;
+        color: #1a1a1a !important;
+        background-color: #fafafa !important;
+        font-size: 12px;
     }
 
     .navbar-dropdown .navbar-item:active,
     .navbar-dropdown .navbar-item:focus {
         background-color: #f0f0f0 !important;
-        color: #4c4c4c !important;
+        color: #1a1a1a !important;
     }
 
-    /* Remove arrow on mobile */
     .navbar-item.has-dropdown .navbar-link::after {
         display: none;
     }
 
-    /* Better spacing for mobile */
     h1 {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 </style>

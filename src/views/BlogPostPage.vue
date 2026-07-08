@@ -3,16 +3,16 @@
     <article v-if="post" class="blog-post">
       <header class="post-header">
         <div class="back-link" @click="$router.push('/blog')">
-          ← Back to blog
+          [ ← BACK ]
         </div>
-        <div class="post-date">{{ post.date }}</div>
+        <span class="post-date">{{ post.date }}</span>
         <h1>{{ post.title }}</h1>
       </header>
       <div class="post-content" v-html="post.content"></div>
     </article>
     <div v-else class="not-found">
-      <h2>Post not found</h2>
-      <p>The blog post you're looking for doesn't exist.</p>
+      <p class="not-found-sub">404</p>
+      <h2>Post Not Found.</h2>
     </div>
   </div>
 </template>
@@ -43,52 +43,58 @@ export default {
 .blog-post-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 80px 40px 120px;
+  padding: 100px 60px 120px;
   background: #ffffff;
   min-height: 100vh;
 }
 
 .back-link {
-  color: #888;
+  color: #bbb;
   cursor: pointer;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   display: inline-block;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  font-family: 'Anson', monospace;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .back-link:hover {
-  color: #1a1a1a;
+  color: #0625ee;
 }
 
 .post-header {
-  margin-bottom: 60px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 64px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .post-date {
-  font-size: 0.875rem;
-  color: #888;
+  display: block;
+  font-size: 0.75rem;
+  color: #aaa;
   margin-bottom: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  font-family: 'Anson', monospace;
 }
 
 .post-header h1 {
-  font-size: 2.75rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 400;
-  color: #1a1a1a;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  color: #0625ee;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
 }
 
 .post-content {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.8;
-  color: #2a2a2a;
+  color: #333;
+  font-family: 'Anson', sans-serif;
 }
 
 .post-content :deep(p) {
@@ -96,36 +102,38 @@ export default {
 }
 
 .post-content :deep(em) {
-  color: #666;
+  color: #555;
   font-style: italic;
 }
 
 .post-content :deep(h2) {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 400;
-  margin-top: 60px;
+  margin-top: 64px;
   margin-bottom: 24px;
   color: #1a1a1a;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  font-family: Georgia, 'Times New Roman', serif;
 }
 
 .post-content :deep(h3) {
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-top: 45px;
-  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 48px;
+  margin-bottom: 16px;
   color: #1a1a1a;
   letter-spacing: -0.01em;
+  font-family: 'Anson', sans-serif;
 }
 
 .post-content :deep(ul),
 .post-content :deep(ol) {
   margin-bottom: 24px;
-  padding-left: 32px;
+  padding-left: 24px;
 }
 
 .post-content :deep(li) {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   line-height: 1.7;
 }
 
@@ -135,36 +143,34 @@ export default {
 }
 
 .post-content :deep(blockquote) {
-  border-left: 3px solid #1a1a1a;
+  border-left: 3px solid #0625ee;
   padding-left: 24px;
   margin: 40px 0;
   color: #555;
   font-style: italic;
-  font-size: 1.05rem;
 }
 
 .post-content :deep(code) {
-  background: #f8f8f8;
+  background: #f5f5f5;
   padding: 3px 8px;
   border-radius: 3px;
-  font-family: "SF Mono", "Consolas", "Monaco", monospace;
-  font-size: 0.9em;
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 0.85em;
   color: #1a1a1a;
 }
 
 .post-content :deep(pre) {
-  background: #f8f8f8;
+  background: #f5f5f5;
   padding: 24px;
   border-radius: 4px;
   overflow-x: auto;
   margin: 32px 0;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #eee;
 }
 
 .post-content :deep(a) {
-  color: #1a1a1a;
+  color: #0625ee;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
   transition: opacity 0.3s ease;
 }
 
@@ -180,10 +186,10 @@ export default {
 }
 
 .post-content :deep(.post-intro) {
-  font-size: 1.15rem;
-  color: #444;
+  font-size: 1.1rem;
+  color: #555;
   font-style: italic;
-  border-left: 3px solid #ddd;
+  border-left: 3px solid #0625ee;
   padding-left: 20px;
   margin-bottom: 40px;
 }
@@ -191,59 +197,66 @@ export default {
 .post-content :deep(.stats-grid) {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 16px;
   margin: 36px 0;
 }
 
 .post-content :deep(.stat-card) {
   background: #f9f9f9;
   border: 1px solid #eee;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 28px 24px;
   text-align: center;
 }
 
 .post-content :deep(.stat-number) {
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #0625ee;
   margin-bottom: 8px;
   letter-spacing: -0.02em;
+  font-family: Georgia, 'Times New Roman', serif;
 }
 
 .post-content :deep(.stat-label) {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #555;
   line-height: 1.5;
   margin-bottom: 8px;
 }
 
 .post-content :deep(.stat-source) {
-  font-size: 0.95rem;
-  color: #999;
+  font-size: 0.75rem;
+  color: #aaa;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  font-family: 'Anson', monospace;
 }
 
 .post-content :deep(.callout) {
-  background: #f5f7fa;
-  border-left: 4px solid #1a1a1a;
+  background: #f9f9f9;
+  border-left: 3px solid #0625ee;
   padding: 24px 28px;
   margin: 36px 0;
   border-radius: 0 6px 6px 0;
 }
 
 .post-content :deep(.callout-warn) {
-  border-left-color: #e6a817;
+  border-left-color: #ff8c52;
 }
 
 .post-content :deep(.callout-title) {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #1a1a1a;
+  letter-spacing: 0.15em;
+  color: #0625ee;
   margin-bottom: 10px;
+  font-family: 'Anson', monospace;
+}
+
+.post-content :deep(.callout-warn .callout-title) {
+  color: #ff8c52;
 }
 
 .post-content :deep(.callout p) {
@@ -256,7 +269,7 @@ export default {
   width: 100%;
   border-collapse: collapse;
   margin: 32px 0;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .post-content :deep(.defense-table thead),
@@ -269,21 +282,22 @@ export default {
   padding: 14px 16px;
   text-align: left;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #333;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
   border-bottom: 2px solid #e0e0e0;
+  font-family: 'Anson', monospace;
 }
 
 .post-content :deep(.defense-table td),
 .post-content :deep(.platform-table td) {
   padding: 14px 16px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f0f0f0;
   vertical-align: top;
   line-height: 1.6;
   color: #444;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 .post-content :deep(.defense-table tr:last-child td),
@@ -294,142 +308,144 @@ export default {
 .post-content :deep(.two-col) {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 20px;
   margin: 32px 0;
 }
 
 .post-content :deep(.col-item) {
   background: #f9f9f9;
   border: 1px solid #eee;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 24px;
 }
 
 .post-content :deep(.col-header) {
-  font-size: 0.95rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #333;
+  letter-spacing: 0.1em;
+  color: #0625ee;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e8e8e8;
+  font-family: 'Anson', monospace;
 }
 
 .post-content :deep(.col-item ul) {
-  padding-left: 18px;
+  padding-left: 16px;
   margin-bottom: 0;
 }
 
 .post-content :deep(.col-item li) {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
 }
 
 .post-content :deep(.breach-list) {
   margin: 28px 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .post-content :deep(.breach-item) {
   padding: 14px 20px;
-  background: #fdf6f6;
-  border: 1px solid #f0dada;
-  border-radius: 6px;
-  font-size: 1.1rem;
+  background: #fff8f6;
+  border: 1px solid #ffe8e0;
+  border-radius: 4px;
+  font-size: 0.95rem;
   color: #333;
 }
 
 .post-content :deep(.breach-tag) {
-  background: #e74c3c;
+  background: #ff8c52;
   color: white;
-  font-size: 0.8rem;
-  padding: 3px 8px;
-  border-radius: 3px;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   font-weight: 600;
   margin-left: 8px;
+  font-family: 'Anson', monospace;
 }
 
 .post-content :deep(.prompt-box) {
   background: #1a1a1a;
   color: #e0e0e0;
   padding: 24px 28px;
-  border-radius: 8px;
+  border-radius: 6px;
   margin: 28px 0;
   font-family: "SF Mono", "Consolas", monospace;
 }
 
 .post-content :deep(.prompt-label) {
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #888;
+  letter-spacing: 0.15em;
+  color: #666;
   margin-bottom: 10px;
 }
 
 .post-content :deep(.prompt-box p) {
   margin-bottom: 0;
   color: #e0e0e0;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 .post-content :deep(.perimeter-grid) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
   margin: 28px 0;
 }
 
 .post-content :deep(.perimeter-item) {
-  padding: 14px 12px;
+  padding: 12px 10px;
   text-align: center;
-  border-radius: 6px;
-  font-size: 1.05rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
   font-weight: 500;
 }
 
 .post-content :deep(.perimeter-item.missing) {
-  background: #f9f3f3;
-  border: 1px solid #ecdada;
-  color: #9e4444;
+  background: #fff8f6;
+  border: 1px solid #ffe8e0;
+  color: #cc5533;
   text-decoration: line-through;
-  text-decoration-color: #c88;
 }
 
 .post-content :deep(.recommendations) {
   margin: 36px 0;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
 }
 
 .post-content :deep(.rec-item) {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: flex-start;
 }
 
 .post-content :deep(.rec-number) {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  background: #1a1a1a;
+  width: 36px;
+  height: 36px;
+  background: #0625ee;
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-top: 4px;
+  margin-top: 2px;
+  font-family: 'Anson', monospace;
 }
 
 .post-content :deep(.rec-content h3) {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 0;
   margin-bottom: 8px;
   font-weight: 600;
@@ -437,13 +453,13 @@ export default {
 
 .post-content :deep(.rec-content p) {
   margin-bottom: 0;
-  color: #444;
+  color: #555;
 }
 
 .post-content :deep(.section-divider) {
   border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 60px 0 40px;
+  border-top: 1px solid #e8e8e8;
+  margin: 64px 0 40px;
 }
 
 .not-found {
@@ -451,15 +467,20 @@ export default {
   padding: 100px 20px;
 }
 
-.not-found h2 {
-  font-size: 2rem;
-  font-weight: 400;
-  margin-bottom: 15px;
+.not-found-sub {
+  font-size: 1rem;
+  color: #999;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+  font-family: 'Anson', sans-serif;
 }
 
-.not-found p {
-  color: #666;
-  font-size: 1.1rem;
+.not-found h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #0625ee;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
@@ -468,26 +489,22 @@ export default {
   }
 
   .post-header {
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-  }
-
-  .post-header h1 {
-    font-size: 2rem;
+    margin-bottom: 48px;
+    padding-bottom: 36px;
   }
 
   .post-content {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .post-content :deep(h2) {
-    font-size: 1.6rem;
-    margin-top: 50px;
+    font-size: 1.5rem;
+    margin-top: 48px;
   }
 
   .post-content :deep(h3) {
-    font-size: 1.3rem;
-    margin-top: 40px;
+    font-size: 1.15rem;
+    margin-top: 36px;
   }
 
   .post-content :deep(.stats-grid) {
@@ -504,7 +521,7 @@ export default {
 
   .post-content :deep(.rec-item) {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 }
 </style>
