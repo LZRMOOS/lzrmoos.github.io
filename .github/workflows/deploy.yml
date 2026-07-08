@@ -1,0 +1,33 @@
+# Build (runs Dropbox gallery fetch in prebuild) and push dist/ to branch gh-pages.
+# Repository secrets (optional): DROPBOX_ACCESS_TOKEN, DROPBOX_SHARED_FOLDER_URL
+# Tokens are only used in CI, never committed or served as static assets.
+
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Build
+        env:
+          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+          DROPBOX_SHARED_FOLDER_URL: ${{ secrets.DROPBOX_SHARED_FOLDER_URL }}
+        run: npm run build
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
