@@ -1,12 +1,12 @@
 <template>
-  <ImageCarousel :imageSource="'/f1-images.json'" :showNavByDefault="true" />
+  <ImageCarousel :imageSource="'/dropbox-gallery.json'" :showNavByDefault="true" />
 </template>
 
 <script>
 import ImageCarousel from "../components/ImageCarousel.vue";
 
 export default {
-  name: "F1Page",
+  name: "DropboxGalleryPage",
   components: {
     ImageCarousel,
   },
@@ -18,4 +18,3 @@ export default {
   },
 };
 </script>
-

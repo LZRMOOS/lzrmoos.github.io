@@ -15,26 +15,25 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div class="navbar-start">
-            
-        </div>
-        
+
         <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link is-arrowless">
-                    Projects
-                </a>
-                <div class="navbar-dropdown">
-                    <!-- <router-link class="navbar-item" to="/galleries/people">People</router-link> -->
-                    <!-- <router-link class="navbar-item" to="/galleries/places">Places</router-link> -->
-                    <!-- <router-link class="navbar-item" to="/galleries/things">Things</router-link> -->
-                    <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
-                    <router-link class="navbar-item" to="/galleries/dropbox">Dropbox album</router-link>
-                    <router-link class="navbar-item" to="/galleries/pepe">Pepe Slack Emojis</router-link>
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link is-arrowless">
+                        Projects
+                    </a>
+                    <div class="navbar-dropdown">
+                        <!-- <router-link class="navbar-item" to="/galleries/people">People</router-link> -->
+                        <!-- <router-link class="navbar-item" to="/galleries/places">Places</router-link> -->
+                        <!-- <router-link class="navbar-item" to="/galleries/things">Things</router-link> -->
+                        <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
+                        <router-link class="navbar-item" to="/galleries/dropbox">Dropbox album</router-link>
+                        <router-link class="navbar-item" to="/galleries/pepe">Pepe Slack Emojis</router-link>
+                    </div>
                 </div>
+                <router-link class="navbar-item" to="/blog">Posts</router-link>
+                <router-link class="navbar-item" to="/contact">Contact</router-link>
             </div>
-            <router-link class="navbar-item" to="/blog">Blog</router-link>
-            <router-link class="navbar-item" to="/contact">Contact</router-link>
             <div class="navbar-end">
                 <a class="navbar-item is-hidden-touch" href="https://www.instagram.com/weidvi/" target="_blank">
                     <font-awesome-icon icon="fa-brands fa-instagram" />
@@ -112,6 +111,10 @@ h1 {
 }
 
 /* Modern dropdown styling */
+.navbar-item.has-dropdown {
+    padding: 0;
+}
+
 .navbar-item.has-dropdown .navbar-link {
     font-family: 'Anson', sans-serif;
     font-size: 16px;
@@ -138,7 +141,7 @@ h1 {
 }
 
 /* Top-level navbar items (like Contact) */
-.navbar-menu > .navbar-item {
+.navbar-menu > .navbar-start > .navbar-item {
     font-family: 'Anson', sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -148,14 +151,14 @@ h1 {
     padding: 0.5rem 1rem;
 }
 
-.navbar-menu > .navbar-item:hover {
+.navbar-menu > .navbar-start > .navbar-item:hover {
     color: #4c4c4c !important;
-    background-color: transparent;
+    background-color: transparent !important;
     opacity: 0.7;
 }
 
-.navbar-menu > .navbar-item:focus,
-.navbar-menu > .navbar-item:active {
+.navbar-menu > .navbar-start > .navbar-item:focus,
+.navbar-menu > .navbar-start > .navbar-item:active {
     color: #4c4c4c !important;
     background-color: transparent !important;
     outline: none !important;

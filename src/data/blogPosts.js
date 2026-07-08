@@ -1,254 +1,506 @@
 export default {
+  "building-a-security-aware-mindset": {
+    title: "Building a Security Aware Mindset",
+    date: "November 3, 2021",
+    content: `
+      <p class="post-intro">This post is adapted from a talk I gave on building a security-aware mindset for people across all roles, not just engineers. The goal is to help everyone think about risk, understand how adversaries approach problems, and start looking at the world through a security lens.</p>
+
+      <h2>Why This Matters for Everyone</h2>
+
+      <p>Security isn't just the security team's job. Every person in an organization makes decisions that affect security posture, from how they handle credentials to how they design a feature to how they respond to a suspicious email. The difference between an organization that gets breached and one that doesn't often comes down to whether people across the company have internalized a few key mental models.</p>
+
+      <p>This isn't about memorizing a checklist. It's about developing intuition.</p>
+
+      <h2>Thinking Like an Adversary</h2>
+
+      <p>The core skill of security thinking is asking: <strong>"How could this go wrong?"</strong></p>
+
+      <p>Adversaries don't play by the rules. They don't use your application the way you intended. They look for assumptions you've made and find ways to violate them. Building a security mindset means adopting this same perspective, not to attack, but to defend.</p>
+
+      <div class="two-col">
+        <div class="col-item">
+          <div class="col-header">Normal Thinking</div>
+          <ul>
+            <li>"How do I make this work?"</li>
+            <li>"What's the happy path?"</li>
+            <li>"What does the user need?"</li>
+            <li>"How do I ship this faster?"</li>
+          </ul>
+        </div>
+        <div class="col-item">
+          <div class="col-header">Security Thinking</div>
+          <ul>
+            <li>"How could someone make this fail?"</li>
+            <li>"What happens when inputs are unexpected?"</li>
+            <li>"What if the user is malicious?"</li>
+            <li>"What am I assuming that might not be true?"</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Both perspectives are necessary. Great builders think about both simultaneously.</p>
+
+      <h2>Core Principles</h2>
+
+      <h3>1. Defense in Depth</h3>
+
+      <p>Never rely on a single control. Layers of security mean that when (not if) one layer fails, others are there to catch the fall. This applies to everything from architecture to processes to access management.</p>
+
+      <div class="callout">
+        <div class="callout-title">Analogy</div>
+        <p>A castle doesn't just have a front gate. It has a moat, outer walls, inner walls, locked chambers, and guards at every level. If the gate falls, the castle doesn't.</p>
+      </div>
+
+      <h3>2. Least Privilege</h3>
+
+      <p>Every person, system, and process should have only the minimum access needed to do its job. Nothing more. This limits the blast radius when something goes wrong.</p>
+
+      <p>Ask yourself:</p>
+      <ul>
+        <li>Does this service need write access, or just read?</li>
+        <li>Does this role need admin, or just viewer?</li>
+        <li>Does this API key need access to everything, or just one endpoint?</li>
+        <li>Does this contractor need permanent access, or just temporary?</li>
+      </ul>
+
+      <h3>3. Trust, But Verify</h3>
+
+      <p>Don't assume things are secure because they feel secure. Verify. This means validating inputs, checking configurations, reviewing access lists, and testing assumptions.</p>
+
+      <table class="defense-table">
+        <thead>
+          <tr>
+            <th>Assumption</th>
+            <th>Reality Check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"Only our team uses this internal API"</td>
+            <td>Is it actually authenticated? Could someone else discover it?</td>
+          </tr>
+          <tr>
+            <td>"This data isn't sensitive"</td>
+            <td>Could it be combined with other data to become sensitive?</td>
+          </tr>
+          <tr>
+            <td>"Nobody would bother attacking us"</td>
+            <td>Automated scanners don't discriminate by company size</td>
+          </tr>
+          <tr>
+            <td>"The vendor handles security"</td>
+            <td>Shared responsibility models mean you still own configuration</td>
+          </tr>
+          <tr>
+            <td>"This is just a prototype"</td>
+            <td>Prototypes have a habit of becoming production systems</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Thinking About Risk</h2>
+
+      <p>Security is fundamentally about managing risk. Not eliminating it (that's impossible) but understanding it, prioritizing it, and making informed tradeoffs.</p>
+
+      <h3>The Risk Equation</h3>
+
+      <div class="callout">
+        <div class="callout-title">Risk Framework</div>
+        <p><strong>Risk = Likelihood x Impact</strong></p>
+        <p>A low-likelihood, high-impact event (like a full database breach) may warrant more investment than a high-likelihood, low-impact event (like a misconfigured header). But both deserve attention.</p>
+      </div>
+
+      <p>When evaluating a decision, ask:</p>
+
+      <div class="recommendations">
+        <div class="rec-item">
+          <div class="rec-number">?</div>
+          <div class="rec-content">
+            <h3>What's the worst case?</h3>
+            <p>If this goes wrong, how bad is it? Data loss? Financial loss? Reputational damage? A minor inconvenience?</p>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-number">?</div>
+          <div class="rec-content">
+            <h3>How likely is it?</h3>
+            <p>Is this a common attack vector? Is the data valuable enough for someone to target? Is it internet-facing?</p>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-number">?</div>
+          <div class="rec-content">
+            <h3>What's the mitigation cost?</h3>
+            <p>Is the fix trivial or expensive? Sometimes a 5-minute configuration change prevents a catastrophic outcome.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Common Vulnerability Classes to Know</h2>
+
+      <p>You don't need to be a security engineer to understand the major categories of vulnerabilities. Here are the ones that matter most:</p>
+
+      <table class="defense-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>What It Is</th>
+            <th>How to Think About It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Broken Access Controls</strong></td>
+            <td>Users can access things they shouldn't</td>
+            <td>Always ask: "What if someone who shouldn't be here... is?"</td>
+          </tr>
+          <tr>
+            <td><strong>Injection</strong></td>
+            <td>Untrusted input treated as code (SQL, commands, etc.)</td>
+            <td>Never trust user input. Sanitize, parameterize, validate.</td>
+          </tr>
+          <tr>
+            <td><strong>Exposed Secrets</strong></td>
+            <td>API keys, passwords, tokens committed to code or logs</td>
+            <td>If it's a secret, it belongs in a vault, not in source code.</td>
+          </tr>
+          <tr>
+            <td><strong>Misconfiguration</strong></td>
+            <td>Default settings, open ports, overly permissive policies</td>
+            <td>Defaults are convenient, not secure. Review every default.</td>
+          </tr>
+          <tr>
+            <td><strong>Social Engineering</strong></td>
+            <td>Manipulating people into giving up access or information</td>
+            <td>Verify identity through a second channel. Slow down.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Practical Habits for Everyone</h2>
+
+      <p>Building a security mindset isn't about becoming a hacker. It's about developing small, consistent habits that compound over time.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">Pause</div>
+          <div class="stat-label">Before clicking links, granting access, or sharing data, take a beat. Ask yourself if something feels off.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Question</div>
+          <div class="stat-label">Why does this need that permission? Why is this public? Why isn't this encrypted? Curiosity is a security tool.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Report</div>
+          <div class="stat-label">See something weird? Say something. A false alarm costs minutes. A missed incident costs days, months, or worse.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Limit</div>
+          <div class="stat-label">Share the minimum needed. Use the smallest permission set. Keep blast radius small by default.</div>
+        </div>
+      </div>
+
+      <h2>For Engineers: Guardrails, Not Gatekeepers</h2>
+
+      <p>If you're building software, here's the mindset shift that makes security scale: <strong>make the secure path the easy path.</strong></p>
+
+      <p>This comes from Netflix's "Paved Road" philosophy. Instead of saying "no" and blocking teams, build secure defaults and golden paths that developers naturally follow because they're the fastest way to get things done.</p>
+
+      <div class="callout">
+        <div class="callout-title">Key Insight</div>
+        <p>"Security engineering is the compound interest of security." Every secure default you ship today prevents vulnerabilities in every future feature that uses it. Find one good abstraction and you eliminate entire vulnerability classes. <em>- adapted from Clint Gibler</em></p>
+      </div>
+
+      <p>Concrete examples:</p>
+      <ul>
+        <li>Using a framework that escapes output by default eliminates XSS across your entire app</li>
+        <li>A database library that only allows parameterized queries eliminates SQL injection</li>
+        <li>A wrapper library for XML parsing that disables external entities eliminates XXE</li>
+        <li>Secret management tooling that's easier than hardcoding means developers won't hardcode</li>
+      </ul>
+
+      <p>The pattern: identify a vulnerability class, build a secure-by-default library, make sure it's being used everywhere (via lightweight scanning), and move on to the next one.</p>
+
+      <h2>The Bigger Picture</h2>
+
+      <p>Security awareness isn't a one-time training module. It's a lens you develop over time. The more you practice asking "how could this go wrong?" the more natural it becomes.</p>
+
+      <p>A few final thoughts:</p>
+
+      <ul>
+        <li><strong>Perfect security doesn't exist.</strong> The goal is raising the cost for an attacker high enough that they move on to an easier target.</li>
+        <li><strong>Security is a team sport.</strong> One person can't secure everything. But if everyone is thinking about it a little bit, the overall posture improves dramatically.</li>
+        <li><strong>Speed and security aren't enemies.</strong> The fastest way to ship is often the secure way, when you've invested in the right defaults and tooling upfront.</li>
+      </ul>
+
+      <hr class="section-divider" />
+
+      <h2>Further Reading</h2>
+      <ul>
+        <li>Clint Gibler - <a href="https://tldrsec.com" target="_blank" rel="noopener">tl;dr sec newsletter</a></li>
+        <li>OWASP Top 10 - The standard awareness document for web application security</li>
+        <li>Netflix - "Paved Road" philosophy for developer security</li>
+        <li>Google - "Building Secure and Reliable Systems" (O'Reilly)</li>
+      </ul>
+    `,
+  },
   "sf-dbx-security-con-talk-2026": {
     title: "Securing AI Coding Platforms: Lessons from SF DBX Security Con",
     date: "April 6, 2026",
     content: `
-      <p><em>These are my speaker notes and slides from my 30-minute talk at the SF DBX Security Con on April 6, 2026. The talk focused on the challenges of shifting left and securing AI coding companions in an era of democratized software development.</em></p>
+      <p class="post-intro">I gave a 30-minute talk at the SF DBX Security Con on the challenges of shifting left in an era of AI coding companions and no-code deployment platforms. This post distills the key themes: why our existing SDLC controls aren't enough, what the "platform problem" actually is, and what we can do about it.</p>
 
-      <h2>Introduction</h2>
+      <h2>The State of AI-Generated Code</h2>
 
-      <p>Hi all, my name is Wei and I work in security at Dropbox with a focus on application security—which these days is also AI, I guess. So that's what I'm here to talk about. For the next 30 minutes we'll dive into what it means to shift left these days, along with raising awareness about some skeletons in your closet you might not know about.</p>
+      <p>AI isn't just a coding assistant anymore. It's become a primary partner. According to recent surveys, the adoption is staggering:</p>
 
-      <h2>The AI Coding Revolution</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">72%</div>
+          <div class="stat-label">of developers who've tried AI coding tools use them daily</div>
+          <div class="stat-source">SonarSource Developer Survey</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50-90%</div>
+          <div class="stat-label">of new production code is at least AI-assisted</div>
+          <div class="stat-source">Gemini Overview</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">40-62%</div>
+          <div class="stat-label">of AI-generated code contains security vulnerabilities or design flaws</div>
+          <div class="stat-source">Multiple sources</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1.7x</div>
+          <div class="stat-label">more bugs introduced by AI than human-written code</div>
+          <div class="stat-source">CodeRabbit Study, 470 PRs</div>
+        </div>
+      </div>
 
-      <p>We're seeing AI everywhere. The adoption is basically across every sector, and the democratization of coding is happening in real time.</p>
-
-      <p>Because of that, anyone can have an app now. I don't know if you all remember or used MySpace, but it's kind of like back then when people were copying random HTML and CSS layouts from all over the web to bedazzle their MySpaces.</p>
-
-      <p>You have to give AI credit—the end result looks a little better—but at the end of the day we have non-technical people building these slick interfaces without knowing how they got there. It's very easy to miss and gloss over what's actually happening under the hood and all the components it takes to not only build, but also deploy and maintain a web application. AI is like the cable management behind my desk—it looks clean… as long as you don't look behind it.</p>
-
-      <h2>The Numbers Don't Lie</h2>
-
-      <p>And the numbers back this up. AI-generated code is becoming a significant portion of what's being written today. According to a developer survey by SonarSource, 72% of developers who have tried AI use it every day.</p>
-
-      <p>A Gemini Overview backs that up with a claim that 50-90% of new production code is at the very least AI-assisted, calling out a trend that AI has transitioned from being just a coding assistant to being in the driver's seat as a primary partner.</p>
-
-      <p>What's the result? It's been reported that while code velocity is high, there's increased review and debugging time, and roughly 40-62% of AI-generated code contains security vulnerabilities or design flaws, needing <strong>INTENSE</strong> human verification—not just human verification, but INTENSE human verification.</p>
-
-      <p>These trends show us that while AI is enabling teams to do more, it's also introducing new challenges around code quality and, most pertinent to us, security. It's not surprising that when more powerful models are released, adoption ramps up, more code gets generated, and we see a corresponding surge in security issues being detected.</p>
+      <p>This creates a paradox: code velocity is way up, but so is review and debugging time. We're generating more code faster, but we can't guarantee any of it is secure.</p>
 
       <h2>The Scale Problem</h2>
 
-      <p>And in a lot of ways, it's a problem of scale. Humans can't consume or create content at the speed at which AI can, and our development pipelines are largely built for humans.</p>
+      <p>Our development pipelines were built for humans. We've embedded ourselves so deeply in code review, threat modeling, and design reviews that we've become the bottleneck. AI can generate a full feature in seconds while a human code review might take hours or days, especially when PRs are getting larger and more complex due to AI generation.</p>
 
-      <p>We've embedded ourselves so deeply in these processes that now we've become the bottleneck. It's not just the increased volume of code that is problematic—I mean that is an issue—but there's also the fact that a typical code review takes a lot longer than the generation of code. That in turn is also exacerbated by the increased size and complexity of pull requests we're seeing due to AI.</p>
+      <div class="callout">
+        <div class="callout-title">The Core Tension</div>
+        <p>We can't continue reviewing code the same way because we can't scale. But we also can't let AI operate unchecked since even the latest models produce insecure code at alarming rates. The answer is using AI to help secure AI.</p>
+      </div>
 
-      <p>So now we're experiencing this paradigm shift, where it's like, okay, we've hit this hard capacity limit in terms of headcount—we can't just keep growing the team. So how do we remove ourselves, and this friction, from the process?</p>
+      <h2>Defense Layers for the AI SDLC</h2>
 
-      <h2>Securing the SDLC</h2>
+      <p>To address this, security teams have been layering AI-specific controls into their pipelines. Here's a primer on what that looks like:</p>
 
-      <p>And that leads us to our software development life cycle we've spent so much time and effort integrating security into. This pipeline has so many touch points with things like design reviews and threat modeling, as well as linters and static code analysis, dependency scanning, etc. I could go on. This stuff is our bread and butter.</p>
+      <table class="defense-table">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>What It Looks Like</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>System Prompt Guardrails</strong></td>
+            <td>Configuring coding agents to avoid anti-patterns</td>
+            <td>An <code>AGENTS.md</code> referencing internal secrets management docs</td>
+          </tr>
+          <tr>
+            <td><strong>Model Governance</strong></td>
+            <td>Evaluating models for safety, maintaining allow/deny lists</td>
+            <td>No Deepseek; prompt injection mitigation layers</td>
+          </tr>
+          <tr>
+            <td><strong>Sandboxing</strong></td>
+            <td>Isolating execution environments, limiting tool access</td>
+            <td>Restricting what agents can call in YOLO mode</td>
+          </tr>
+          <tr>
+            <td><strong>AI-Enhanced Security Tooling</strong></td>
+            <td>Leveraging AI in existing pipeline tools</td>
+            <td>AI-powered secrets detection, Semgrep rule generation, AWS SCPs</td>
+          </tr>
+          <tr>
+            <td><strong>Pre-Commit Security Agents</strong></td>
+            <td>Agents reviewing code before it ships</td>
+            <td>Pre-commit hooks with AI-powered linting</td>
+          </tr>
+          <tr>
+            <td><strong>Adversarial Agents</strong></td>
+            <td>Agents actively looking for vulnerabilities</td>
+            <td>Local or CI-based agents performing DAST-like testing</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <p>But with the advent of AI, of course we've had to "AI" all the things also. We're not just working with developers anymore—we've had to figure out how to support AI.</p>
+      <h2>Industry Backing</h2>
 
-      <h3>The State of AI vs Human Code Generation</h3>
+      <p>This multi-layered approach isn't just something security teams are figuring out on their own. Both Anthropic's 2026 Agentic Coding Trends Report and the Cloud Security Alliance's recent Mythos guidance reinforce the same themes:</p>
 
-      <p>To that point, CodeRabbit recently published a study called "The state of AI vs human code generation" and the results are fairly telling. They studied about 470 open source GitHub pull requests and what they found was basically that "AI created 1.7 times more bugs than humans."</p>
+      <div class="two-col">
+        <div class="col-item">
+          <div class="col-header">Anthropic (2026 Trends)</div>
+          <ul>
+            <li><strong>"Human oversight scales through intelligent collaboration"</strong> - Use AI to review AI, but reserve complex decisions for humans augmented by AI context.</li>
+            <li><strong>"Agentic coding improves security defenses, but also offensive uses"</strong> - Adversarial agents should pressure-test code, because threat actors will.</li>
+          </ul>
+        </div>
+        <div class="col-item">
+          <div class="col-header">CSA Mythos Guidance</div>
+          <ul>
+            <li>Use LLM-based vulnerability discovery and remediation</li>
+            <li>Accelerate teams with coding agents</li>
+            <li>Focus on defense-in-depth/breadth: segmentation, egress filtering, MFA</li>
+          </ul>
+        </div>
+      </div>
 
-      <p>Some of which were critical security issues related to things like authentication logic, which at a surface level, when it comes to code review, can look plausible unless the reviewer really dives into the code flow and understands what's going on.</p>
-
-      <p>So, we've established that we can't continue to have humans review code the same way as we have been because we can't scale, but we also can't just let AI do as it pleases because, as we've seen, even with the latest models, we can generate a lot of code, but we certainly can't guarantee that it's necessarily good code or much less assume that it's secure code.</p>
-
-      <h2>Defense Layers</h2>
-
-      <p>So now that we're aligned on our problem space, what can we do then? In terms of our SDLC, we've had to think about ways to augment our existing security layers and add more on top for AI. Here's a quick primer:</p>
-
-      <ul>
-        <li><strong>System Prompts as Guardrails:</strong> We've looked at beefing up our system prompts to help our coding agents avoid common anti-patterns. This could look like an <code>AGENTS.md</code> file somewhere where you reference internal docs on specifically how to do secrets management within your environment.</li>
-
-        <li><strong>Model Evaluation &amp; Frameworks:</strong> We've evaluated models for not just performance but also safety, and established frameworks and guidance around the use of LLMs. This could look like making sure there's an allowlist of models, or at the very least a denylist. You might also have a framework that inserts a prompt injection mitigation layer.</li>
-
-        <li><strong>Sandboxing:</strong> With things like YOLO mode with Claude, we need ways to isolate execution environments of agents and limit to what extent which tools can be called and what they can access.</li>
-
-        <li><strong>AI-Enhanced Security Tools:</strong> We've also looked at the security tools we use that are embedded into our development pipeline and looked at to what degree these tools can leverage AI. Things like improved pattern matching on secrets detection scanning, using AI to help write detections and Semgrep rules, or even create AWS SCPs.</li>
-
-        <li><strong>Pre-commit Security Agents:</strong> You might have also created agents to look for security issues and help review code on developer workstations. This might look like a pre-commit hook or linter that runs prior to code being committed or pushed.</li>
-
-        <li><strong>Adversarial Agents:</strong> You might even have considered building or buying an adversarial agent that actively looks for vulnerabilities in your code and systems. This could be an agent that runs locally or is in CI somewhere, fulfilling a role similar to that of DAST.</li>
-      </ul>
-
-      <p>You might be thinking this is a lot of layers—do we actually need all these things? But all this was just a quick primer and we can actually dig in a little more.</p>
-
-      <h2>Industry Trends: Agentic Coding</h2>
-
-      <p>We're not going to go too deep in the weeds here, but I do think it's worth some time to take a look at Anthropic's 2026 Agentic Coding Trends Report.</p>
-
-      <p>A couple of the trends that stood out to me most are:</p>
-
-      <ul>
-        <li><strong>"Human oversight scales through intelligent collaboration":</strong> It's imperative that we use AI to help review AI-generated output as it's the only way to scale. But also, it speaks to the need to review AI outputs and, in particular, look out for security issues. We also have to do it in a smart way because we can't just hand off everything to AI—as we've seen, AI is even more prone to mistakes in coding than humans. So most of our productivity gains will be found in automating trivial, straightforward functions, whereas the more complex design decisions should still be ultimately handled by a human review, augmented by AI context.</li>
-
-        <li><strong>"Agentic coding improves security defenses—but also offensive uses":</strong> This is pretty straightforward in calling out the need to augment our coding agents with more focused adversarial agents whose specific role is to question and pressure-test the code being generated by their coding agent counterparts—because after all, that's what threat actors will be doing.</li>
-      </ul>
-
-      <p>So maybe it's a little bit ironic, but the answer to AI is AI.</p>
-
-      <h2>Defense in Depth</h2>
-
-      <p>The recent guidance published by CSA about the incoming "vulnerability storm" shares this same sentiment, calling out the need for:</p>
-
-      <blockquote>"Focus on the basics and harden your environment further. Segmentation, egress filtering, multifactor authentication, and defense-in-depth/breadth all increase the difficulty for attackers."</blockquote>
-
-      <p>The CSA guidance on Mythos really echoes the need for defense in depth and breadth, and puts the spotlight on a couple key takeaways that resonate nicely with the theme of this talk. The publication speaks to the need to use LLM-based vulnerability discovery and remediation capabilities, which is basically what we were talking about with adversarial agents.</p>
-
-      <p>Next, we need to accelerate our teams by the use of coding agents. But again, the theme here is: use more AI for AI, and give it to more people.</p>
-
-      <h3>The Non-Deterministic Reality</h3>
-
-      <p>And here's the catch: We're relying on AI to secure AI. And at the end of the day, these agents are non-deterministic. So all of this is best effort.</p>
-
-      <p>That's not to say that these controls we've been talking about are useless. If you haven't looked into implementing these things, you still should. It's still all about defense in depth. The more layers you have, the more opportunities you give yourself to catch issues that may surface.</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">The Catch</div>
+        <p>We're relying on AI to secure AI, and these agents are non-deterministic. All of this is best effort. That doesn't make it useless. It's still defense in depth. The more layers, the more chances to catch issues. But it's not a guarantee.</p>
+      </div>
 
       <h2>The Platform Problem</h2>
 
-      <p>So now that we have this awesome list of security controls we can implement specifically to secure our software development life cycle for AI, we're good, right?</p>
+      <p>Even if you've implemented every defense layer above with 100% efficacy (you haven't), there's still something I call the <strong>platform problem</strong>.</p>
 
-      <p>Well, kind of. Even if you've fully explored and implemented all the things we just talked about, and the efficacy rate of those controls is 100% (it's not 100%), we still have something I'm going to call the <strong>platform problem</strong>, and it kind of throws a wrench into our plans.</p>
+      <p>The AI coding landscape is fragmented. Each platform has its own configuration model, its own deployment strategy, and its own security posture:</p>
 
-      <h3>The AI Coding Companion Landscape</h3>
+      <table class="platform-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Configuration Model</th>
+            <th>Enterprise Controls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Claude Code</strong></td>
+            <td>Local config files, MDM-deployed policies</td>
+            <td>Maturing, decentralized, harder to enforce</td>
+          </tr>
+          <tr>
+            <td><strong>Cursor</strong></td>
+            <td>Local config + centralized admin console</td>
+            <td>More mature, organization-level settings</td>
+          </tr>
+          <tr>
+            <td><strong>Copilot</strong></td>
+            <td>GitHub-integrated, org-level policies</td>
+            <td>Tied to GitHub enterprise ecosystem</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <p>The issue is that it's a relatively nascent sector, so we're seeing all kinds of options. Which is a good thing in that you have a lot of choices, but it's also a bad thing because now you have to secure them all. And of course, each of these is generally a bespoke configuration, so you're not going to be able to apply blanket policies to cover all of them.</p>
+      <p>The takeaway: you're going to make your life difficult if you try to support them all. <strong>Pick one or two and commit.</strong></p>
 
-      <p>For example:</p>
+      <h2>Shadow IT: No-Code AI Platforms</h2>
 
-      <ul>
-        <li><strong>Claude Code</strong> is quickly emerging as a leading AI coding agent, but its enterprise controls are still maturing. Policy enforcement is typically decentralized, relying on local configuration, meaning you'll need to deploy your configurations across your infrastructure or locally on developer endpoints, rather than a centralized admin console. Which means these policies are also more difficult to enforce.</li>
+      <p>Beyond coding agents, there's a category that's potentially even more dangerous: <strong>AI coding platforms</strong> that don't just write code but deploy and host it too.</p>
 
-        <li><strong>Cursor</strong> offers similar flexibility through local configuration while also providing a centralized admin interface for managing organization-level settings.</li>
-      </ul>
+      <p>Vendors like Lovable, Vercel's v0, and Replit are essentially no-code solutions marketed towards non-technical users. They handle frontend, backend, database, lambdas, WAF rules, all configured by AI agents on their infrastructure.</p>
 
-      <p>And as far as I know, this isn't a paid advertisement for Cursor… if there's anybody from Cursor here we can talk after.</p>
+      <p>Anthropic's 2026 trends report predicted this: <em>"Non-technical teams across sales, marketing, legal, and operations gain the ability to automate workflows and build tools with little or no engineering intervention."</em></p>
 
-      <p>I'm not suggesting you use any of these platforms over the other, but my point is they all have different nuances to their configuration and deployment. So when you're looking to harden these AI coding companions, you're going to make your life difficult if you try to support them all. <strong>So pick one. Or two. And push people towards using them.</strong></p>
+      <h3>Why This Is Dangerous</h3>
 
-      <h2>Shadow IT: AI Coding Platforms</h2>
+      <p>These platforms will pass your vendor assessment. They'll have SOC 2, ISO 27001, pen test reports, encrypted data. But that's just the foundation. Think of it like AWS: the platform provides tools to succeed, but it's not AWS's fault if you misconfigure IAM or leave an S3 bucket public.</p>
 
-      <p>So the previous slide we were talking about different AI-assisted coding agents. There also exists the concept of <strong>AI coding platforms</strong> which not only help write code but also deploy and host the code.</p>
-
-      <p>This is shadow IT all over again, and something to look out for if people are playing with these tools without approval or additional security hardening and visibility.</p>
-
-      <h3>The Democratization Continues</h3>
-
-      <p>This was also predicted in Anthropic's 2026 trends: <strong>"Non-technical use cases expand across organizations"</strong> — "Coding capabilities democratize beyond engineering: Non-technical teams across sales, marketing, legal, and operations gain the ability to automate workflows and build tools with little or no engineering intervention or coding expertise."</p>
-
-      <p>Going back to the idea of the democratization of software development, you have vendors like <strong>Lovable, Vercel, Replit</strong>, etc. that are essentially no-code solutions marketed towards enabling non-technical individuals to build and deploy applications at the push of a button. That means not only creating the frontend and backend, but also your database, your lambdas, your WAF rules—they're all configured by their agents on their metal.</p>
-
-      <p>As we try to move fast in a world where speed is everything, more people will be drawn and pushed to use these tools to unblock themselves, to improve their workflows, and to deliver more value using AI.</p>
-
-      <p>And that's not a bad thing. AI, when used properly, is a powerful tool. And in this case it's leveling the playing field in terms of giving people the agency to innovate, to bring their ideas to life, and to build things that matter to them. And it's our role as builders with experience in this realm to make sure we're setting these people up for success.</p>
-
-      <h2>The Vendor Assessment Gap</h2>
-
-      <p>So as you're going forward and if you're looking to implement some of these platforms, you'll probably run through your typical vendor assessment flow. And they're probably going to check all the boxes. They'll have their SOC 1, SOC 2, ISO 27001. They'll do pen testing, they'll have their data encrypted.</p>
-
-      <p>But that's just the foundation. You have to consider all the building blocks they give you and all the different ways they can be arranged. When you give people the agency to assemble those blocks any number of ways they want, there are no guarantees in security.</p>
-
-      <p>Take AWS, for example. The platform gives you all the tools to succeed, but it's not AWS's fault if you create a vulnerable app, misconfigure your IAM policies, or leave an S3 bucket public by accident.</p>
-
-      <h3>The Responsibility Problem</h3>
-
-      <p>It's the same for these no-code AI building platforms. It's not just magic, unfortunately. There's lots of infrastructure involved—whether it's AWS, GCP, Azure, it's all there, just opaque. And it's ultimately on the user to make sure they've configured their application properly. It's all the responsibility, and no—to limited—visibility. And when you put these tools in the hands of people with no coding experience, without any DevOps experience, it's not surprising that things can get spicy.</p>
+      <p>When you put these tools in the hands of people with no coding or DevOps experience, things get spicy.</p>
 
       <h2>Case Study: Lovable</h2>
 
-      <p>Speaking of spicy, we can take a look at a real case study with Lovable.</p>
+      <p>In early 2026, someone posted on r/cybersecurity about "vibe-hacking" a Lovable-hosted app. In a few hours they obtained:</p>
 
-      <p>You might have seen a post in the cybersecurity subreddit last month about someone "vibe-hacking" a Lovable app. In just a few hours they were able to obtain:</p>
+      <div class="breach-list">
+        <div class="breach-item">18,697 user records (names, emails, roles) <span class="breach-tag">no auth</span></div>
+        <div class="breach-item">Account deletion via single API call <span class="breach-tag">no auth</span></div>
+        <div class="breach-item">Student grades modifiable <span class="breach-tag">no auth</span></div>
+        <div class="breach-item">Bulk email sending <span class="breach-tag">no auth</span></div>
+        <div class="breach-item">Enterprise org data from 14 institutions <span class="breach-tag">no auth</span></div>
+      </div>
 
-      <ul>
-        <li>18,697 user records (names, emails, roles) — no auth needed</li>
-        <li>Account deletion via single API call — no auth</li>
-        <li>Student grades modifiable — no auth</li>
-        <li>Bulk email sending — no auth</li>
-        <li>Enterprise org data from 14 institutions</li>
-      </ul>
+      <h3>Testing It Ourselves</h3>
 
-      <p>Since then, it's been reported that Lovable investigated these issues.</p>
+      <p>About a month later, we tested Lovable with a simple prompt:</p>
 
-      <h3>Testing It Today</h3>
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt</div>
+        <p>"Create an app that allows people to sign up, read comments, and post replies."</p>
+      </div>
 
-      <p>Fast forward now to today, about a month or two later. If you were to create an app in Lovable with a basic prompt like "Create an app that allows people to sign up, read comments, and post replies," what would you expect to happen?</p>
+      <p>The result? A functional app, but with a <strong>hardcoded database key in the source code</strong> granting anyone direct read/write access to the database. The platform's AI support bot explained this was "by design" and that the user needed to configure Row Level Security policies.</p>
 
-      <p>We would hope that it just works and we get an app where users can sign up and authenticate. We want our comments and replies stored in a database. Pretty basic as far as apps go.</p>
+      <p>Fair? Maybe. But when the platform is marketed towards non-technical users, expecting them to know what RLS is, let alone configure it, defeats the purpose.</p>
 
-      <p>Well, it's actually not exactly what we wanted. The way things are architected, there also happens to be a hardcoded key in the source code which also happens to grant anyone direct database access.</p>
+      <h3>The Core Issue</h3>
 
-      <h3>The Support Response</h3>
+      <p>These platforms exist entirely outside your security perimeter:</p>
 
-      <p>So now it's like, oh great. I have my app that's public on the internet, and now it's got anonymous, direct database read/write access as a feature. So let's contact Lovable for help because I can't remove and rotate this key since it's not my infrastructure.</p>
+      <div class="perimeter-grid">
+        <div class="perimeter-item missing">SIEM visibility</div>
+        <div class="perimeter-item missing">D&R log access</div>
+        <div class="perimeter-item missing">IDS monitoring</div>
+        <div class="perimeter-item missing">Secrets scanning</div>
+        <div class="perimeter-item missing">Branch protection</div>
+        <div class="perimeter-item missing">Code review processes</div>
+        <div class="perimeter-item missing">CI/CD tests</div>
+        <div class="perimeter-item missing">Dependency scanning</div>
+      </div>
 
-      <p>You get a reply from their AI support bot Sam basically saying this hardcoded key is intended by design and this is happening because we didn't configure Row Level Security policies, of course. Oh right, RLS—why didn't I think of that!</p>
+      <h2>What Should We Do?</h2>
 
-      <p>Which is maybe fair. But when the platform is marketed towards enabling non-technical individuals, how are they expected to know what row level security is? Let alone know that they need to set it up when they've never even heard of it before?</p>
+      <div class="recommendations">
+        <div class="rec-item">
+          <div class="rec-number">1</div>
+          <div class="rec-content">
+            <h3>Be Opinionated About Platforms</h3>
+            <p>Evaluate options, but commit to one or two from the top down. Supporting every AI coding agent is untenable since each needs bespoke hardening for compliance, privacy, legal, security, and engineering requirements.</p>
+          </div>
+        </div>
 
-      <p>That's not to say there aren't controls in the Lovable platform you can configure to try and help prevent this kind of thing. But as we can see, it's certainly not secure-by-default.</p>
+        <div class="rec-item">
+          <div class="rec-number">2</div>
+          <div class="rec-content">
+            <h3>Invest in Internal Developer Experience</h3>
+            <p>People use external platforms because they're easy, fast, and frictionless. The best defense is making your own infrastructure just as easy to deploy to. If it's as simple to ship apps internally, nobody has a reason to look elsewhere. Use the existence of these platforms as a mirror: they expose exactly how much friction exists in your own pipelines.</p>
+          </div>
+        </div>
 
-      <p>And yes, you likely would have caught this if someone had reviewed the code or if it was hooked up to your secrets detection scanning. But of course, this entire platform is outside of our standard CI/CD pipeline, so none of those defensive layers translate.</p>
+        <div class="rec-item">
+          <div class="rec-number">3</div>
+          <div class="rec-content">
+            <h3>Create Safe Guardrails, Not Roadblocks</h3>
+            <p>These tools enable real innovation from non-engineering teams. Don't kill that energy. Shepherd it. Build golden paths with proper guardrails so people can experiment with AI safely within your ecosystem.</p>
+          </div>
+        </div>
+      </div>
 
-      <h2>Outside the Security Perimeter</h2>
+      <h2>Closing Thoughts</h2>
 
-      <p>And that's one of the core issues here. <strong>These platforms exist outside your existing security perimeter.</strong></p>
+      <p>AI is here. Adoption is only ramping up. It's not just software engineers anymore, it's everyone. That's exactly why defense-in-depth controls alongside AI coding pipelines are more critical than ever. They're our training wheels, and we need them.</p>
 
-      <ul>
-        <li>Your SIEM doesn't see them</li>
-        <li>Your detection and response teams don't have access to logs</li>
-        <li>Your IDSes aren't running</li>
-        <li>Your secrets detection scanning isn't plugged in</li>
-        <li>Your branch protection policies and code review processes don't apply</li>
-        <li>The code's not even necessarily in GitHub</li>
-        <li>Any tests you have in CI are skipped, including any dependency scanning you might normally have</li>
-      </ul>
+      <p>The next thing you know, your parents won't be calling you about the printer anymore. They're gonna be vibe coding a startup and asking you what a 500 is.</p>
 
-      <p>That said, these platforms are great for prototyping and enabling everyone (and I mean everyone) to self-serve in terms of leveraging AI to improve their workflows. But we have to be careful about how we introduce these tools, what sort of data we're putting in them, and that we're doing our own due diligence to shepherd people in the right direction by creating safe guardrails for them to build and experiment with AI.</p>
-
-      <p>These tools are powerful. There's no doubt about that. But with great power comes great responsibility.</p>
-
-      <h2>The Reality Check</h2>
-
-      <p>And the fact of the matter is that a lot of the people looking to use these platforms often don't have the technical or security backgrounds to shoulder that responsibility on their own.</p>
-
-      <p>They're not developers. They're not security engineers. They're just trying to solve a problem quickly.</p>
-
-      <h2>Recommendations</h2>
-
-      <p>So what should we do?</p>
-
-      <h3>1. Be Opinionated About Platform Choices</h3>
-
-      <p>First, we need to be opinionated when it comes to choosing what platforms we want to use and how we want to use them, and make sure everyone is aligned on that. It's fine to evaluate a handful of different solutions. But when it comes to seriously using them, we can't just support every single snowflake AI coding agent out there—we have to pick one or two and commit to supporting them from top down.</p>
-
-      <p>Otherwise, it's just going to be the wild west. As we've seen, they're not just ready to go out of the box. While they're easy to get up and running, they're going to need more investment to be in parity with all of the compliance, privacy, legal, security, engineering, etc. requirements we have.</p>
-
-      <h3>2. Invest in Internal Infrastructure</h3>
-
-      <p>Second, I think this is really where we have an opportunity. People are looking to use these tools because they're easy to use, fast to iterate on, and quick to deploy.</p>
-
-      <p>So we need to continue investing in our own infrastructure. We need to bridge the gap between how much easier it is to deploy on these external platforms versus internally with our own infrastructure. Or at the very least, we need to make it possible for our infrastructure to accommodate these AI coding platforms and make sure there's a golden path to building and deploying with these tools.</p>
-
-      <p>This is kind of idealistic, but I think because if nothing else, the introduction of all these AI hosting platforms can expose how much friction there is in some of our own development pipelines. Putting them side-by-side really shows us and lets us visualize how much better things could be. If it was as easy to ship apps in our own infrastructure, no one would have a reason to even look at these other platforms.</p>
-
-      <h2>Conclusion</h2>
-
-      <p>My last note is basically to say: AI is here. It's everywhere, and adoption is only ramping up. It's not just software engineers using it anymore. Which is why it's more important than ever that we have all these defense-in-depth controls implemented alongside our AI coding pipelines. They're essentially our training wheels, and we need them.</p>
-
-      <p>The next thing you know, your parents won't be calling you about the printer anymore—they're gonna be vibe coding a startup and asking you what a 500 is.</p>
+      <hr class="section-divider" />
 
       <h2>Acknowledgments</h2>
 
-      <p>Special thanks to:</p>
       <ul>
-        <li>Brooks McMillin for the slide layout</li>
-        <li>Adrian Wood and Jonathan Hawes for data on the Lovable vulnerability</li>
+        <li>Brooks McMillin - slide layout</li>
+        <li>Adrian Wood &amp; Jonathan Hawes - Lovable vulnerability research</li>
       </ul>
 
       <h2>References</h2>
 
       <ul>
-        <li><a href="https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf" target="_blank">Anthropic's 2026 Agentic Coding Trends Report</a></li>
-        <li><a href="https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/04/mythosready-20260413.pdf" target="_blank">CSA - Mythos Vulnerability Storm Guidance</a></li>
-        <li><a href="https://www.reddit.com/r/cybersecurity/comments/1rffin3/i_vibe_hacked_a_lovableshowcased_app_16/" target="_blank">Reddit - Vibe-hacking a Lovable app</a></li>
+        <li><a href="https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf" target="_blank" rel="noopener">Anthropic - 2026 Agentic Coding Trends Report</a></li>
+        <li><a href="https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/04/mythosready-20260413.pdf" target="_blank" rel="noopener">Cloud Security Alliance - Mythos Vulnerability Storm Guidance</a></li>
+        <li><a href="https://www.reddit.com/r/cybersecurity/comments/1rffin3/i_vibe_hacked_a_lovableshowcased_app_16/" target="_blank" rel="noopener">r/cybersecurity - Vibe-hacking a Lovable app</a></li>
         <li>CodeRabbit - "The State of AI vs Human Code Generation"</li>
-        <li>SonarSource Developer Survey</li>
+        <li>SonarSource - Developer Survey 2025</li>
       </ul>
     `,
   },

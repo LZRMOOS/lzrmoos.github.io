@@ -40,8 +40,12 @@ p {
   src: url(assets/Roboto-Regular.ttf);
 }
 
-body { 
-  margin: 0; 
+body {
+  margin: 0;
+  background: #ffffff;
+}
+
+body.gallery-page {
   overflow: hidden;
   height: 100vh;
 }

@@ -10,5 +10,11 @@ export default {
   components: {
     ImageCarousel,
   },
+  mounted() {
+    document.body.classList.add('gallery-page');
+  },
+  beforeUnmount() {
+    document.body.classList.remove('gallery-page');
+  },
 };
 </script>
