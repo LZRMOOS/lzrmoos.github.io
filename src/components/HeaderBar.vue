@@ -29,9 +29,11 @@
                     <!-- <router-link class="navbar-item" to="/galleries/places">Places</router-link> -->
                     <!-- <router-link class="navbar-item" to="/galleries/things">Things</router-link> -->
                     <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
+                    <router-link class="navbar-item" to="/galleries/dropbox">Dropbox album</router-link>
                     <router-link class="navbar-item" to="/galleries/pepe">Pepe Slack Emojis</router-link>
                 </div>
             </div>
+            <router-link class="navbar-item" to="/blog">Blog</router-link>
             <router-link class="navbar-item" to="/contact">Contact</router-link>
             <div class="navbar-end">
                 <a class="navbar-item is-hidden-touch" href="https://www.instagram.com/weidvi/" target="_blank">

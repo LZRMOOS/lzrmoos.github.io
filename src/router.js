@@ -6,6 +6,9 @@ import placesPage from "@/views/PlacesPage.vue";
 import thingsPage from "@/views/ThingsPage.vue";
 import pepePage from "@/views/PepePage.vue";
 import f1Page from "@/views/F1Page.vue";
+import dropboxGalleryPage from "@/views/DropboxGalleryPage.vue";
+import blogPage from "@/views/BlogPage.vue";
+import blogPostPage from "@/views/BlogPostPage.vue";
 
 const routes = [
   {
@@ -42,6 +45,21 @@ const routes = [
     path: "/galleries/f1",
     name: "F1",
     component: f1Page,
+  },
+  {
+    path: "/galleries/dropbox",
+    name: "DropboxAlbum",
+    component: dropboxGalleryPage,
+  },
+  {
+    path: "/blog",
+    name: "Blog",
+    component: blogPage,
+  },
+  {
+    path: "/blog/:slug",
+    name: "BlogPost",
+    component: blogPostPage,
   },
 ];
 
