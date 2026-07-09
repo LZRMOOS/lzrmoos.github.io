@@ -36,7 +36,7 @@ h1 {
   color: #0625ee;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
   text-align: center;
 }

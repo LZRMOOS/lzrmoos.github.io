@@ -86,7 +86,7 @@ export default {
   color: #0625ee;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
 }
 
@@ -113,7 +113,7 @@ export default {
   margin-bottom: 24px;
   color: #1a1a1a;
   letter-spacing: -0.02em;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
 .post-content :deep(h3) {
@@ -215,7 +215,7 @@ export default {
   color: #0625ee;
   margin-bottom: 8px;
   letter-spacing: -0.02em;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
 .post-content :deep(.stat-label) {
@@ -479,7 +479,7 @@ export default {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 400;
   color: #0625ee;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
 }
 

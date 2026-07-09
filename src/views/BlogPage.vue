@@ -67,6 +67,7 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 60px 120px;
+  text-align: left;
 }
 
 .blog-header {
@@ -88,7 +89,7 @@ export default {
   color: #0625ee;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
 }
 
@@ -142,7 +143,7 @@ export default {
   color: #1a1a1a;
   line-height: 1.3;
   letter-spacing: -0.02em;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   transition: color 0.3s ease;
 }
 
