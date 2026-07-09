@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-transparent">
+    <nav class="navbar" :class="{ 'navbar--overlay': isGalleryPage }">
         <div class="navbar-brand">
             <router-link class="navbar-item" to="/">
                 <h1>wei moar photography</h1>
@@ -34,28 +34,46 @@
 </template>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-
-const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-$navbarBurgers.forEach( el => {
-  el.addEventListener('click', () => {
-    const target = el.dataset.target;
-    const $target = document.getElementById(target);
-    el.classList.toggle('is-active');
-    $target.classList.toggle('is-active');
-  });
-});
-
-});
+export default {
+  name: "HeaderBar",
+  computed: {
+    isGalleryPage() {
+      const path = this.$route.path;
+      return path === '/' || path === '/galleries/f1' || path === '/galleries/dropbox';
+    }
+  },
+  mounted() {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    $navbarBurgers.forEach(el => {
+      el.addEventListener('click', () => {
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+      });
+    });
+  }
+};
 </script>
 
 <style scoped>
 .navbar {
     background-color: white !important;
     padding: 8px 20px;
+    position: relative;
+    z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
+.navbar--overlay {
+    background-color: transparent !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Default (content pages): dark text */
 .navbar-brand .navbar-item {
     color: #1a1a1a !important;
 }
@@ -89,6 +107,7 @@ h1 {
     font-family: 'Anson', sans-serif;
     font-weight: 600;
     letter-spacing: -0.01em;
+    transition: color 0.3s ease;
 }
 
 .navbar-item.has-dropdown {
@@ -135,6 +154,10 @@ h1 {
     background-color: transparent !important;
 }
 
+.navbar-menu > .navbar-start > .navbar-item.router-link-active {
+    color: #0625ee !important;
+}
+
 .navbar-menu > .navbar-start > .navbar-item:focus,
 .navbar-menu > .navbar-start > .navbar-item:active {
     color: #1a1a1a !important;
@@ -143,6 +166,44 @@ h1 {
     box-shadow: none !important;
 }
 
+/* Overlay mode (gallery pages): white text */
+.navbar--overlay .navbar-brand .navbar-item {
+    color: #ffffff !important;
+}
+
+.navbar--overlay .navbar-brand .navbar-item:hover {
+    color: #0625ee !important;
+}
+
+.navbar--overlay h1 {
+    color: #ffffff;
+}
+
+.navbar--overlay .navbar-item.has-dropdown .navbar-link {
+    color: #ffffff !important;
+}
+
+.navbar--overlay .navbar-item.has-dropdown .navbar-link:hover {
+    color: #0625ee !important;
+}
+
+.navbar--overlay .navbar-menu > .navbar-start > .navbar-item {
+    color: #ffffff !important;
+}
+
+.navbar--overlay .navbar-menu > .navbar-start > .navbar-item:hover {
+    color: #0625ee !important;
+}
+
+.navbar--overlay .navbar-burger {
+    color: #ffffff !important;
+}
+
+.navbar--overlay .navbar-burger span {
+    background-color: #ffffff !important;
+}
+
+/* Dropdown always stays readable */
 .navbar-dropdown {
     border: 1px solid #e8e8e8 !important;
     border-radius: 0;
@@ -256,6 +317,15 @@ h1 {
 
     h1 {
         font-size: 14px;
+    }
+
+    /* On mobile, overlay menu still gets white background when opened */
+    .navbar--overlay .navbar-menu.is-active {
+        background-color: white !important;
+    }
+
+    .navbar--overlay .navbar-menu.is-active .navbar-item {
+        color: #1a1a1a !important;
     }
 }
 </style>

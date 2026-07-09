@@ -338,6 +338,7 @@ export default {
 /* Swiper progress bar styling - must be global */
 .swiper-pagination-progressbar {
   background-color: transparent;
+  height: 3px !important;
 }
 
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
