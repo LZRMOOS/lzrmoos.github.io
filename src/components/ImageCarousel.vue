@@ -14,7 +14,7 @@
       :loop="true"
       :slides-per-view="1"
       :autoplay="autoplayConfig"
-      :navigation="true"
+      :navigation="false"
       :modules="swiperModules"
       :keyboard="keyboardConfig"
       :pagination="paginationConfig"
@@ -262,51 +262,40 @@ export default {
 
 .thumbnail-container {
   display: flex;
-  gap: 8px;
-  padding: 8px;
-  background: rgb(255, 255, 255);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  gap: 10px;
+  padding: 12px 20px;
+  background: transparent;
   overflow-x: auto;
   width: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+  scrollbar-width: none;
   justify-content: center;
 }
 
 .thumbnail-container::-webkit-scrollbar {
-  height: 4px;
-}
-
-.thumbnail-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.thumbnail-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 2px;
+  display: none;
 }
 
 .thumbnail-item {
   position: relative;
   flex-shrink: 0;
-  width: 80px;
-  height: 60px;
+  width: 72px;
+  height: 48px;
   border-radius: 0;
   overflow: hidden;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.6;
 }
 
 .thumbnail-item:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .thumbnail-item.active {
-  border-color: #ff40ff;
-  box-shadow: 0 0 12px rgba(255, 64, 255, 0.5);
+  border-color: #0625ee;
+  opacity: 1;
 }
 
 .thumbnail-image {
@@ -314,22 +303,17 @@ export default {
   height: 100%;
   background-size: cover;
   background-position: center;
-  transition: transform 0.3s ease;
-}
-
-.thumbnail-item:hover .thumbnail-image {
-  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
   .thumbnail-item {
-    width: 60px;
-    height: 45px;
+    width: 56px;
+    height: 38px;
   }
-  
+
   .thumbnail-container {
-    gap: 6px;
-    padding: 6px;
+    gap: 8px;
+    padding: 10px 16px;
   }
 }
 </style>
@@ -338,11 +322,11 @@ export default {
 /* Swiper progress bar styling - must be global */
 .swiper-pagination-progressbar {
   background-color: transparent;
-  height: 3px !important;
+  height: 2px !important;
 }
 
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-  background: linear-gradient(90deg, #ff8c52 0%, #ff40ff 100%);
+  background: #0625ee;
 }
 
 /* Navigation arrow styling */

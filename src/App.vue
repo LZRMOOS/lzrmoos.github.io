@@ -50,27 +50,9 @@ body.gallery-page {
   height: 100vh;
 }
 
-/* Swiper navigation button styling */
-.swiper-button-prev,
-.swiper-button-next {
-  color: #ff69b4 !important;
-}
-
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  color: #ff69b4 !important;
-}
-
-.swiper-button-prev {
-  transform: translateX(50px);
-}
-
-.swiper-button-next {
-  transform: translateX(-50px);
-}
 
 :root {
-  --swiper-theme-color: rgb(255, 196, 184);
+  --swiper-theme-color: #0625ee;
   --swiper-navigation-size: 30px;
 }
 </style>
