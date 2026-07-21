@@ -1,27 +1,58 @@
-# vuejstest
+# lzrmoos.com
 
-## Project setup
-```
+A photography portfolio website built with Vue 3, featuring an editorial design theme with Cormorant Garamond typography and responsive image galleries.
+
+## Live Site
+[lzrmoos.com](https://lzrmoos.com)
+
+## Features
+- Image carousels powered by Swiper
+- Multiple gallery pages (Places, People, Things, F1, etc.)
+- Blog with individual post pages
+- Responsive navigation with transparent overlay on gallery pages
+- Editorial design theme with elegant typography
+- Dropbox integration for image hosting
+
+## Development
+
+### Project setup
+```bash
 npm install
 ```
 
 ### Compiles and hot-reloads for development
-```
+```bash
 npm run serve
 ```
 
 ### Compiles and minifies for production
-```
+```bash
 npm run build
 ```
 
-### Lints and fixes files
+### Deploy to GitHub Pages
+```bash
+npm run deploy
 ```
+
+### Lints and fixes files
+```bash
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Tech Stack
+- Vue 3
+- Vue Router
+- Swiper (image carousels)
+- Bulma (CSS framework)
+- Font Awesome icons
+- Sass
+
+## Project Structure
+- `/src/views/` - Page components (HomePage, PlacesPage, BlogPage, etc.)
+- `/src/components/` - Reusable components (HeaderBar, ImageCarousel)
+- `/public/` - Static assets
+- `/scripts/` - Deployment scripts
 
 
 ## References
