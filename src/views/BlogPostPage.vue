@@ -108,6 +108,7 @@ export default {
   letter-spacing: 0.15em;
   font-weight: 600;
   transition: color 0.3s ease;
+  text-align: left;
 }
 
 .back-link:hover {
@@ -119,6 +120,7 @@ export default {
   color: var(--tp-text-faint);
   margin-bottom: 24px;
   letter-spacing: 0.05em;
+  text-align: left;
 }
 
 .breadcrumb .accent {
@@ -134,6 +136,7 @@ export default {
   margin-bottom: 64px;
   padding-bottom: 48px;
   border-bottom: 1px solid var(--tp-border);
+  text-align: left;
 }
 
 .post-date {
@@ -145,6 +148,7 @@ export default {
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  justify-content: flex-start;
 }
 
 .post-date::before {
@@ -164,6 +168,7 @@ export default {
   letter-spacing: -0.01em;
   font-family: 'JetBrains Mono', monospace;
   font-style: normal;
+  text-align: left;
 }
 
 .post-header h1 .prompt {
