@@ -71,6 +71,7 @@ body.gallery-page {
   --tp-accent: #0061ff;
   --tp-accent-dim: #004fd1;
   --tp-accent-glow: rgba(0, 97, 255, 0.25);
+  --tp-accent-glow-strong: rgba(0, 97, 255, 0.65);
   --tp-pink: #c81c7d;
   --tp-terminal-bg: #14140f;
   --tp-terminal-titlebar: #1c1c15;
@@ -88,6 +89,7 @@ body.gallery-page {
   --tp-accent: #39ff88;
   --tp-accent-dim: #1f8f52;
   --tp-accent-glow: rgba(57, 255, 136, 0.35);
+  --tp-accent-glow-strong: rgba(57, 255, 136, 0.75);
   --tp-pink: #ff4fa3;
   --tp-terminal-bg: #060907;
   --tp-terminal-titlebar: #0d1210;

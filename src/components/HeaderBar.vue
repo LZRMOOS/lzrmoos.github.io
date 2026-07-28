@@ -2,7 +2,7 @@
     <nav class="navbar" :class="{ 'navbar--overlay': isGalleryPage }">
         <div class="navbar-brand">
             <router-link class="navbar-item" to="/">
-                <h1><span v-if="!isGalleryPage" class="cursor"></span> wei@moar.photography:~</h1>
+                <h1><span class="cursor"></span> wei@moar.photography:~</h1>
             </router-link>
             <a class="navbar-item is-hidden-desktop" href="https://www.instagram.com/weidvi/" target="_blank">
                 <font-awesome-icon icon="fa-brands fa-instagram" />
@@ -29,7 +29,7 @@
                 <router-link class="navbar-item" to="/blog"><span class="bracket">[$</span> Posts <span class="bracket">]</span></router-link>
                 <router-link class="navbar-item" to="/contact"><span class="bracket">[$</span> Contact <span class="bracket">]</span></router-link>
             </div>
-            <div v-if="!isGalleryPage" class="navbar-end">
+            <div class="navbar-end">
                 <a class="navbar-item theme-toggle" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
                     <span class="bracket">[$</span> {{ theme === 'dark' ? 'dark' : 'light' }} <span class="bracket">]</span>
                 </a>
@@ -222,7 +222,7 @@ h1 .cursor {
 
 .navbar--overlay .navbar-brand .navbar-item:hover {
     color: #ffffff !important;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 8px var(--tp-accent-glow), 0 0 16px var(--tp-accent-glow);
 }
 
 .navbar--overlay h1 {
@@ -235,7 +235,7 @@ h1 .cursor {
 
 .navbar--overlay .navbar-item.has-dropdown .navbar-link:hover {
     color: #ffffff !important;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 8px var(--tp-accent-glow), 0 0 16px var(--tp-accent-glow);
 }
 
 .navbar--overlay .navbar-menu > .navbar-start > .navbar-item,
@@ -246,7 +246,7 @@ h1 .cursor {
 .navbar--overlay .navbar-menu > .navbar-start > .navbar-item:hover,
 .navbar--overlay .navbar-menu > .navbar-end > .navbar-item:hover {
     color: #ffffff !important;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 8px var(--tp-accent-glow), 0 0 16px var(--tp-accent-glow);
 }
 
 .navbar--overlay .navbar-burger {
