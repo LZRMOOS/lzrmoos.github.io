@@ -2,7 +2,7 @@
   <div class="contact-container">
     <div class="contact-content">
       <p class="contact-sub">Get in touch</p>
-      <h1>Let's Connect.</h1>
+      <h1>Let's Connect<span class="accent-char">.</span></h1>
       <div class="contact-links">
         <a
           class="contact-link"
@@ -62,6 +62,10 @@ h1 {
   line-height: 1.15;
   font-family: 'JetBrains Mono', monospace;
   margin-bottom: 48px;
+}
+
+h1 .accent-char {
+  color: var(--tp-accent);
 }
 
 .contact-links {

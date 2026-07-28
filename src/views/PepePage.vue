@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <p class="page-sub">Coming soon</p>
-    <h1>Work In<br/>Progress.</h1>
+    <h1>Work In<br/>Progress<span class="accent-char">.</span></h1>
   </div>
 </template>
 
@@ -38,5 +38,9 @@ h1 {
   line-height: 1.15;
   font-family: 'JetBrains Mono', monospace;
   text-align: center;
+}
+
+h1 .accent-char {
+  color: var(--tp-accent);
 }
 </style>

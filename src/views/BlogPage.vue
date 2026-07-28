@@ -3,7 +3,7 @@
     <div class="blog-content">
       <div class="blog-header">
         <p class="header-sub">I write about</p>
-        <h1>Security &<br/>Random Musings.</h1>
+        <h1>Security <span class="accent-char">&</span><br/>Random Musings<span class="accent-char">.</span></h1>
       </div>
       <div class="blog-posts">
         <article
@@ -97,6 +97,10 @@ export default {
   letter-spacing: -0.02em;
   line-height: 1.15;
   font-family: 'JetBrains Mono', monospace;
+}
+
+.blog-header h1 .accent-char {
+  color: var(--tp-accent);
 }
 
 .blog-posts {
