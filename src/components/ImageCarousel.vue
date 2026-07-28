@@ -326,7 +326,7 @@ export default {
 }
 
 .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-  background: #0625ee;
+  background: var(--tp-accent);
 }
 
 /* Navigation arrow styling */

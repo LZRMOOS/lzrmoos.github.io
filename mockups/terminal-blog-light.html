@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>mockup: terminal-light</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-raised: #f4f0e8;
+    --bg-card: #f0ece2;
+    --border: #e6e0d3;
+    --border-bright: #ddd6c6;
+    --text: #1a1a1a;
+    --text-dim: #6b6b62;
+    --text-faint: #9a9488;
+    --accent: #0d8f4f;
+    --accent-dim: #0a7040;
+    --accent-glow: rgba(13, 143, 79, 0.22);
+    --pink: #c81c7d;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      linear-gradient(rgba(13, 143, 79, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 143, 79, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.7;
+  }
+
+  /* ---- nav ---- */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(250, 248, 243, 0.9);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-brand .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: blink 1.1s steps(2) infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 12px;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.15s ease;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-links a .bracket {
+    color: var(--accent-dim);
+    transition: color 0.15s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  .nav-links a:hover .bracket {
+    color: var(--accent);
+  }
+
+  .nav-links a.active {
+    color: var(--accent);
+  }
+
+  .nav-links a.active .bracket {
+    color: var(--accent);
+  }
+
+  /* ---- progress bar ---- */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+    z-index: 100;
+    width: 38%;
+  }
+
+  /* ---- page ---- */
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 40px 140px;
+  }
+
+  .breadcrumb {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-bottom: 36px;
+    letter-spacing: 0.05em;
+  }
+
+  .breadcrumb .accent { color: var(--accent-dim); }
+  .breadcrumb .sep { color: var(--text-faint); margin: 0 6px; }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .post-meta .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent-glow);
+  }
+
+  h1.post-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  h1.post-title .prompt {
+    color: var(--accent);
+  }
+
+  .post-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    border-left: 2px solid var(--border-bright);
+    padding-left: 14px;
+  }
+
+  .post-intro {
+    font-size: 15px;
+    color: var(--text);
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .post-intro::before {
+    content: '// intro';
+    display: block;
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  h2.section {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 64px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h2.section .num {
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: rgba(13, 143, 79, 0.08);
+    border: 1px solid var(--border-bright);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  h2.section::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-bright), transparent);
+  }
+
+  p { color: var(--text); font-size: 14.5px; margin-bottom: 20px; }
+
+  code {
+    background: rgba(13, 143, 79, 0.08);
+    color: var(--accent);
+    border: 1px solid var(--border-bright);
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 0.88em;
+  }
+
+  strong { color: var(--text); font-weight: 700; }
+
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5em;
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 3px;
+    padding: 2px 6px;
+    margin: 0 2px;
+    font-size: 0.8em;
+    color: var(--accent);
+  }
+
+  .callout {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+
+  .callout.whimsy {
+    border-left-color: var(--pink);
+  }
+
+  .callout-title {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .callout.whimsy .callout-title { color: var(--pink); }
+
+  .callout p { margin-bottom: 0; color: var(--text-dim); font-size: 13.5px; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .col-item {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+
+  .col-header {
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .col-item ul { margin: 0; padding-left: 18px; }
+  .col-item li { font-size: 13.5px; margin-bottom: 6px; color: var(--text-dim); }
+
+  .screenshot-frame { margin: 40px 0; }
+
+  .screenshot-frame img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    filter: saturate(0.9) brightness(0.95);
+    transition: border-color 0.2s ease, filter 0.2s ease;
+    cursor: zoom-in;
+  }
+
+  .screenshot-frame img:hover {
+    border-color: var(--accent);
+    filter: saturate(1) brightness(1);
+    box-shadow: 0 0 24px rgba(13, 143, 79, 0.12);
+  }
+
+  .screenshot-caption {
+    font-size: 11px;
+    color: var(--text-faint);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .screenshot-caption::before { content: '> '; color: var(--accent-dim); }
+
+  .terminal-block {
+    background: #14140f;
+    border: 1px solid var(--border-bright);
+    border-radius: 6px;
+    padding: 0;
+    margin: 40px 0;
+    overflow: hidden;
+    box-shadow: 0 20px 50px -20px rgba(40, 35, 20, 0.2);
+  }
+
+  .terminal-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #1c1c15;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-bright);
+  }
+
+  .terminal-titlebar .label {
+    margin-left: 8px;
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+
+  .terminal-body {
+    padding: 20px 20px 24px;
+    font-size: 13px;
+  }
+
+  .terminal-body .line { margin-bottom: 6px; color: var(--text-dim); }
+  .terminal-body .prompt-sym { color: var(--accent); margin-right: 8px; }
+  .terminal-body .out { color: var(--text-faint); padding-left: 20px; }
+
+  hr.divider {
+    border: none;
+    border-top: 1px dashed var(--border-bright);
+    margin: 64px 0 40px;
+  }
+
+  .recommendations { display: flex; flex-direction: column; gap: 16px; margin: 32px 0; }
+
+  .rec-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  .rec-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(57,255,136,0.1);
+    border: 1px solid var(--border-bright);
+    color: var(--accent);
+    font-size: 12px;
+    border-radius: 3px;
+  }
+
+  .rec-content h3 { margin: 0 0 6px; font-size: 14px; color: var(--text); }
+  .rec-content p { margin: 0; font-size: 13px; color: var(--text-dim); }
+
+  .back-link {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-bottom: 32px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  /* index card list, mini preview at bottom */
+  .index-preview { max-width: 880px; margin: 0 auto; padding: 0 40px 100px; }
+  .index-preview h4 { color: var(--text-faint); font-size: 11px; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .post-card {
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    padding: 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+    cursor: pointer;
+  }
+  .post-card:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+  .post-card .idx { color: var(--accent); font-size: 11px; margin-bottom: 8px; display: block; }
+  .post-card .title { color: var(--text); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .post-card .excerpt { color: var(--text-dim); font-size: 12.5px; }
+</style>
+</head>
+<body>
+
+  <div class="progress-bar"></div>
+
+  <nav class="nav">
+    <div class="nav-brand"><span class="cursor"></span> wei@moar:~$</div>
+    <div class="nav-links">
+      <a href="#"><span class="bracket">[</span> projects <span class="bracket">]</span></a>
+      <a href="#" class="active"><span class="bracket">[</span> posts <span class="bracket">]</span></a>
+      <a href="#"><span class="bracket">[</span> contact <span class="bracket">]</span></a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="back-link">&lt; cd ..</div>
+
+    <div class="breadcrumb">~/posts <span class="sep">/</span> <span class="accent">introducing-jimothy.md</span></div>
+
+    <div class="post-meta">
+      <span class="dot"></span> 2026-07-27 <span class="sep">/</span> 6 min read
+    </div>
+
+    <h1 class="post-title"><span class="prompt">&gt;</span> Introducing Jimothy: A raccoon with a penchant for notes</h1>
+    <div class="post-sub">a fast, local-first notes &amp; task app with a little too much personality</div>
+
+    <div class="post-intro">
+      I've been building a notes and task-list app called Jimothy. It's a side project born out of a simple desire: I wanted something fast, keyboard-first, genuinely fun to open every day, and without AI.
+    </div>
+
+    <div class="screenshot-frame">
+      <img src="https://placehold.co/1200x750/f0ece2/0d8f4f?text=customization-pink-theme.png" alt="mock" />
+      <p class="screenshot-caption">yes, it comes in pink</p>
+    </div>
+
+    <h2 class="section"><span class="num">01</span> why another notes app</h2>
+
+    <p>I wanted a notes app that felt like it was built for me specifically, and well, this one is. It's fast to open, easy to access, and endlessly tweakable.</p>
+
+    <div class="callout whimsy">
+      <div class="callout-title">// the_name</div>
+      <p>Jimothy is a trash panda. He's on the app icon, and if you drop in your own emoji, he can be on your codex icons too.</p>
+    </div>
+
+    <h2 class="section"><span class="num">02</span> local-first, synced if you want</h2>
+
+    <p>Every note is just a Markdown file with a YAML frontmatter header. If you want your notes on your phone too, point Jimothy at a Dropbox folder.</p>
+
+    <div class="two-col">
+      <div class="col-item">
+        <div class="col-header">today</div>
+        <ul>
+          <li>Fully local storage, plain Markdown</li>
+          <li>Dropbox sync desktop &lt;-&gt; mobile</li>
+          <li>Byte-compatible note format</li>
+        </ul>
+      </div>
+      <div class="col-item">
+        <div class="col-header">roadmap</div>
+        <ul>
+          <li>Google Drive</li>
+          <li>Amazon S3</li>
+          <li>iCloud / WebDAV</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="terminal-block">
+      <div class="terminal-titlebar">
+        <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+        <span class="label">zsh — notes.md</span>
+      </div>
+      <div class="terminal-body">
+        <div class="line"><span class="prompt-sym">$</span>cat ~/.jimothy/notes/feature-tour.md</div>
+        <div class="out">---<br/>title: Feature Tour<br/>tags: [demo, welcome]<br/>---</div>
+        <div class="line"><span class="prompt-sym">$</span>_</div>
+      </div>
+    </div>
+
+    <h2 class="section"><span class="num">03</span> built for the keyboard</h2>
+
+    <p>Right-click any note for quick actions, or split two notes side by side with <span class="kbd">Cmd</span><span class="kbd">\</span> when you need to reference one while writing another.</p>
+
+    <div class="screenshot-frame">
+      <img src="https://placehold.co/1200x750/f0ece2/0d8f4f?text=command-palette.png" alt="mock" />
+      <p class="screenshot-caption">search, jump to a note, or run any action</p>
+    </div>
+
+    <hr class="divider" />
+
+    <h2 class="section"><span class="num">04</span> what's next</h2>
+
+    <div class="recommendations">
+      <div class="rec-item">
+        <div class="rec-num">1</div>
+        <div class="rec-content">
+          <h3>more sync providers</h3>
+          <p>Dropbox works today. Google Drive, Amazon, and Microsoft are next.</p>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">2</div>
+        <div class="rec-content">
+          <h3>keep it weird</h3>
+          <p>Every feature added has to survive one filter: does this make the app more fun to use every day?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="index-preview">
+    <h4>// blog index preview</h4>
+    <div class="post-card">
+      <span class="idx">[ 01 ]  2026-07-27</span>
+      <div class="title">Introducing Jimothy: A raccoon with a penchant for notes</div>
+      <div class="excerpt">A local-first, keyboard-driven notes and task app with a raccoon mascot, deep customization, and optional end-to-end encryption.</div>
+    </div>
+    <div class="post-card">
+      <span class="idx">[ 02 ]  2026-04-06</span>
+      <div class="title">Securing AI Coding Platforms: Lessons from SF DBX Security Con</div>
+      <div class="excerpt">A deep dive into the challenges of shifting left and securing AI coding companions.</div>
+    </div>
+  </div>
+
+</body>
+</html>

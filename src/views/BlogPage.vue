@@ -66,8 +66,9 @@ export default {
 <style scoped>
 .blog-container {
   min-height: 100vh;
-  background: #faf8f3;
-  color: #0a0a0a;
+  background: var(--tp-bg);
+  color: var(--tp-text);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .blog-content {
@@ -82,22 +83,20 @@ export default {
 }
 
 .header-sub {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 400;
-  color: #999;
+  color: var(--tp-text-faint);
   margin-bottom: 16px;
   letter-spacing: 0.02em;
-  font-family: 'Anson', sans-serif;
 }
 
 .blog-header h1 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  font-weight: 400;
-  color: #0625ee;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  color: var(--tp-text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .blog-posts {
@@ -106,18 +105,19 @@ export default {
 }
 
 .blog-post-card {
-  padding: 48px 0;
+  padding: 40px 0;
   cursor: pointer;
-  border-top: 1px solid #ddd6c6;
-  transition: all 0.3s ease;
+  border-top: 1px solid var(--tp-border);
+  transition: all 0.2s ease;
 }
 
 .blog-post-card:last-child {
-  border-bottom: 1px solid #ddd6c6;
+  border-bottom: 1px solid var(--tp-border);
 }
 
 .blog-post-card:hover {
   padding-left: 24px;
+  border-top-color: var(--tp-border-bright);
 }
 
 .post-top {
@@ -129,55 +129,51 @@ export default {
 
 .post-index {
   font-size: 0.75rem;
-  font-weight: 500;
-  color: #0625ee;
+  font-weight: 600;
+  color: var(--tp-accent);
   letter-spacing: 0.1em;
-  font-family: 'Anson', monospace;
 }
 
 .post-date {
   font-size: 0.75rem;
-  color: #aaa;
+  color: var(--tp-text-faint);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-family: 'Anson', monospace;
 }
 
 .blog-post-card h2 {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 400;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  font-weight: 700;
   margin-bottom: 12px;
-  color: #1a1a1a;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  transition: color 0.3s ease;
+  color: var(--tp-text);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-family: 'JetBrains Mono', monospace;
+  transition: color 0.2s ease;
 }
 
 .blog-post-card:hover h2 {
-  color: #0625ee;
+  color: var(--tp-accent);
 }
 
 .post-excerpt {
-  font-size: 0.95rem;
-  color: #666;
+  font-size: 0.9rem;
+  color: var(--tp-text-dim);
   line-height: 1.6;
   margin-bottom: 20px;
   max-width: 600px;
-  font-family: 'Lora', Georgia, serif;
 }
 
 .read-more {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  color: #bbb;
+  color: var(--tp-text-faint);
   letter-spacing: 0.15em;
-  font-family: 'Anson', monospace;
   transition: color 0.3s ease;
 }
 
 .blog-post-card:hover .read-more {
-  color: #0625ee;
+  color: var(--tp-accent);
 }
 
 @media (max-width: 768px) {

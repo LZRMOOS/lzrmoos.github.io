@@ -34,10 +34,11 @@ export default {
 <style scoped>
 .contact-container {
   min-height: calc(100vh - 60px);
-  background: #faf8f3;
+  background: var(--tp-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .contact-content {
@@ -46,22 +47,20 @@ export default {
 }
 
 .contact-sub {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 400;
-  color: #999;
+  color: var(--tp-text-faint);
   margin-bottom: 16px;
   letter-spacing: 0.02em;
-  font-family: 'Anson', sans-serif;
 }
 
 h1 {
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 400;
-  color: #0625ee;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-weight: 700;
+  color: var(--tp-text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-family: 'JetBrains Mono', monospace;
   margin-bottom: 48px;
 }
 
@@ -72,25 +71,24 @@ h1 {
 }
 
 .contact-link {
-  font-size: 1.1rem;
-  color: #1a1a1a;
+  font-size: 1rem;
+  color: var(--tp-text);
   text-decoration: none;
-  font-family: 'Anson', monospace;
   letter-spacing: 0.02em;
   transition: color 0.3s ease;
 }
 
 .contact-link:hover {
-  color: #0625ee;
+  color: var(--tp-accent);
 }
 
 .link-bracket {
-  color: #ccc;
+  color: var(--tp-accent-dim);
   transition: color 0.3s ease;
 }
 
 .contact-link:hover .link-bracket {
-  color: #0625ee;
+  color: var(--tp-accent);
 }
 
 @media (max-width: 768px) {

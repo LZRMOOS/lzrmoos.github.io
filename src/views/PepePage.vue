@@ -18,26 +18,25 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #faf8f3;
+  background: var(--tp-bg);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .page-sub {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 400;
-  color: #999;
+  color: var(--tp-text-faint);
   margin-bottom: 16px;
   letter-spacing: 0.02em;
-  font-family: 'Anson', sans-serif;
 }
 
 h1 {
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 400;
-  color: #0625ee;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--tp-accent);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-family: 'JetBrains Mono', monospace;
   text-align: center;
 }
 </style>

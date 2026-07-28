@@ -2,7 +2,7 @@
     <nav class="navbar" :class="{ 'navbar--overlay': isGalleryPage }">
         <div class="navbar-brand">
             <router-link class="navbar-item" to="/">
-                <h1>wei moar photography</h1>
+                <h1><span v-if="!isGalleryPage" class="cursor"></span> wei@moar.photography:~</h1>
             </router-link>
             <a class="navbar-item is-hidden-desktop" href="https://www.instagram.com/weidvi/" target="_blank">
                 <font-awesome-icon icon="fa-brands fa-instagram" />
@@ -19,28 +19,43 @@
             <div class="navbar-start">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link is-arrowless">
-                        [ Projects ]
+                        <span class="bracket">[$</span> Projects <span class="bracket">]</span>
                     </a>
                     <div class="navbar-dropdown">
                         <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
                         <router-link class="navbar-item" to="/galleries/pepe">Pepe Slack Emojis</router-link>
                     </div>
                 </div>
-                <router-link class="navbar-item" to="/blog">[ Posts ]</router-link>
-                <router-link class="navbar-item" to="/contact">[ Contact ]</router-link>
+                <router-link class="navbar-item" to="/blog"><span class="bracket">[$</span> Posts <span class="bracket">]</span></router-link>
+                <router-link class="navbar-item" to="/contact"><span class="bracket">[$</span> Contact <span class="bracket">]</span></router-link>
+            </div>
+            <div v-if="!isGalleryPage" class="navbar-end">
+                <a class="navbar-item theme-toggle" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+                    <span class="bracket">[$</span> {{ theme === 'dark' ? 'dark' : 'light' }} <span class="bracket">]</span>
+                </a>
             </div>
         </div>
     </nav>
 </template>
 
 <script>
+import { theme, toggleTheme } from '../theme.js';
+
 export default {
   name: "HeaderBar",
+  data() {
+    return {
+      theme,
+    };
+  },
   computed: {
     isGalleryPage() {
       const path = this.$route.path;
       return path === '/' || path === '/galleries/f1' || path === '/galleries/dropbox';
     }
+  },
+  methods: {
+    toggleTheme,
   },
   mounted() {
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -58,7 +73,7 @@ export default {
 
 <style scoped>
 .navbar {
-    background-color: #faf8f3 !important;
+    background-color: var(--tp-bg) !important;
     padding: 8px 20px;
     position: relative;
     z-index: 100;
@@ -75,39 +90,55 @@ export default {
 
 /* Default (content pages): dark text */
 .navbar-brand .navbar-item {
-    color: #1a1a1a !important;
+    color: var(--tp-text) !important;
 }
 
 .navbar-brand .navbar-item:hover {
-    color: #0625ee !important;
+    color: var(--tp-accent) !important;
     background-color: transparent !important;
 }
 
 .navbar-brand .navbar-item:focus,
 .navbar-brand .navbar-item:active {
-    color: #1a1a1a !important;
+    color: var(--tp-text) !important;
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
 .navbar-burger {
-    color: #1a1a1a !important;
+    color: var(--tp-text) !important;
 }
 
 .navbar-burger span {
-    background-color: #1a1a1a !important;
+    background-color: var(--tp-text) !important;
 }
 
 h1 {
     text-align: left;
-    color: #1a1a1a;
+    color: var(--tp-text);
     font-size: 16px;
     margin: 0;
-    font-family: 'Anson', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
     letter-spacing: -0.01em;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+h1 .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--tp-accent);
+    box-shadow: 0 0 8px var(--tp-accent-glow);
+    animation: cursor-blink 1.1s steps(2) infinite;
+}
+
+@keyframes cursor-blink {
+    50% { opacity: 0; }
 }
 
 .navbar-item.has-dropdown {
@@ -115,10 +146,10 @@ h1 {
 }
 
 .navbar-item.has-dropdown .navbar-link {
-    font-family: 'Anson', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 500;
-    color: #1a1a1a !important;
+    color: var(--tp-text) !important;
     letter-spacing: 0.06em;
     transition: color 0.3s ease;
     position: relative;
@@ -126,44 +157,62 @@ h1 {
 }
 
 .navbar-item.has-dropdown .navbar-link:hover {
-    color: #0625ee !important;
+    color: var(--tp-accent) !important;
     background-color: transparent;
 }
 
 .navbar-item.has-dropdown .navbar-link:focus,
 .navbar-item.has-dropdown .navbar-link:active {
-    color: #1a1a1a !important;
+    color: var(--tp-text) !important;
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
-.navbar-menu > .navbar-start > .navbar-item {
-    font-family: 'Anson', monospace;
+.navbar-menu > .navbar-start > .navbar-item,
+.navbar-menu > .navbar-end > .navbar-item {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 500;
-    color: #1a1a1a !important;
+    color: var(--tp-text) !important;
     letter-spacing: 0.06em;
     transition: color 0.3s ease;
     position: relative;
     padding: 0.5rem 0.75rem;
 }
 
-.navbar-menu > .navbar-start > .navbar-item:hover {
-    color: #0625ee !important;
+.navbar-menu > .navbar-start > .navbar-item:hover,
+.navbar-menu > .navbar-end > .navbar-item:hover {
+    color: var(--tp-accent) !important;
     background-color: transparent !important;
 }
 
 .navbar-menu > .navbar-start > .navbar-item.router-link-active {
-    color: #0625ee !important;
+    color: var(--tp-accent) !important;
 }
 
 .navbar-menu > .navbar-start > .navbar-item:focus,
-.navbar-menu > .navbar-start > .navbar-item:active {
-    color: #1a1a1a !important;
+.navbar-menu > .navbar-start > .navbar-item:active,
+.navbar-menu > .navbar-end > .navbar-item:focus,
+.navbar-menu > .navbar-end > .navbar-item:active {
+    color: var(--tp-text) !important;
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
+}
+
+.bracket {
+    color: var(--tp-accent-dim);
+    transition: color 0.2s ease;
+}
+
+.navbar-item:hover .bracket,
+.navbar-item.router-link-active .bracket {
+    color: var(--tp-accent);
+}
+
+.theme-toggle {
+    cursor: pointer;
 }
 
 /* Overlay mode (gallery pages): white text */
@@ -172,7 +221,8 @@ h1 {
 }
 
 .navbar--overlay .navbar-brand .navbar-item:hover {
-    color: #0625ee !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .navbar--overlay h1 {
@@ -184,15 +234,19 @@ h1 {
 }
 
 .navbar--overlay .navbar-item.has-dropdown .navbar-link:hover {
-    color: #0625ee !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-.navbar--overlay .navbar-menu > .navbar-start > .navbar-item {
+.navbar--overlay .navbar-menu > .navbar-start > .navbar-item,
+.navbar--overlay .navbar-menu > .navbar-end > .navbar-item {
     color: #ffffff !important;
 }
 
-.navbar--overlay .navbar-menu > .navbar-start > .navbar-item:hover {
-    color: #0625ee !important;
+.navbar--overlay .navbar-menu > .navbar-start > .navbar-item:hover,
+.navbar--overlay .navbar-menu > .navbar-end > .navbar-item:hover {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .navbar--overlay .navbar-burger {
@@ -203,14 +257,23 @@ h1 {
     background-color: #ffffff !important;
 }
 
+.navbar--overlay .bracket {
+    color: #ffffff !important;
+}
+
+.navbar--overlay .navbar-item:hover .bracket,
+.navbar--overlay .navbar-item.router-link-active .bracket {
+    color: #ffffff !important;
+}
+
 /* Dropdown always stays readable */
 .navbar-dropdown {
-    border: 1px solid #ddd6c6 !important;
+    border: 1px solid var(--tp-border-bright) !important;
     border-radius: 0;
     box-shadow: none;
     padding: 12px 0;
     margin-top: 0;
-    background: #faf8f3 !important;
+    background: var(--tp-bg) !important;
     min-width: 240px;
 }
 
@@ -234,14 +297,15 @@ h1 {
 }
 
 .navbar-dropdown .navbar-item {
-    font-family: 'Anson', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     padding: 10px 20px;
-    color: #777 !important;
-    background-color: #faf8f3 !important;
+    color: var(--tp-text-dim) !important;
+    background-color: var(--tp-bg) !important;
     letter-spacing: 0.08em;
     transition: color 0.2s ease;
     text-transform: uppercase;
+    text-shadow: none;
 }
 
 .navbar-dropdown .navbar-item::before {
@@ -249,12 +313,12 @@ h1 {
     margin-right: 8px;
     opacity: 0;
     transition: opacity 0.2s ease;
-    color: #0625ee;
+    color: var(--tp-accent);
 }
 
 .navbar-dropdown .navbar-item:hover {
-    background-color: #faf8f3 !important;
-    color: #0625ee !important;
+    background-color: var(--tp-bg) !important;
+    color: var(--tp-accent) !important;
 }
 
 .navbar-dropdown .navbar-item:hover::before {
@@ -265,32 +329,32 @@ h1 {
 .navbar-dropdown .navbar-item:active {
     outline: none !important;
     box-shadow: none !important;
-    background-color: #f4f0e8 !important;
+    background-color: var(--tp-bg-raised) !important;
 }
 
 .navbar-dropdown .navbar-item.router-link-active {
-    color: #0625ee !important;
-    background-color: #f0ece2 !important;
+    color: var(--tp-accent) !important;
+    background-color: var(--tp-bg-card) !important;
 }
 
 @media screen and (max-width: 1023px) {
     .navbar-menu {
-        background-color: #faf8f3 !important;
+        background-color: var(--tp-bg) !important;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
     }
 
     .navbar-menu .navbar-item {
-        color: #1a1a1a !important;
+        color: var(--tp-text) !important;
         padding: 0.75rem 1.25rem;
     }
 
     .navbar-item.has-dropdown .navbar-link {
-        color: #1a1a1a !important;
-        background-color: #faf8f3 !important;
+        color: var(--tp-text) !important;
+        background-color: var(--tp-bg) !important;
     }
 
     .navbar-dropdown {
-        background-color: #f4f0e8 !important;
+        background-color: var(--tp-bg-raised) !important;
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto !important;
@@ -300,15 +364,15 @@ h1 {
 
     .navbar-dropdown .navbar-item {
         padding: 0.6rem 1.25rem;
-        color: #1a1a1a !important;
-        background-color: #f4f0e8 !important;
+        color: var(--tp-text) !important;
+        background-color: var(--tp-bg-raised) !important;
         font-size: 12px;
     }
 
     .navbar-dropdown .navbar-item:active,
     .navbar-dropdown .navbar-item:focus {
-        background-color: #ece5d4 !important;
-        color: #1a1a1a !important;
+        background-color: var(--tp-bg-card) !important;
+        color: var(--tp-text) !important;
     }
 
     .navbar-item.has-dropdown .navbar-link::after {
