@@ -383,13 +383,25 @@ h1 .cursor {
         font-size: 14px;
     }
 
-    /* On mobile, overlay menu still gets white background when opened */
+    /* On mobile, overlay menu still gets a themed opaque background when opened */
     .navbar--overlay .navbar-menu.is-active {
-        background-color: white !important;
+        background-color: var(--tp-bg) !important;
     }
 
-    .navbar--overlay .navbar-menu.is-active .navbar-item {
-        color: #1a1a1a !important;
+    .navbar--overlay .navbar-menu.is-active .navbar-item,
+    .navbar--overlay .navbar-menu.is-active .navbar-link,
+    .navbar--overlay .navbar-menu.is-active .bracket,
+    .navbar--overlay .navbar-menu.is-active .navbar-item:hover,
+    .navbar--overlay .navbar-menu.is-active .navbar-link:hover,
+    .navbar--overlay .navbar-menu.is-active .navbar-item:hover .bracket,
+    .navbar--overlay .navbar-menu.is-active .navbar-item.router-link-active .bracket {
+        color: var(--tp-text) !important;
+        text-shadow: none !important;
+    }
+
+    .navbar--overlay .navbar-menu.is-active .navbar-item:hover,
+    .navbar--overlay .navbar-menu.is-active .navbar-link:hover {
+        color: var(--tp-accent) !important;
     }
 }
 </style>
