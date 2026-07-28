@@ -1,4 +1,236 @@
 export default {
+  "introducing-jimothy": {
+    title: "Introducing Jimothy: A raccoon with a penchant for notes and a side of whimsy",
+    date: "July 27, 2026",
+    content: `
+      <p class="post-intro">I've been building a notes and task-list app called Jimothy. It's a side project born out of a simple desire: I wanted something fast, keyboard-first, genuinely fun to open every day, and without AI.</p>
+
+      <div class="screenshot-frame screenshot-frame--hero">
+        <img src="/blog/jimothy/customization-pink-theme.png" alt="Jimothy running with a custom pink theme and codex icon sidebar" />
+        <p class="screenshot-caption">Yes, it comes in pink</p>
+      </div>
+
+      <h2>Why Another Notes App</h2>
+
+      <p>I wanted a notes app that felt like it was built for me specifically, and well, this one is. It's fast to open, easy to access, and endlessly tweakable. Most note apps ask you to choose between "simple and fast" or "powerful and configurable." Jimothy is my attempt at both, wrapped in a personality that doesn't take itself too seriously (hence Jimothy..).</p>
+
+      <div class="callout callout-whimsy">
+        <div class="callout-title">The Name</div>
+        <p>Jimothy is a trash panda. He's on the app icon, and if you drop in your own emoji, he can be on your codex icons too. </p>
+      </div>
+
+      <h2>Local-First, Synced if and When You Want</h2>
+
+      <p>Every note is just a Markdown file with a YAML frontmatter header. If you want your notes on your phone too, point Jimothy at a Dropbox folder and it syncs with conflict handling and all.</p>
+
+      <div class="two-col">
+        <div class="col-item">
+          <div class="col-header">Today</div>
+          <ul>
+            <li>Fully local storage, plain Markdown + frontmatter</li>
+            <li>Dropbox sync for desktop &lt;-&gt; mobile</li>
+            <li>Byte-compatible note format between both apps</li>
+          </ul>
+        </div>
+        <div class="col-item">
+          <div class="col-header">On the Roadmap</div>
+          <ul>
+            <li>Google Drive</li>
+            <li>Amazon (S3 / other storage)</li>
+            <li>Microsoft (OneDrive)</li>
+            <li>iCloud / WebDAV for mobile</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The storage layer is provider-agnostic by design, Dropbox was just the first implementation because it's what I use.</p>
+
+      <h2>Notes That Get Out of Your Way</h2>
+
+      <p>The editor is WYSIWYG Markdown: what you see is exactly what gets saved to disk. Bold, italics, strikethrough, inline code, blockquotes, syntax-highlighted code blocks, and GFM tables all just work.</p>
+
+      <div class="screenshot-frame screenshot-frame--hero">
+        <img src="/blog/jimothy/feature-tour-editor.png" alt="Jimothy note editor showing formatting, code blocks, and tags" />
+        <p class="screenshot-caption">The built-in feature tour note, doubling as a live formatting demo</p>
+      </div>
+
+      <p>A few things that make notes feel connected:</p>
+
+      <ul>
+        <li><strong>Internal links</strong> — type <code>[[</code> to link to another note with autocomplete. Links are ID-based, so renaming a note never breaks a link.</li>
+        <li><strong>Backlinks</strong> — every note shows an expandable list of what links back to it.</li>
+        <li><strong>Mentions</strong> — type <code>@</code> to insert an entry from a personal dictionary of people, places, or anything else you reference often.</li>
+        <li><strong>Tags</strong> — <code>#tag</code> syntax, extracted automatically, with custom per-tag colors and full searchability.</li>
+        <li><strong>Custom emoji</strong> — drop in your own images, type <code>:name:</code> to insert them, and reuse them as codex icons.</li>
+      </ul>
+
+      <p>Right-click any note for quick actions, or split two notes side by side with <span class="kbd">Cmd</span><span class="kbd">\\</span> when you need to reference one while writing another.</p>
+
+      <div class="two-col two-col--shots">
+        <div class="col-item col-item--shot">
+          <img src="/blog/jimothy/split-view.png" alt="Two Jimothy notes open side by side in split view, showing tasks and tags" />
+          <p class="screenshot-caption">Split view — two notes at once</p>
+        </div>
+        <div class="col-item col-item--shot">
+          <img src="/blog/jimothy/note-context-menu.png" alt="Right-click context menu on a note with pin, protect, freeze, duplicate, and delete options" />
+          <p class="screenshot-caption">Pin, protect, freeze, duplicate, or archive — all from a right-click</p>
+        </div>
+      </div>
+
+      <h2>Tasks That Live Next to Your Notes</h2>
+
+      <p>Tasks aren't a separate app bolted on. They're checkboxes inside notes, with a dedicated "Today" view that pulls everything due across your entire vault into one place, grouped by day.</p>
+
+      <div class="screenshot-frame">
+        <img src="/blog/jimothy/tasks-today-view.png" alt="Jimothy Today task view showing tasks grouped by date with priority and recurrence pills" />
+        <p class="screenshot-caption">The Today view, pulling tasks from every note into one timeline</p>
+      </div>
+
+      <p>Priority pills (<code>!high</code>, <code>!med</code>, <code>!low</code>) and due-date pills (<code>!YYYY-MM-DD</code>) turn a plain checkbox into something schedulable, right from the keyboard, without leaving the note it lives in.</p>
+
+      <div class="screenshot-frame">
+        <img src="/blog/jimothy/tasks-quick-add.png" alt="Quick-add task modal linking a task back to a source note" />
+        <p class="screenshot-caption">Quick-adding a task, linked back to the note it came from</p>
+      </div>
+
+      <h2>Make It Yours</h2>
+
+      <p>Almost everything about how it looks and behaves is configurable. Themes go beyond light and dark: every individual color, accent, background, text, hover state, can be tuned and saved as a named preset.</p>
+
+      <div class="screenshot-frame">
+        <img src="/blog/jimothy/customization-colors.png" alt="Jimothy customization settings showing individual color overrides for the light theme" />
+        <p class="screenshot-caption">Every color, down to the selection highlight, is overridable — and savable as a named preset</p>
+      </div>
+
+      <p>Organization is just as flexible. Group notes into <strong>codexes</strong> (collections with their own icon and color), manage tags and their colors, and set a custom format for daily notes.</p>
+
+      <div class="screenshot-frame">
+        <img src="/blog/jimothy/organization-settings.png" alt="Organization settings showing codex, tag, and daily note configuration" />
+        <p class="screenshot-caption">Codexes, tags, and daily note formatting, all in one settings pane</p>
+      </div>
+
+      <div class="two-col two-col--shots">
+        <div class="col-item col-item--shot">
+          <div class="col-header">Custom Emoji</div>
+          <img src="/blog/jimothy/custom-emoji.png" alt="Custom emoji settings panel showing user-uploaded images including a raccoon and a frog" />
+          <p class="screenshot-caption">Drop in your own images, type <code>:name:</code> to insert, or reuse them as codex icons</p>
+        </div>
+        <div class="col-item col-item--shot">
+          <div class="col-header">Text Macros</div>
+          <img src="/blog/jimothy/macros-settings.png" alt="Text macro settings showing built-in and custom expansion triggers" />
+          <p class="screenshot-caption">Type a trigger like <code>/date</code>, get an expansion. Built-ins plus fully custom triggers.</p>
+        </div>
+      </div>
+
+      <h2>Built for the Keyboard</h2>
+
+      <p>A personal dictionary powers <code>@mentions</code> for the people and places you reference constantly, and the command palette (<span class="kbd">Cmd</span><span class="kbd">K</span>) reaches nearly every action and every note without touching the mouse.</p>
+
+      <div class="two-col two-col--shots">
+        <div class="col-item col-item--shot">
+          <div class="col-header">Dictionary</div>
+          <img src="/blog/jimothy/dictionary-settings.png" alt="Dictionary settings showing custom mention entries" />
+          <p class="screenshot-caption">Add anyone or anything you mention often; type @ to pull them in</p>
+        </div>
+        <div class="col-item col-item--shot">
+          <div class="col-header">Command Palette</div>
+          <img src="/blog/jimothy/command-palette.png" alt="Jimothy command palette open with a list of note actions" />
+          <p class="screenshot-caption">Search, jump to a note, or run any action</p>
+        </div>
+      </div>
+
+      <p>Every shortcut, global or in-app, is click-to-rebind, so the keyboard works the way you already think.</p>
+
+      <div class="screenshot-frame">
+        <img src="/blog/jimothy/shortcuts-settings.png" alt="Keyboard shortcuts settings panel with rebindable global and search shortcuts" />
+        <p class="screenshot-caption">Every shortcut, global or in-app, is click-to-rebind</p>
+      </div>
+
+      <h2>Security When You Actually Need It</h2>
+
+      <p>Not every note needs a password, but some do. Jimothy has two independent layers: <strong>vault encryption</strong>, which locks every note on disk behind one password, and <strong>note protection</strong>, which encrypts individual notes while leaving the rest of your vault as plain Markdown.</p>
+
+      <div class="screenshot-frame">
+        <img src="/blog/jimothy/security-settings.png" alt="Security settings showing auto-lock, vault encryption, and note protection options" />
+        <p class="screenshot-caption">Auto-lock on idle, sleep, or screen lock — encryption underneath either layer</p>
+      </div>
+
+      <p>The two layers can be used independently or together, and a PIN can wrap either (or both) for quick unlocking without typing a full password every time.</p>
+
+      <div class="two-col two-col--shots">
+        <div class="col-item col-item--shot">
+          <div class="col-header">Set Up Note Protection</div>
+          <img src="/blog/jimothy/note-protection-setup.png" alt="Setting up a note protection password" />
+        </div>
+        <div class="col-item col-item--shot">
+          <div class="col-header">Vault Locked</div>
+          <img src="/blog/jimothy/vault-locked.png" alt="Vault locked screen prompting for a password" />
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">Nothing Stored</div>
+        <p>Your password never touches disk, and neither does the encryption key it unlocks.</p>
+      </div>
+
+      <h2>On Your Phone Too</h2>
+
+      <p>The mobile companion app is deliberately minimal. It's not a port of the desktop app, it's built for three things: using your todo-list, quick capture, and reading or lightly editing the notes your desktop app created. No encryption, no WYSIWYG editor, no codex management. Encrypted or protected notes just show up as locked "open on desktop" rows.</p>
+
+      <div class="screenshot-frame screenshot-frame--mobile">
+        <img src="/blog/jimothy/mobile-notes-list.png" alt="Jimothy mobile notes list showing synced notes" />
+        <p class="screenshot-caption">Notes synced from desktop, ready to read or lightly edit on the go</p>
+      </div>
+
+      <div class="two-col two-col--shots two-col--mobile">
+        <div class="col-item col-item--shot">
+          <div class="col-header">Tasks, on the Go</div>
+          <img src="/blog/jimothy/mobile-tasks-list.png" alt="Mobile tasks list grouped by day" />
+        </div>
+        <div class="col-item col-item--shot">
+          <div class="col-header">Quick Capture</div>
+          <img src="/blog/jimothy/mobile-quick-add.png" alt="Mobile quick-add task sheet" />
+        </div>
+      </div>
+
+      <p>Themes even sync across devices, your desktop color preset shows up as an option on mobile automatically.</p>
+
+      <div class="screenshot-frame screenshot-frame--mobile">
+        <img src="/blog/jimothy/mobile-settings-sync.png" alt="Mobile settings screen showing desktop theme synced over and Dropbox as the notes folder provider" />
+        <p class="screenshot-caption">The desktop theme, synced and selectable on mobile</p>
+      </div>
+
+      <h2>What's Next</h2>
+
+      <div class="recommendations">
+        <div class="rec-item">
+          <div class="rec-number">1</div>
+          <div class="rec-content">
+            <h3>More Sync Providers</h3>
+            <p>Dropbox works today. Google Drive, Amazon, and Microsoft are next, since the storage layer was built provider-agnostic from the start.</p>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-number">2</div>
+          <div class="rec-content">
+            <h3>Windows Support</h3>
+            <p>Desktop already builds for macOS and Windows. Polishing that experience is ongoing.</p>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-number">3</div>
+          <div class="rec-content">
+            <h3>Keep It Weird</h3>
+            <p>Every feature added has to survive one filter: does this make the app faster and more fun to use every day? If not, it doesn't ship.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <p>Jimothy is still evolving, and I'll post updates here as it grows. If fast, local-first, and slightly ridiculous is your kind of notes app, stay tuned.</p>
+    `,
+  },
   "building-a-security-aware-mindset": {
     title: "Building a Security Aware Mindset",
     date: "November 3, 2021",

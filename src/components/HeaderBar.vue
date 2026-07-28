@@ -58,7 +58,7 @@ export default {
 
 <style scoped>
 .navbar {
-    background-color: white !important;
+    background-color: #faf8f3 !important;
     padding: 8px 20px;
     position: relative;
     z-index: 100;
@@ -205,12 +205,12 @@ h1 {
 
 /* Dropdown always stays readable */
 .navbar-dropdown {
-    border: 1px solid #e8e8e8 !important;
+    border: 1px solid #ddd6c6 !important;
     border-radius: 0;
     box-shadow: none;
     padding: 12px 0;
     margin-top: 0;
-    background: white !important;
+    background: #faf8f3 !important;
     min-width: 240px;
 }
 
@@ -238,7 +238,7 @@ h1 {
     font-size: 12px;
     padding: 10px 20px;
     color: #777 !important;
-    background-color: white !important;
+    background-color: #faf8f3 !important;
     letter-spacing: 0.08em;
     transition: color 0.2s ease;
     text-transform: uppercase;
@@ -253,7 +253,7 @@ h1 {
 }
 
 .navbar-dropdown .navbar-item:hover {
-    background-color: white !important;
+    background-color: #faf8f3 !important;
     color: #0625ee !important;
 }
 
@@ -265,17 +265,17 @@ h1 {
 .navbar-dropdown .navbar-item:active {
     outline: none !important;
     box-shadow: none !important;
-    background-color: #f9f9f9 !important;
+    background-color: #f4f0e8 !important;
 }
 
 .navbar-dropdown .navbar-item.router-link-active {
     color: #0625ee !important;
-    background-color: #f5f5f5 !important;
+    background-color: #f0ece2 !important;
 }
 
 @media screen and (max-width: 1023px) {
     .navbar-menu {
-        background-color: white !important;
+        background-color: #faf8f3 !important;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
     }
 
@@ -286,11 +286,11 @@ h1 {
 
     .navbar-item.has-dropdown .navbar-link {
         color: #1a1a1a !important;
-        background-color: white !important;
+        background-color: #faf8f3 !important;
     }
 
     .navbar-dropdown {
-        background-color: #fafafa !important;
+        background-color: #f4f0e8 !important;
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto !important;
@@ -301,13 +301,13 @@ h1 {
     .navbar-dropdown .navbar-item {
         padding: 0.6rem 1.25rem;
         color: #1a1a1a !important;
-        background-color: #fafafa !important;
+        background-color: #f4f0e8 !important;
         font-size: 12px;
     }
 
     .navbar-dropdown .navbar-item:active,
     .navbar-dropdown .navbar-item:focus {
-        background-color: #f0f0f0 !important;
+        background-color: #ece5d4 !important;
         color: #1a1a1a !important;
     }
 

@@ -18,7 +18,7 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #ffffff;
+  background: #faf8f3;
 }
 
 .page-sub {

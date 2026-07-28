@@ -34,7 +34,7 @@ export default {
 <style scoped>
 .contact-container {
   min-height: calc(100vh - 60px);
-  background: #ffffff;
+  background: #faf8f3;
   display: flex;
   align-items: center;
   justify-content: center;

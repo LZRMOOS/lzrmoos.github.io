@@ -42,7 +42,7 @@ p {
 
 body {
   margin: 0;
-  background: #ffffff;
+  background: #faf8f3;
 }
 
 body.gallery-page {

@@ -32,6 +32,13 @@ export default {
     return {
       posts: [
         {
+          title: "Introducing Jimothy: A Fast, Whimsical Notes & Tasks App",
+          slug: "introducing-jimothy",
+          date: "July 2026",
+          excerpt:
+            "A local-first, keyboard-driven notes and task app with a raccoon mascot, deep customization, and optional end-to-end encryption.",
+        },
+        {
           title: "Securing AI Coding Platforms: Lessons from SF DBX Security Con",
           slug: "sf-dbx-security-con-talk-2026",
           date: "April 2026",
@@ -59,7 +66,7 @@ export default {
 <style scoped>
 .blog-container {
   min-height: 100vh;
-  background: #ffffff;
+  background: #faf8f3;
   color: #0a0a0a;
 }
 
@@ -101,12 +108,12 @@ export default {
 .blog-post-card {
   padding: 48px 0;
   cursor: pointer;
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #ddd6c6;
   transition: all 0.3s ease;
 }
 
 .blog-post-card:last-child {
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #ddd6c6;
 }
 
 .blog-post-card:hover {
@@ -153,11 +160,11 @@ export default {
 
 .post-excerpt {
   font-size: 0.95rem;
-  color: #777;
+  color: #666;
   line-height: 1.6;
   margin-bottom: 20px;
   max-width: 600px;
-  font-family: 'Anson', sans-serif;
+  font-family: 'Lora', Georgia, serif;
 }
 
 .read-more {
