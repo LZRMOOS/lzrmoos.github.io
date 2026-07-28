@@ -73,7 +73,8 @@ body.gallery-page {
   --tp-accent-glow: rgba(0, 97, 255, 0.25);
   --tp-accent-glow-strong: rgba(0, 97, 255, 0.65);
   --tp-pink: #c81c7d;
-  --tp-terminal-bg: #14140f;
+  --tp-terminal-bg: #1a1a1a;
+  --tp-terminal-text: #e8e8e8;
   --tp-terminal-titlebar: #1c1c15;
 }
 
@@ -92,6 +93,7 @@ body.gallery-page {
   --tp-accent-glow-strong: rgba(57, 255, 136, 0.75);
   --tp-pink: #ff4fa3;
   --tp-terminal-bg: #060907;
+  --tp-terminal-text: #c9d1cb;
   --tp-terminal-titlebar: #0d1210;
 }
 </style>

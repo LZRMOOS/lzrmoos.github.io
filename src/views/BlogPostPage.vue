@@ -579,7 +579,7 @@ export default {
 
 .post-content :deep(.prompt-box) {
   background: var(--tp-terminal-bg);
-  color: var(--tp-text);
+  color: var(--tp-terminal-text);
   padding: 24px 28px;
   border-radius: 6px;
   margin: 28px 0;
@@ -590,13 +590,13 @@ export default {
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--tp-text-faint);
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 10px;
 }
 
 .post-content :deep(.prompt-box p) {
   margin-bottom: 0;
-  color: var(--tp-text);
+  color: var(--tp-terminal-text);
   font-size: 0.9rem;
 }
 

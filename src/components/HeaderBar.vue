@@ -23,7 +23,6 @@
                     </a>
                     <div class="navbar-dropdown">
                         <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
-                        <router-link class="navbar-item" to="/galleries/pepe">Pepe Slack Emojis</router-link>
                     </div>
                 </div>
                 <router-link class="navbar-item" to="/blog"><span class="bracket">[$</span> Posts <span class="bracket">]</span></router-link>

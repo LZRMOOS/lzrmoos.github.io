@@ -4,7 +4,6 @@ import contactPage from "@/views/ContactPage.vue";
 import peoplePage from "@/views/PeoplePage.vue";
 import placesPage from "@/views/PlacesPage.vue";
 import thingsPage from "@/views/ThingsPage.vue";
-import pepePage from "@/views/PepePage.vue";
 import f1Page from "@/views/F1Page.vue";
 import dropboxGalleryPage from "@/views/DropboxGalleryPage.vue";
 import blogPage from "@/views/BlogPage.vue";
@@ -35,11 +34,6 @@ const routes = [
     path: "/galleries/things",
     name: "Things",
     component: thingsPage,
-  },
-  {
-    path: "/galleries/pepe",
-    name: "Pepe",
-    component: pepePage,
   },
   {
     path: "/galleries/f1",
