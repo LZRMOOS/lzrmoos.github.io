@@ -22,7 +22,7 @@
       @swiper="onSwiper"
       @slideChange="onSlideChange"
     >
-      <swiper-slide v-for="(image, index) in images" :key="index">
+      <swiper-slide v-for="image in images" :key="image.url">
         <figure 
           class="slide-background" 
           :style="`background-image: url(${image.url})`"
@@ -43,7 +43,7 @@
       <div class="thumbnail-container">
         <div
           v-for="(image, index) in images"
-          :key="index"
+          :key="image.url"
           class="thumbnail-item"
           :class="{ 'active': index === currentRealIndex }"
           @click="goToSlide(index)"
@@ -69,6 +69,8 @@ import "swiper/css/navigation";
 const IMAGES_JSON_PATH = '/images.json';
 const AUTOPLAY_DELAY = 5000;
 const TRANSITION_SPEED = 700;
+const THUMBNAIL_REVEAL_ZONE_PX = 150; // show thumbnail nav when mouse is within this many px of the bottom edge
+const THUMBNAIL_HIDE_DELAY_MS = 2000;
 
 export default {
   name: 'ImageCarousel',
@@ -146,8 +148,8 @@ export default {
       
       const windowHeight = window.innerHeight;
       const mouseY = event.clientY;
-      const bottomThreshold = windowHeight - 150; // Show when mouse is within 150px of bottom
-      
+      const bottomThreshold = windowHeight - THUMBNAIL_REVEAL_ZONE_PX;
+
       if (mouseY >= bottomThreshold) {
         this.showThumbnails = true;
         this.resetHideTimeout();
@@ -167,7 +169,7 @@ export default {
       this.clearHideTimeout();
       this.hideTimeout = setTimeout(() => {
         this.showThumbnails = false;
-      }, 2000);
+      }, THUMBNAIL_HIDE_DELAY_MS);
     },
     clearHideTimeout() {
       if (this.hideTimeout) {
