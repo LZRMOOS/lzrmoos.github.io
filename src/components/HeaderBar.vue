@@ -19,14 +19,14 @@
             <div class="navbar-start">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link is-arrowless">
-                        <span class="bracket">[$</span> Projects <span class="bracket">]</span>
+                        <span class="bracket">[$</span> projects <span class="bracket">]</span>
                     </a>
                     <div class="navbar-dropdown">
                         <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
                     </div>
                 </div>
-                <router-link class="navbar-item" to="/blog"><span class="bracket">[$</span> Posts <span class="bracket">]</span></router-link>
-                <router-link class="navbar-item" to="/contact"><span class="bracket">[$</span> Contact <span class="bracket">]</span></router-link>
+                <router-link class="navbar-item" to="/blog"><span class="bracket">[$</span> posts <span class="bracket">]</span></router-link>
+                <router-link class="navbar-item" to="/contact"><span class="bracket">[$</span> contact <span class="bracket">]</span></router-link>
             </div>
             <div class="navbar-end">
                 <a class="navbar-item theme-toggle" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
