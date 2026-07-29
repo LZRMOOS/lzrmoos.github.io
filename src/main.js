@@ -8,13 +8,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 require('@/assets/main.scss');
 
 /* add icons to the library */
-library.add(faUserSecret, faGithub, faInstagram)
+library.add(faInstagram)
 
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)
