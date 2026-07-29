@@ -10,6 +10,11 @@ export default {
         <p class="screenshot-caption">Yes, it comes in pink</p>
       </div>
 
+      <div class="screenshot-frame screenshot-frame--hero">
+        <video src="/blog/jimothy/jimothy-demo.mp4" controls muted playsinline></video>
+        <p class="screenshot-caption">A quick tour, sped up</p>
+      </div>
+
       <h2>Why Another Notes App</h2>
 
       <p>I wanted a notes app that felt like it was built for me specifically, and well, this one is. It's fast to open, easy to access, and endlessly tweakable. Most note apps ask you to choose between "simple and fast" or "powerful and configurable." Jimothy is my attempt at both, wrapped in a personality that doesn't take itself too seriously (hence Jimothy..).</p>

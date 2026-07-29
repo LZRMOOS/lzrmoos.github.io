@@ -696,6 +696,14 @@ export default {
   box-shadow: 0 0 24px var(--tp-accent-glow);
 }
 
+.post-content :deep(.screenshot-frame video) {
+  width: 100%;
+  margin: 0;
+  display: block;
+  border: 1px solid var(--tp-border-bright);
+  border-radius: 4px;
+}
+
 .post-content :deep(.screenshot-frame--mobile) {
   display: flex;
   flex-direction: column;
