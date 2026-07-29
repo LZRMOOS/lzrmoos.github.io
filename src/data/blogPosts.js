@@ -6,12 +6,12 @@ export default {
       <p class="post-intro">I've been building a notes and task-list app called Jimothy. It's a side project born out of a simple desire: I wanted something fast, keyboard-first, genuinely fun to open every day, and without AI.</p>
 
       <div class="screenshot-frame screenshot-frame--hero">
-        <img src="/blog/jimothy/customization-pink-theme.png" alt="Jimothy running with a custom pink theme and codex icon sidebar" />
+        <img src="/blog/jimothy/customization-pink-theme.png" width="1181" height="844" loading="eager" alt="Jimothy running with a custom pink theme and codex icon sidebar" />
         <p class="screenshot-caption">Yes, it comes in pink</p>
       </div>
 
       <div class="screenshot-frame screenshot-frame--hero">
-        <video src="/blog/jimothy/jimothy-demo.mp4" controls muted playsinline></video>
+        <video src="/blog/jimothy/jimothy-demo.mp4" controls muted playsinline preload="metadata"></video>
         <p class="screenshot-caption">A quick tour, sped up</p>
       </div>
 
@@ -55,7 +55,7 @@ export default {
       <p>The editor is WYSIWYG Markdown: what you see is exactly what gets saved to disk. Bold, italics, strikethrough, inline code, blockquotes, syntax-highlighted code blocks, and GFM tables all just work.</p>
 
       <div class="screenshot-frame screenshot-frame--hero">
-        <img src="/blog/jimothy/feature-tour-editor.png" alt="Jimothy note editor showing formatting, code blocks, and tags" />
+        <img src="/blog/jimothy/feature-tour-editor.png" width="1181" height="844" loading="lazy" alt="Jimothy note editor showing formatting, code blocks, and tags" />
         <p class="screenshot-caption">The built-in feature tour note, doubling as a live formatting demo</p>
       </div>
 
@@ -73,11 +73,11 @@ export default {
 
       <div class="two-col two-col--shots">
         <div class="col-item col-item--shot">
-          <img src="/blog/jimothy/split-view.png" alt="Two Jimothy notes open side by side in split view, showing tasks and tags" />
+          <img src="/blog/jimothy/split-view.png" width="1181" height="844" loading="lazy" alt="Two Jimothy notes open side by side in split view, showing tasks and tags" />
           <p class="screenshot-caption">Split view — two notes at once</p>
         </div>
         <div class="col-item col-item--shot">
-          <img src="/blog/jimothy/note-context-menu.png" alt="Right-click context menu on a note with pin, protect, freeze, duplicate, and delete options" />
+          <img src="/blog/jimothy/note-context-menu.png" width="1181" height="844" loading="lazy" alt="Right-click context menu on a note with pin, protect, freeze, duplicate, and delete options" />
           <p class="screenshot-caption">Pin, protect, freeze, duplicate, or archive — all from a right-click</p>
         </div>
       </div>
@@ -87,14 +87,14 @@ export default {
       <p>Tasks aren't a separate app bolted on. They're checkboxes inside notes, with a dedicated "Today" view that pulls everything due across your entire vault into one place, grouped by day.</p>
 
       <div class="screenshot-frame">
-        <img src="/blog/jimothy/tasks-today-view.png" alt="Jimothy Today task view showing tasks grouped by date with priority and recurrence pills" />
+        <img src="/blog/jimothy/tasks-today-view.png" width="1181" height="844" loading="lazy" alt="Jimothy Today task view showing tasks grouped by date with priority and recurrence pills" />
         <p class="screenshot-caption">The Today view, pulling tasks from every note into one timeline</p>
       </div>
 
       <p>Priority pills (<code>!high</code>, <code>!med</code>, <code>!low</code>) and due-date pills (<code>!YYYY-MM-DD</code>) turn a plain checkbox into something schedulable, right from the keyboard, without leaving the note it lives in.</p>
 
       <div class="screenshot-frame">
-        <img src="/blog/jimothy/tasks-quick-add.png" alt="Quick-add task modal linking a task back to a source note" />
+        <img src="/blog/jimothy/tasks-quick-add.png" width="1181" height="844" loading="lazy" alt="Quick-add task modal linking a task back to a source note" />
         <p class="screenshot-caption">Quick-adding a task, linked back to the note it came from</p>
       </div>
 
@@ -103,26 +103,26 @@ export default {
       <p>Almost everything about how it looks and behaves is configurable. Themes go beyond light and dark: every individual color, accent, background, text, hover state, can be tuned and saved as a named preset.</p>
 
       <div class="screenshot-frame">
-        <img src="/blog/jimothy/customization-colors.png" alt="Jimothy customization settings showing individual color overrides for the light theme" />
+        <img src="/blog/jimothy/customization-colors.png" width="1181" height="844" loading="lazy" alt="Jimothy customization settings showing individual color overrides for the light theme" />
         <p class="screenshot-caption">Every color, down to the selection highlight, is overridable — and savable as a named preset</p>
       </div>
 
       <p>Organization is just as flexible. Group notes into <strong>codexes</strong> (collections with their own icon and color), manage tags and their colors, and set a custom format for daily notes.</p>
 
       <div class="screenshot-frame">
-        <img src="/blog/jimothy/organization-settings.png" alt="Organization settings showing codex, tag, and daily note configuration" />
+        <img src="/blog/jimothy/organization-settings.png" width="1181" height="844" loading="lazy" alt="Organization settings showing codex, tag, and daily note configuration" />
         <p class="screenshot-caption">Codexes, tags, and daily note formatting, all in one settings pane</p>
       </div>
 
       <div class="two-col two-col--shots">
         <div class="col-item col-item--shot">
           <div class="col-header">Custom Emoji</div>
-          <img src="/blog/jimothy/custom-emoji.png" alt="Custom emoji settings panel showing user-uploaded images including a raccoon and a frog" />
+          <img src="/blog/jimothy/custom-emoji.png" width="1181" height="844" loading="lazy" alt="Custom emoji settings panel showing user-uploaded images including a raccoon and a frog" />
           <p class="screenshot-caption">Drop in your own images, type <code>:name:</code> to insert, or reuse them as codex icons</p>
         </div>
         <div class="col-item col-item--shot">
           <div class="col-header">Text Macros</div>
-          <img src="/blog/jimothy/macros-settings.png" alt="Text macro settings showing built-in and custom expansion triggers" />
+          <img src="/blog/jimothy/macros-settings.png" width="1181" height="844" loading="lazy" alt="Text macro settings showing built-in and custom expansion triggers" />
           <p class="screenshot-caption">Type a trigger like <code>/date</code>, get an expansion. Built-ins plus fully custom triggers.</p>
         </div>
       </div>
@@ -134,12 +134,12 @@ export default {
       <div class="two-col two-col--shots">
         <div class="col-item col-item--shot">
           <div class="col-header">Dictionary</div>
-          <img src="/blog/jimothy/dictionary-settings.png" alt="Dictionary settings showing custom mention entries" />
+          <img src="/blog/jimothy/dictionary-settings.png" width="1181" height="844" loading="lazy" alt="Dictionary settings showing custom mention entries" />
           <p class="screenshot-caption">Add anyone or anything you mention often; type @ to pull them in</p>
         </div>
         <div class="col-item col-item--shot">
           <div class="col-header">Command Palette</div>
-          <img src="/blog/jimothy/command-palette.png" alt="Jimothy command palette open with a list of note actions" />
+          <img src="/blog/jimothy/command-palette.png" width="1181" height="844" loading="lazy" alt="Jimothy command palette open with a list of note actions" />
           <p class="screenshot-caption">Search, jump to a note, or run any action</p>
         </div>
       </div>
@@ -147,7 +147,7 @@ export default {
       <p>Every shortcut, global or in-app, is click-to-rebind, so the keyboard works the way you already think.</p>
 
       <div class="screenshot-frame">
-        <img src="/blog/jimothy/shortcuts-settings.png" alt="Keyboard shortcuts settings panel with rebindable global and search shortcuts" />
+        <img src="/blog/jimothy/shortcuts-settings.png" width="1181" height="844" loading="lazy" alt="Keyboard shortcuts settings panel with rebindable global and search shortcuts" />
         <p class="screenshot-caption">Every shortcut, global or in-app, is click-to-rebind</p>
       </div>
 
@@ -156,7 +156,7 @@ export default {
       <p>Not every note needs a password, but some do. Jimothy has two independent layers: <strong>vault encryption</strong>, which locks every note on disk behind one password, and <strong>note protection</strong>, which encrypts individual notes while leaving the rest of your vault as plain Markdown.</p>
 
       <div class="screenshot-frame">
-        <img src="/blog/jimothy/security-settings.png" alt="Security settings showing auto-lock, vault encryption, and note protection options" />
+        <img src="/blog/jimothy/security-settings.png" width="1181" height="844" loading="lazy" alt="Security settings showing auto-lock, vault encryption, and note protection options" />
         <p class="screenshot-caption">Auto-lock on idle, sleep, or screen lock — encryption underneath either layer</p>
       </div>
 
@@ -165,11 +165,11 @@ export default {
       <div class="two-col two-col--shots">
         <div class="col-item col-item--shot">
           <div class="col-header">Set Up Note Protection</div>
-          <img src="/blog/jimothy/note-protection-setup.png" alt="Setting up a note protection password" />
+          <img src="/blog/jimothy/note-protection-setup.png" width="1181" height="844" loading="lazy" alt="Setting up a note protection password" />
         </div>
         <div class="col-item col-item--shot">
           <div class="col-header">Vault Locked</div>
-          <img src="/blog/jimothy/vault-locked.png" alt="Vault locked screen prompting for a password" />
+          <img src="/blog/jimothy/vault-locked.png" width="1181" height="844" loading="lazy" alt="Vault locked screen prompting for a password" />
         </div>
       </div>
 
@@ -183,25 +183,25 @@ export default {
       <p>The mobile companion app is deliberately minimal. It's not a port of the desktop app, it's built for three things: using your todo-list, quick capture, and reading or lightly editing the notes your desktop app created. No encryption, no WYSIWYG editor, no codex management. Encrypted or protected notes just show up as locked "open on desktop" rows.</p>
 
       <div class="screenshot-frame screenshot-frame--mobile">
-        <img src="/blog/jimothy/mobile-notes-list.png" alt="Jimothy mobile notes list showing synced notes" />
+        <img src="/blog/jimothy/mobile-notes-list.png" width="523" height="1054" loading="lazy" alt="Jimothy mobile notes list showing synced notes" />
         <p class="screenshot-caption">Notes synced from desktop, ready to read or lightly edit on the go</p>
       </div>
 
       <div class="two-col two-col--shots two-col--mobile">
         <div class="col-item col-item--shot">
           <div class="col-header">Tasks, on the Go</div>
-          <img src="/blog/jimothy/mobile-tasks-list.png" alt="Mobile tasks list grouped by day" />
+          <img src="/blog/jimothy/mobile-tasks-list.png" width="523" height="1054" loading="lazy" alt="Mobile tasks list grouped by day" />
         </div>
         <div class="col-item col-item--shot">
           <div class="col-header">Quick Capture</div>
-          <img src="/blog/jimothy/mobile-quick-add.png" alt="Mobile quick-add task sheet" />
+          <img src="/blog/jimothy/mobile-quick-add.png" width="523" height="1054" loading="lazy" alt="Mobile quick-add task sheet" />
         </div>
       </div>
 
       <p>Themes even sync across devices, your desktop color preset shows up as an option on mobile automatically.</p>
 
       <div class="screenshot-frame screenshot-frame--mobile">
-        <img src="/blog/jimothy/mobile-settings-sync.png" alt="Mobile settings screen showing desktop theme synced over and Dropbox as the notes folder provider" />
+        <img src="/blog/jimothy/mobile-settings-sync.png" width="523" height="1054" loading="lazy" alt="Mobile settings screen showing desktop theme synced over and Dropbox as the notes folder provider" />
         <p class="screenshot-caption">The desktop theme, synced and selectable on mobile</p>
       </div>
 
