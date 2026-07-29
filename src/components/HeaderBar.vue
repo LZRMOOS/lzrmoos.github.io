@@ -8,14 +8,14 @@
                 <font-awesome-icon icon="fa-brands fa-instagram" />
             </a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger" :class="{ 'is-active': menuOpen }" aria-label="menu" :aria-expanded="menuOpen" @click="menuOpen = !menuOpen">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-menu" :class="{ 'is-active': menuOpen }">
             <div class="navbar-start">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link is-arrowless">
@@ -45,28 +45,22 @@ export default {
   data() {
     return {
       theme,
+      menuOpen: false,
     };
   },
   computed: {
     isGalleryPage() {
-      const path = this.$route.path;
-      return path === '/' || path === '/galleries/f1' || path === '/galleries/dropbox';
+      return !!this.$route.meta.isGalleryOverlay;
     }
+  },
+  watch: {
+    '$route'() {
+      this.menuOpen = false;
+    },
   },
   methods: {
     toggleTheme,
   },
-  mounted() {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    $navbarBurgers.forEach(el => {
-      el.addEventListener('click', () => {
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-      });
-    });
-  }
 };
 </script>
 
@@ -118,7 +112,7 @@ h1 {
     color: var(--tp-text);
     font-size: 16px;
     margin: 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-weight: 600;
     letter-spacing: -0.01em;
     transition: color 0.3s ease;
@@ -145,7 +139,7 @@ h1 .cursor {
 }
 
 .navbar-item.has-dropdown .navbar-link {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 500;
     color: var(--tp-text) !important;
@@ -170,7 +164,7 @@ h1 .cursor {
 
 .navbar-menu > .navbar-start > .navbar-item,
 .navbar-menu > .navbar-end > .navbar-item {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 500;
     color: var(--tp-text) !important;
@@ -296,7 +290,7 @@ h1 .cursor {
 }
 
 .navbar-dropdown .navbar-item {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 12px;
     padding: 10px 20px;
     color: var(--tp-text-dim) !important;

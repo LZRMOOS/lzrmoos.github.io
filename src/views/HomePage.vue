@@ -4,17 +4,13 @@
 
 <script>
 import ImageCarousel from "../components/ImageCarousel.vue";
+import galleryPage from "../mixins/galleryPage.js";
 
 export default {
   name: "HomePage",
   components: {
     ImageCarousel,
   },
-  mounted() {
-    document.body.classList.add('gallery-page');
-  },
-  beforeUnmount() {
-    document.body.classList.remove('gallery-page');
-  },
+  mixins: [galleryPage],
 };
 </script>

@@ -1,59 +1,53 @@
 import { createWebHistory, createRouter } from "vue-router";
-import homePage from "@/views/HomePage.vue";
-import contactPage from "@/views/ContactPage.vue";
-import peoplePage from "@/views/PeoplePage.vue";
-import placesPage from "@/views/PlacesPage.vue";
-import thingsPage from "@/views/ThingsPage.vue";
-import f1Page from "@/views/F1Page.vue";
-import dropboxGalleryPage from "@/views/DropboxGalleryPage.vue";
-import blogPage from "@/views/BlogPage.vue";
-import blogPostPage from "@/views/BlogPostPage.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: homePage,
+    component: () => import("@/views/HomePage.vue"),
+    meta: { isGalleryOverlay: true },
   },
   {
     path: "/contact",
     name: "Contact",
-    component: contactPage,
+    component: () => import("@/views/ContactPage.vue"),
   },
   {
     path: "/galleries/people",
     name: "People",
-    component: peoplePage,
+    component: () => import("@/views/PlaceholderPage.vue"),
   },
   {
     path: "/galleries/places",
     name: "Places",
-    component: placesPage,
+    component: () => import("@/views/PlaceholderPage.vue"),
   },
   {
     path: "/galleries/things",
     name: "Things",
-    component: thingsPage,
+    component: () => import("@/views/PlaceholderPage.vue"),
   },
   {
     path: "/galleries/f1",
     name: "F1",
-    component: f1Page,
+    component: () => import("@/views/F1Page.vue"),
+    meta: { isGalleryOverlay: true },
   },
   {
     path: "/galleries/dropbox",
     name: "DropboxAlbum",
-    component: dropboxGalleryPage,
+    component: () => import("@/views/DropboxGalleryPage.vue"),
+    meta: { isGalleryOverlay: true },
   },
   {
     path: "/blog",
     name: "Blog",
-    component: blogPage,
+    component: () => import("@/views/BlogPage.vue"),
   },
   {
     path: "/blog/:slug",
     name: "BlogPost",
-    component: blogPostPage,
+    component: () => import("@/views/BlogPostPage.vue"),
   },
 ];
 

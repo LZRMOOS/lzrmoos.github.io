@@ -58,6 +58,7 @@ body.gallery-page {
 :root {
   --swiper-theme-color: #0625ee;
   --swiper-navigation-size: 30px;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* text-page theme (nav, blog, contact) */
   --tp-bg: #faf8f3;
