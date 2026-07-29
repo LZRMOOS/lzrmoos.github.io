@@ -68,7 +68,7 @@ export default {
   min-height: 100vh;
   background: var(--tp-bg);
   color: var(--tp-text);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .blog-content {
@@ -96,7 +96,7 @@ export default {
   color: var(--tp-text);
   letter-spacing: -0.02em;
   line-height: 1.15;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .blog-header h1 .accent-char {
@@ -152,7 +152,7 @@ export default {
   color: var(--tp-text);
   line-height: 1.35;
   letter-spacing: -0.01em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   transition: color 0.2s ease;
 }
 

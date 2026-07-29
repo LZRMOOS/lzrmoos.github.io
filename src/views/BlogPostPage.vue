@@ -33,6 +33,7 @@ export default {
       lightboxSrc: null,
       lightboxAlt: "",
       readProgress: 0,
+      onContentClick: null,
     };
   },
   mounted() {
@@ -44,6 +45,7 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.updateProgress);
+    this.detachImageListener();
   },
   watch: {
     "$route.params.slug"(newSlug) {
@@ -54,13 +56,22 @@ export default {
   },
   methods: {
     attachImageListener() {
+      this.detachImageListener();
       const container = this.$refs.postContent;
       if (!container) return;
-      container.onclick = (event) => {
+      this.onContentClick = (event) => {
         if (event.target.tagName === "IMG") {
           this.openLightbox(event.target.src, event.target.alt);
         }
       };
+      container.addEventListener("click", this.onContentClick);
+    },
+    detachImageListener() {
+      const container = this.$refs.postContent;
+      if (container && this.onContentClick) {
+        container.removeEventListener("click", this.onContentClick);
+      }
+      this.onContentClick = null;
     },
     updateProgress() {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -85,7 +96,7 @@ export default {
   padding: 80px 40px 100px;
   background: var(--tp-bg);
   min-height: 100vh;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .progress-bar {
@@ -166,7 +177,7 @@ export default {
   color: var(--tp-text);
   line-height: 1.25;
   letter-spacing: -0.01em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-style: normal;
   text-align: left;
 }
@@ -179,7 +190,7 @@ export default {
   font-size: 1rem;
   line-height: 1.8;
   color: var(--tp-text);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   text-align: left;
   counter-reset: section;
 }
@@ -203,7 +214,7 @@ export default {
   margin-bottom: 24px;
   color: var(--tp-text);
   letter-spacing: -0.01em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -271,7 +282,7 @@ export default {
   padding: 2px 6px;
   border: 1px solid var(--tp-border-bright);
   border-radius: 3px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.85em;
   color: var(--tp-accent);
 }
@@ -325,7 +336,7 @@ export default {
 }
 
 .post-content :deep(.post-intro)::first-letter {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-style: normal;
   font-size: 1em;
   font-weight: 400;
@@ -356,7 +367,7 @@ export default {
   color: var(--tp-accent);
   margin-bottom: 8px;
   letter-spacing: -0.01em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .post-content :deep(.stat-label) {
@@ -757,7 +768,7 @@ export default {
   border-radius: 3px;
   padding: 2px 6px;
   margin: 0 2px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.8em;
   font-weight: 600;
   color: var(--tp-accent);

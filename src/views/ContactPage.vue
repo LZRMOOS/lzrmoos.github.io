@@ -38,7 +38,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .contact-content {
@@ -60,7 +60,7 @@ h1 {
   color: var(--tp-text);
   letter-spacing: -0.02em;
   line-height: 1.15;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   margin-bottom: 48px;
 }
 

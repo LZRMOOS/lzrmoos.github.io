@@ -1,4 +1,5 @@
-// Customizations Here (Optional)
-
-// Bulma Import
-@import '~bulma';
+// Only the navbar is used from Bulma; importing the whole framework bloats
+// the CSS bundle for styles that are never rendered.
+@use 'bulma/sass/utilities';
+@use 'bulma/sass/base';
+@use 'bulma/sass/components/navbar';
