@@ -30,29 +30,36 @@ npm run serve
 npm run build
 ```
 
-### Deploy to GitHub Pages
-```bash
-npm run deploy
-```
-
 ### Lints and fixes files
 ```bash
 npm run lint
 ```
 
+## Deployment
+
+Pushing to `master` automatically builds and deploys via the GitHub Actions
+workflow at `.github/workflows/deploy.yml`: it runs `npm ci`, `npm run build`,
+and publishes the `dist/` folder to the `gh-pages` branch.
+
+`npm run deploy` (`scripts/gh-pages-deploy.js`) is a manual fallback that does
+the same build-and-publish locally instead of through CI. Prefer pushing to
+`master` over running this directly, since it also depends on your local
+git/npm credentials.
+
 ## Tech Stack
 - Vue 3
 - Vue Router
 - Swiper (image carousels)
-- Bulma (CSS framework)
-- Font Awesome icons
+- Bulma (CSS framework, navbar module only)
+- Font Awesome (brands icons)
 - Sass
 
 ## Project Structure
-- `/src/views/` - Page components (HomePage, PlacesPage, BlogPage, etc.)
+- `/src/views/` - Page components (HomePage, BlogPage, PlaceholderPage, etc.)
 - `/src/components/` - Reusable components (HeaderBar, ImageCarousel)
+- `/src/mixins/` - Shared component logic (e.g. gallery-page body class toggling)
 - `/public/` - Static assets
-- `/scripts/` - Deployment scripts
+- `/scripts/` - Deployment and smoke-test scripts
 
 
 ## References
