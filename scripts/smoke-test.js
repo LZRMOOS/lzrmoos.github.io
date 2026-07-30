@@ -2,6 +2,10 @@
  * Smoke-tests the site by launching a headless browser against a running
  * dev/preview server, visiting each route, and checking for console errors.
  *
+ * Playwright is intentionally not a project dependency (keeps it out of
+ * `npm ci` / CI installs) - install it once locally before running this:
+ *   npm install --no-save playwright && npx playwright install chromium
+ *
  * Usage: npm run smoke-test [-- --url=http://localhost:8083] [--headed]
  */
 const { chromium } = require("playwright");
