@@ -1,13 +1,18 @@
 <template>
   <div class="collage-container">
-    <div class="collage-grid">
+    <div class="collage-grid" ref="grid">
       <div
         v-for="(image, index) in images"
         :key="index"
         :class="['collage-item', getGridSize(index)]"
+        :ref="el => setItemRef(el, index)"
         @click="openLightbox(index)"
       >
-        <img :src="image.url" :alt="image.alt" loading="lazy" />
+        <img
+          :src="image.url"
+          :alt="image.alt"
+          :loading="shouldEagerLoad(index) ? 'eager' : 'lazy'"
+        />
       </div>
     </div>
 
@@ -38,17 +43,69 @@ export default {
     return {
       images: [],
       lightboxIndex: null,
+      itemRefs: [],
+      visibleIndices: new Set(),
+      observer: null,
     };
   },
   async mounted() {
     try {
       const response = await fetch(this.imageSource);
       this.images = await response.json();
+
+      // Set up intersection observer to track visible items
+      this.$nextTick(() => {
+        this.setupIntersectionObserver();
+      });
     } catch (error) {
       console.error("Failed to load images:", error);
     }
   },
   methods: {
+    setItemRef(el, index) {
+      if (el) {
+        this.itemRefs[index] = el;
+      }
+    },
+    setupIntersectionObserver() {
+      // Observer to track which items are visible in viewport
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const index = this.itemRefs.indexOf(entry.target);
+            if (index !== -1) {
+              if (entry.isIntersecting) {
+                this.visibleIndices.add(index);
+              } else {
+                this.visibleIndices.delete(index);
+              }
+            }
+          });
+        },
+        {
+          rootMargin: '50px', // Start loading slightly before entering viewport
+        }
+      );
+
+      // Observe all grid items
+      this.itemRefs.forEach((el) => {
+        if (el) this.observer.observe(el);
+      });
+    },
+    shouldEagerLoad(index) {
+      // Eager load if:
+      // 1. Currently visible in grid
+      // 2. Currently shown in lightbox
+      // 3. Adjacent to current lightbox image (for smooth navigation)
+      if (this.visibleIndices.has(index)) return true;
+      if (this.lightboxIndex === null) return false;
+
+      return (
+        index === this.lightboxIndex ||
+        index === this.lightboxIndex - 1 ||
+        index === this.lightboxIndex + 1
+      );
+    },
     getGridSize(index) {
       // Create a pattern of variable sizes for visual interest
       // Pattern repeats every 12 images
@@ -71,6 +128,11 @@ export default {
     openLightbox(index) {
       this.lightboxIndex = index;
       document.body.style.overflow = 'hidden';
+
+      // Preload current and adjacent images for smooth navigation
+      this.preloadImage(index);
+      if (index > 0) this.preloadImage(index - 1);
+      if (index < this.images.length - 1) this.preloadImage(index + 1);
     },
     closeLightbox() {
       this.lightboxIndex = null;
@@ -79,16 +141,33 @@ export default {
     nextImage() {
       if (this.lightboxIndex < this.images.length - 1) {
         this.lightboxIndex++;
+        // Preload next image for smooth navigation
+        if (this.lightboxIndex < this.images.length - 1) {
+          this.preloadImage(this.lightboxIndex + 1);
+        }
       }
     },
     prevImage() {
       if (this.lightboxIndex > 0) {
         this.lightboxIndex--;
+        // Preload previous image for smooth navigation
+        if (this.lightboxIndex > 0) {
+          this.preloadImage(this.lightboxIndex - 1);
+        }
+      }
+    },
+    preloadImage(index) {
+      if (index >= 0 && index < this.images.length) {
+        const img = new Image();
+        img.src = this.images[index].url;
       }
     },
   },
   beforeUnmount() {
     document.body.style.overflow = '';
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   },
 };
 </script>
