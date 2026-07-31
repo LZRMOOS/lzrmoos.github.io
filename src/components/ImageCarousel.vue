@@ -26,7 +26,7 @@
         <figure
           v-if="shouldLoadSlide(index)"
           class="slide-background"
-          :style="`background-image: url(${image.url})`"
+          :style="getBackgroundStyle(image.url)"
           role="img"
           :aria-label="image.alt"
         >
@@ -54,7 +54,7 @@
           <div
             v-if="shouldLoadThumbnail(index)"
             class="thumbnail-image"
-            :style="`background-image: url(${image.url})`"
+            :style="getBackgroundStyle(image.url)"
           ></div>
           <div v-else class="thumbnail-placeholder"></div>
         </div>
@@ -122,14 +122,28 @@ export default {
       currentRealIndex: 0,
       showThumbnails: this.showNavByDefault,
       hideTimeout: null,
-      loadedSlides: new Set(),
-      loadedThumbnails: new Set(),
+      loadedSlides: {},
+      loadedThumbnails: {},
+      loadTimers: [],
     };
   },
   async mounted() {
     await this.loadImages();
   },
+  computed: {
+    // Memoize background styles to avoid recalculating inline styles
+    backgroundStyleCache() {
+      const cache = {};
+      this.images.forEach(img => {
+        cache[img.url] = { backgroundImage: `url(${img.url})` };
+      });
+      return cache;
+    },
+  },
   methods: {
+    getBackgroundStyle(url) {
+      return this.backgroundStyleCache[url] || { backgroundImage: `url(${url})` };
+    },
     async loadImages() {
       try {
         const response = await fetch(this.imageSource);
@@ -156,37 +170,41 @@ export default {
       this.loadSlideAndAdjacent(swiper.realIndex);
     },
     loadSlideAndAdjacent(index) {
-      // PRIORITY 1: Load current slide immediately
-      this.loadedSlides.add(index);
-      this.loadedThumbnails.add(index);
+      // Clear any pending load timers
+      this.loadTimers.forEach(timer => clearTimeout(timer));
+      this.loadTimers = [];
+
+      // PRIORITY 1: Load current slide immediately (Vue reactive object for reactivity)
+      this.$set(this.loadedSlides, index, true);
+      this.$set(this.loadedThumbnails, index, true);
 
       // PRIORITY 2: Load adjacent slides after a short delay (for preloading)
-      setTimeout(() => {
+      const timer1 = setTimeout(() => {
         const prevIndex = index > 0 ? index - 1 : this.images.length - 1;
         const nextIndex = index < this.images.length - 1 ? index + 1 : 0;
 
-        this.loadedSlides.add(prevIndex);
-        this.loadedSlides.add(nextIndex);
-        this.loadedThumbnails.add(prevIndex);
-        this.loadedThumbnails.add(nextIndex);
-        this.$forceUpdate();
+        this.$set(this.loadedSlides, prevIndex, true);
+        this.$set(this.loadedSlides, nextIndex, true);
+        this.$set(this.loadedThumbnails, prevIndex, true);
+        this.$set(this.loadedThumbnails, nextIndex, true);
       }, 100);
 
       // PRIORITY 3: Load nearby thumbnails for navigation bar
-      setTimeout(() => {
+      const timer2 = setTimeout(() => {
         const range = 5; // Load thumbnails 5 positions away
         for (let i = -range; i <= range; i++) {
           const thumbIndex = (index + i + this.images.length) % this.images.length;
-          this.loadedThumbnails.add(thumbIndex);
+          this.$set(this.loadedThumbnails, thumbIndex, true);
         }
-        this.$forceUpdate();
       }, 300);
+
+      this.loadTimers.push(timer1, timer2);
     },
     shouldLoadSlide(index) {
-      return this.loadedSlides.has(index);
+      return !!this.loadedSlides[index];
     },
     shouldLoadThumbnail(index) {
-      return this.loadedThumbnails.has(index);
+      return !!this.loadedThumbnails[index];
     },
     goToSlide(index) {
       if (this.swiperInstance) {
@@ -231,6 +249,9 @@ export default {
   },
   beforeUnmount() {
     this.clearHideTimeout();
+    // Clear all load timers
+    this.loadTimers.forEach(timer => clearTimeout(timer));
+    this.loadTimers = [];
   },
 };
 </script>

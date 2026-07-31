@@ -4,7 +4,7 @@
       <div
         v-for="(image, index) in images"
         :key="index"
-        :class="['collage-item', getGridSize(index)]"
+        :class="['collage-item', gridSizes[index]]"
         :ref="el => setItemRef(el, index)"
         @click="openLightbox(index)"
       >
@@ -47,8 +47,9 @@ export default {
       lightboxIndex: null,
       itemRefs: [],
       visibleIndices: new Set(),
-      loadedIndices: new Set(),
+      loadedIndices: {},
       observer: null,
+      loadTimers: [],
     };
   },
   async mounted() {
@@ -64,6 +65,16 @@ export default {
       console.error("Failed to load images:", error);
     }
   },
+  computed: {
+    // Precompute grid sizes for all images to avoid recalculation
+    gridSizes() {
+      const pattern = [
+        'wide', 'normal', 'tall', 'normal', 'normal', 'wide',
+        'normal', 'large', 'normal', 'normal', 'tall', 'normal',
+      ];
+      return this.images.map((_, index) => pattern[index % pattern.length]);
+    },
+  },
   methods: {
     setItemRef(el, index) {
       if (el) {
@@ -72,23 +83,31 @@ export default {
     },
     setupIntersectionObserver() {
       // Observer to track which items are visible in viewport
+      // Use threshold to reduce callback frequency
       this.observer = new IntersectionObserver(
         (entries) => {
+          // Batch updates to avoid multiple re-renders
+          const updates = [];
           entries.forEach((entry) => {
             const index = this.itemRefs.indexOf(entry.target);
             if (index !== -1) {
               if (entry.isIntersecting) {
                 this.visibleIndices.add(index);
-                // Mark visible images for loading
-                this.loadedIndices.add(index);
+                updates.push(index);
               } else {
                 this.visibleIndices.delete(index);
               }
             }
           });
+
+          // Apply all updates at once
+          updates.forEach(index => {
+            this.$set(this.loadedIndices, index, true);
+          });
         },
         {
           rootMargin: '200px', // Start loading before entering viewport
+          threshold: 0.01, // Trigger when 1% visible
         }
       );
 
@@ -99,13 +118,14 @@ export default {
     },
     shouldLoadImage(index) {
       // Load image if:
-      // 1. Visible in viewport (tracked by IntersectionObserver)
-      // 2. Currently shown in lightbox
-      // 3. Adjacent to current lightbox image (for smooth navigation)
-      // 4. Already loaded previously
+      // 1. Already marked as loaded (visible or lightbox-related)
+      // 2. Currently shown in lightbox (immediate priority)
+      // 3. Adjacent to current lightbox image (preload for navigation)
 
-      if (this.loadedIndices.has(index)) return true;
+      // Already loaded
+      if (this.loadedIndices[index]) return true;
 
+      // Lightbox priority handling
       if (this.lightboxIndex !== null) {
         const isLightboxRelated =
           index === this.lightboxIndex ||
@@ -113,46 +133,31 @@ export default {
           index === this.lightboxIndex + 1;
 
         if (isLightboxRelated) {
-          this.loadedIndices.add(index);
+          this.$set(this.loadedIndices, index, true);
           return true;
         }
       }
 
       return false;
     },
-    getGridSize(index) {
-      // Create a pattern of variable sizes for visual interest
-      // Pattern repeats every 12 images
-      const pattern = [
-        'wide',      // 0: spans 2 columns
-        'normal',    // 1: standard size
-        'tall',      // 2: spans 2 rows
-        'normal',    // 3: standard size
-        'normal',    // 4: standard size
-        'wide',      // 5: spans 2 columns
-        'normal',    // 6: standard size
-        'large',     // 7: spans 2x2
-        'normal',    // 8: standard size
-        'normal',    // 9: standard size
-        'tall',      // 10: spans 2 rows
-        'normal',    // 11: standard size
-      ];
-      return pattern[index % pattern.length];
-    },
     openLightbox(index) {
       this.lightboxIndex = index;
       document.body.style.overflow = 'hidden';
 
+      // Clear any pending load timers
+      this.loadTimers.forEach(timer => clearTimeout(timer));
+      this.loadTimers = [];
+
       // PRIORITY 1: Load clicked image immediately
-      this.loadedIndices.add(index);
-      this.$forceUpdate();
+      this.$set(this.loadedIndices, index, true);
 
       // PRIORITY 2: Load adjacent images for navigation after focused image starts
-      setTimeout(() => {
-        if (index > 0) this.loadedIndices.add(index - 1);
-        if (index < this.images.length - 1) this.loadedIndices.add(index + 1);
-        this.$forceUpdate();
+      const timer = setTimeout(() => {
+        if (index > 0) this.$set(this.loadedIndices, index - 1, true);
+        if (index < this.images.length - 1) this.$set(this.loadedIndices, index + 1, true);
       }, 100);
+
+      this.loadTimers.push(timer);
     },
     closeLightbox() {
       this.lightboxIndex = null;
@@ -161,18 +166,18 @@ export default {
     nextImage() {
       if (this.lightboxIndex < this.images.length - 1) {
         this.lightboxIndex++;
-        // Mark next image for loading
+        // Preload next image for smooth navigation
         if (this.lightboxIndex < this.images.length - 1) {
-          this.loadedIndices.add(this.lightboxIndex + 1);
+          this.$set(this.loadedIndices, this.lightboxIndex + 1, true);
         }
       }
     },
     prevImage() {
       if (this.lightboxIndex > 0) {
         this.lightboxIndex--;
-        // Mark previous image for loading
+        // Preload previous image for smooth navigation
         if (this.lightboxIndex > 0) {
-          this.loadedIndices.add(this.lightboxIndex - 1);
+          this.$set(this.loadedIndices, this.lightboxIndex - 1, true);
         }
       }
     },
@@ -182,6 +187,9 @@ export default {
     if (this.observer) {
       this.observer.disconnect();
     }
+    // Clear all load timers
+    this.loadTimers.forEach(timer => clearTimeout(timer));
+    this.loadTimers = [];
   },
 };
 </script>
