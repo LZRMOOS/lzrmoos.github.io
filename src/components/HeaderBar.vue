@@ -104,9 +104,15 @@ export default {
 .navbar-burger {
     color: var(--tp-text) !important;
     transition: color 0.3s ease;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: none;
+}
+
+@media screen and (max-width: 1023px) {
+    .navbar-burger {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 }
 
 .navbar-burger:hover {
