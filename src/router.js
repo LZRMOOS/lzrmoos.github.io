@@ -40,6 +40,36 @@ const routes = [
     meta: { isGalleryOverlay: true },
   },
   {
+    path: "/galleries/goodland",
+    name: "The Goodland",
+    component: () => import("@/views/GoodlandGalleryPage.vue"),
+    meta: { isGalleryOverlay: true },
+  },
+  {
+    path: "/galleries/outside",
+    name: "Outside",
+    component: () => import("@/views/OutsideGalleryPage.vue"),
+    meta: { isGalleryOverlay: true },
+  },
+  {
+    path: "/galleries/monarchs",
+    name: "Monarchs",
+    component: () => import("@/views/MonarchsGalleryPage.vue"),
+    meta: { isGalleryOverlay: true },
+  },
+  {
+    path: "/galleries/cities",
+    name: "Cities",
+    component: () => import("@/views/CitiesGalleryPage.vue"),
+    meta: { isGalleryOverlay: true },
+  },
+  {
+    path: "/galleries/devs",
+    name: "Big Swell @ Devs",
+    component: () => import("@/views/DevsGalleryPage.vue"),
+    meta: { isGalleryOverlay: true },
+  },
+  {
     path: "/blog",
     name: "Blog",
     component: () => import("@/views/BlogPage.vue"),

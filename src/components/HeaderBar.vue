@@ -23,6 +23,11 @@
                     </a>
                     <div class="navbar-dropdown">
                         <router-link class="navbar-item" to="/galleries/f1">F1 @ Circuit of the Americas</router-link>
+                        <router-link class="navbar-item" to="/galleries/goodland">The Goodland</router-link>
+                        <router-link class="navbar-item" to="/galleries/outside">Outside</router-link>
+                        <router-link class="navbar-item" to="/galleries/monarchs">Monarchs</router-link>
+                        <router-link class="navbar-item" to="/galleries/cities">Cities & Sights</router-link>
+                        <router-link class="navbar-item" to="/galleries/devs">Big Swell @ Devs</router-link>
                     </div>
                 </div>
                 <router-link class="navbar-item" to="/blog"><span class="bracket">[$</span> posts <span class="bracket">]</span></router-link>

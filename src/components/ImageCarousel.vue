@@ -87,6 +87,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    disableAutoplayOnInteraction: {
+      type: Boolean,
+      default: true,
+    },
+    autoplayDelay: {
+      type: Number,
+      default: AUTOPLAY_DELAY,
+    },
   },
   data() {
     return {
@@ -96,8 +104,8 @@ export default {
       transitionSpeed: TRANSITION_SPEED,
       swiperModules: [Keyboard, Navigation, Autoplay, Pagination],
       autoplayConfig: {
-        delay: AUTOPLAY_DELAY,
-        disableOnInteraction: true,
+        delay: this.autoplayDelay,
+        disableOnInteraction: this.disableAutoplayOnInteraction,
       },
       keyboardConfig: {
         enabled: true,
