@@ -9,10 +9,12 @@
         @click="openLightbox(index)"
       >
         <img
+          v-if="shouldLoadImage(index)"
           :src="image.url"
           :alt="image.alt"
-          :loading="shouldEagerLoad(index) ? 'eager' : 'lazy'"
+          loading="eager"
         />
+        <div v-else class="image-placeholder"></div>
       </div>
     </div>
 
@@ -45,6 +47,7 @@ export default {
       lightboxIndex: null,
       itemRefs: [],
       visibleIndices: new Set(),
+      loadedIndices: new Set(),
       observer: null,
     };
   },
@@ -76,6 +79,8 @@ export default {
             if (index !== -1) {
               if (entry.isIntersecting) {
                 this.visibleIndices.add(index);
+                // Mark visible images for loading
+                this.loadedIndices.add(index);
               } else {
                 this.visibleIndices.delete(index);
               }
@@ -83,7 +88,7 @@ export default {
           });
         },
         {
-          rootMargin: '50px', // Start loading slightly before entering viewport
+          rootMargin: '200px', // Start loading before entering viewport
         }
       );
 
@@ -92,19 +97,28 @@ export default {
         if (el) this.observer.observe(el);
       });
     },
-    shouldEagerLoad(index) {
-      // Eager load if:
-      // 1. Currently visible in grid
+    shouldLoadImage(index) {
+      // Load image if:
+      // 1. Visible in viewport (tracked by IntersectionObserver)
       // 2. Currently shown in lightbox
       // 3. Adjacent to current lightbox image (for smooth navigation)
-      if (this.visibleIndices.has(index)) return true;
-      if (this.lightboxIndex === null) return false;
+      // 4. Already loaded previously
 
-      return (
-        index === this.lightboxIndex ||
-        index === this.lightboxIndex - 1 ||
-        index === this.lightboxIndex + 1
-      );
+      if (this.loadedIndices.has(index)) return true;
+
+      if (this.lightboxIndex !== null) {
+        const isLightboxRelated =
+          index === this.lightboxIndex ||
+          index === this.lightboxIndex - 1 ||
+          index === this.lightboxIndex + 1;
+
+        if (isLightboxRelated) {
+          this.loadedIndices.add(index);
+          return true;
+        }
+      }
+
+      return false;
     },
     getGridSize(index) {
       // Create a pattern of variable sizes for visual interest
@@ -129,10 +143,13 @@ export default {
       this.lightboxIndex = index;
       document.body.style.overflow = 'hidden';
 
-      // Preload current and adjacent images for smooth navigation
-      this.preloadImage(index);
-      if (index > 0) this.preloadImage(index - 1);
-      if (index < this.images.length - 1) this.preloadImage(index + 1);
+      // Mark current and adjacent images for loading
+      this.loadedIndices.add(index);
+      if (index > 0) this.loadedIndices.add(index - 1);
+      if (index < this.images.length - 1) this.loadedIndices.add(index + 1);
+
+      // Trigger reactivity
+      this.$forceUpdate();
     },
     closeLightbox() {
       this.lightboxIndex = null;
@@ -141,25 +158,19 @@ export default {
     nextImage() {
       if (this.lightboxIndex < this.images.length - 1) {
         this.lightboxIndex++;
-        // Preload next image for smooth navigation
+        // Mark next image for loading
         if (this.lightboxIndex < this.images.length - 1) {
-          this.preloadImage(this.lightboxIndex + 1);
+          this.loadedIndices.add(this.lightboxIndex + 1);
         }
       }
     },
     prevImage() {
       if (this.lightboxIndex > 0) {
         this.lightboxIndex--;
-        // Preload previous image for smooth navigation
+        // Mark previous image for loading
         if (this.lightboxIndex > 0) {
-          this.preloadImage(this.lightboxIndex - 1);
+          this.loadedIndices.add(this.lightboxIndex - 1);
         }
-      }
-    },
-    preloadImage(index) {
-      if (index >= 0 && index < this.images.length) {
-        const img = new Image();
-        img.src = this.images[index].url;
       }
     },
   },
@@ -238,6 +249,29 @@ export default {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  display: block;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .image-placeholder {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  }
 }
 
 /* Size variations */
