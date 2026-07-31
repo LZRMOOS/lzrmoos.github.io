@@ -156,25 +156,31 @@ export default {
       this.loadSlideAndAdjacent(swiper.realIndex);
     },
     loadSlideAndAdjacent(index) {
-      // Load current slide
+      // PRIORITY 1: Load current slide immediately
       this.loadedSlides.add(index);
       this.loadedThumbnails.add(index);
 
-      // Load adjacent slides for smooth navigation
-      const prevIndex = index > 0 ? index - 1 : this.images.length - 1;
-      const nextIndex = index < this.images.length - 1 ? index + 1 : 0;
+      // PRIORITY 2: Load adjacent slides after a short delay (for preloading)
+      setTimeout(() => {
+        const prevIndex = index > 0 ? index - 1 : this.images.length - 1;
+        const nextIndex = index < this.images.length - 1 ? index + 1 : 0;
 
-      this.loadedSlides.add(prevIndex);
-      this.loadedSlides.add(nextIndex);
-      this.loadedThumbnails.add(prevIndex);
-      this.loadedThumbnails.add(nextIndex);
+        this.loadedSlides.add(prevIndex);
+        this.loadedSlides.add(nextIndex);
+        this.loadedThumbnails.add(prevIndex);
+        this.loadedThumbnails.add(nextIndex);
+        this.$forceUpdate();
+      }, 100);
 
-      // Load thumbnails within a range for the navigation bar
-      const range = 5; // Load thumbnails 5 positions away
-      for (let i = -range; i <= range; i++) {
-        const thumbIndex = (index + i + this.images.length) % this.images.length;
-        this.loadedThumbnails.add(thumbIndex);
-      }
+      // PRIORITY 3: Load nearby thumbnails for navigation bar
+      setTimeout(() => {
+        const range = 5; // Load thumbnails 5 positions away
+        for (let i = -range; i <= range; i++) {
+          const thumbIndex = (index + i + this.images.length) % this.images.length;
+          this.loadedThumbnails.add(thumbIndex);
+        }
+        this.$forceUpdate();
+      }, 300);
     },
     shouldLoadSlide(index) {
       return this.loadedSlides.has(index);

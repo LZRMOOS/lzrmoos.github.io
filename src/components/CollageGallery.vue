@@ -143,13 +143,16 @@ export default {
       this.lightboxIndex = index;
       document.body.style.overflow = 'hidden';
 
-      // Mark current and adjacent images for loading
+      // PRIORITY 1: Load clicked image immediately
       this.loadedIndices.add(index);
-      if (index > 0) this.loadedIndices.add(index - 1);
-      if (index < this.images.length - 1) this.loadedIndices.add(index + 1);
-
-      // Trigger reactivity
       this.$forceUpdate();
+
+      // PRIORITY 2: Load adjacent images for navigation after focused image starts
+      setTimeout(() => {
+        if (index > 0) this.loadedIndices.add(index - 1);
+        if (index < this.images.length - 1) this.loadedIndices.add(index + 1);
+        this.$forceUpdate();
+      }, 100);
     },
     closeLightbox() {
       this.lightboxIndex = null;
