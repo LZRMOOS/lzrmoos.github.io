@@ -4,9 +4,6 @@
             <router-link class="navbar-item" to="/">
                 <h1><span class="cursor"></span> wei@moar.photography:~</h1>
             </router-link>
-            <a class="navbar-item is-hidden-desktop" href="https://www.instagram.com/weidvi/" target="_blank">
-                <font-awesome-icon icon="fa-brands fa-instagram" />
-            </a>
 
             <a role="button" class="navbar-burger" :class="{ 'is-active': menuOpen }" aria-label="menu" :aria-expanded="menuOpen" @click="menuOpen = !menuOpen">
                 <span aria-hidden="true"></span>
