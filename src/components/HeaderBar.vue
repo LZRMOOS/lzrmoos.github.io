@@ -103,10 +103,44 @@ export default {
 
 .navbar-burger {
     color: var(--tp-text) !important;
+    transition: color 0.3s ease;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.navbar-burger:hover {
+    color: var(--tp-accent) !important;
+}
+
+.navbar-burger span:nth-child(1) {
+    top: calc(50% - 6px) !important;
+}
+
+.navbar-burger span:nth-child(2) {
+    top: calc(50% - 1px) !important;
+}
+
+.navbar-burger span:nth-child(3) {
+    top: calc(50% + 4px) !important;
+}
+
+.navbar-burger:hover span {
+    background-color: var(--tp-accent) !important;
 }
 
 .navbar-burger span {
     background-color: var(--tp-text) !important;
+    transition: background-color 0.3s ease;
+    display: block !important;
+    height: 1px !important;
+    left: calc(50% - 8px) !important;
+    position: absolute !important;
+    transform-origin: center !important;
+    transition-duration: 86ms !important;
+    transition-property: background-color, opacity, transform !important;
+    transition-timing-function: ease-out !important;
+    width: 16px !important;
 }
 
 h1 {
@@ -248,8 +282,19 @@ h1 .cursor {
     color: #ffffff !important;
 }
 
+.navbar--overlay .navbar-burger:hover {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 8px var(--tp-accent-glow), 0 0 16px var(--tp-accent-glow);
+}
+
+.navbar--overlay .navbar-burger:hover span {
+    background-color: #ffffff !important;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 8px var(--tp-accent-glow)) drop-shadow(0 0 16px var(--tp-accent-glow));
+}
+
 .navbar--overlay .navbar-burger span {
     background-color: #ffffff !important;
+    transition: filter 0.3s ease, background-color 0.3s ease;
 }
 
 .navbar--overlay .bracket {
