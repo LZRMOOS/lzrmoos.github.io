@@ -174,19 +174,19 @@ export default {
       this.loadTimers.forEach(timer => clearTimeout(timer));
       this.loadTimers = [];
 
-      // PRIORITY 1: Load current slide immediately (Vue reactive object for reactivity)
-      this.$set(this.loadedSlides, index, true);
-      this.$set(this.loadedThumbnails, index, true);
+      // PRIORITY 1: Load current slide immediately
+      this.loadedSlides[index] = true;
+      this.loadedThumbnails[index] = true;
 
       // PRIORITY 2: Load adjacent slides after a short delay (for preloading)
       const timer1 = setTimeout(() => {
         const prevIndex = index > 0 ? index - 1 : this.images.length - 1;
         const nextIndex = index < this.images.length - 1 ? index + 1 : 0;
 
-        this.$set(this.loadedSlides, prevIndex, true);
-        this.$set(this.loadedSlides, nextIndex, true);
-        this.$set(this.loadedThumbnails, prevIndex, true);
-        this.$set(this.loadedThumbnails, nextIndex, true);
+        this.loadedSlides[prevIndex] = true;
+        this.loadedSlides[nextIndex] = true;
+        this.loadedThumbnails[prevIndex] = true;
+        this.loadedThumbnails[nextIndex] = true;
       }, 100);
 
       // PRIORITY 3: Load nearby thumbnails for navigation bar
@@ -194,7 +194,7 @@ export default {
         const range = 5; // Load thumbnails 5 positions away
         for (let i = -range; i <= range; i++) {
           const thumbIndex = (index + i + this.images.length) % this.images.length;
-          this.$set(this.loadedThumbnails, thumbIndex, true);
+          this.loadedThumbnails[thumbIndex] = true;
         }
       }, 300);
 

@@ -102,7 +102,7 @@ export default {
 
           // Apply all updates at once
           updates.forEach(index => {
-            this.$set(this.loadedIndices, index, true);
+            this.loadedIndices[index] = true;
           });
         },
         {
@@ -133,7 +133,7 @@ export default {
           index === this.lightboxIndex + 1;
 
         if (isLightboxRelated) {
-          this.$set(this.loadedIndices, index, true);
+          this.loadedIndices[index] = true;
           return true;
         }
       }
@@ -149,12 +149,12 @@ export default {
       this.loadTimers = [];
 
       // PRIORITY 1: Load clicked image immediately
-      this.$set(this.loadedIndices, index, true);
+      this.loadedIndices[index] = true;
 
       // PRIORITY 2: Load adjacent images for navigation after focused image starts
       const timer = setTimeout(() => {
-        if (index > 0) this.$set(this.loadedIndices, index - 1, true);
-        if (index < this.images.length - 1) this.$set(this.loadedIndices, index + 1, true);
+        if (index > 0) this.loadedIndices[index - 1] = true;
+        if (index < this.images.length - 1) this.loadedIndices[index + 1] = true;
       }, 100);
 
       this.loadTimers.push(timer);
@@ -168,7 +168,7 @@ export default {
         this.lightboxIndex++;
         // Preload next image for smooth navigation
         if (this.lightboxIndex < this.images.length - 1) {
-          this.$set(this.loadedIndices, this.lightboxIndex + 1, true);
+          this.loadedIndices[this.lightboxIndex + 1] = true;
         }
       }
     },
@@ -177,7 +177,7 @@ export default {
         this.lightboxIndex--;
         // Preload previous image for smooth navigation
         if (this.lightboxIndex > 0) {
-          this.$set(this.loadedIndices, this.lightboxIndex - 1, true);
+          this.loadedIndices[this.lightboxIndex - 1] = true;
         }
       }
     },
