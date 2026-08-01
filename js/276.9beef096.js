@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvuejstest"]=self["webpackChunkvuejstest"]||[]).push([[276],{2638:function(e,a,n){n.r(a),n.d(a,{default:function(){return c}});var t=n(6768);function s(e,a,n,s,u,r){const o=(0,t.g2)("ImageCarousel");return(0,t.uX)(),(0,t.Wv)(o,{imageSource:"/cities-gallery.json",disableAutoplayOnInteraction:!1,autoplayDelay:7e3})}var u=n(4013),r=n(5251),o={name:"CitiesGalleryPage",components:{ImageCarousel:u.A},mixins:[r.A]},i=n(1241);const l=(0,i.A)(o,[["render",s]]);var c=l}}]);
+//# sourceMappingURL=276.9beef096.js.map

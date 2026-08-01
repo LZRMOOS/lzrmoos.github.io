@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvuejstest"]=self["webpackChunkvuejstest"]||[]).push([[344],{7682:function(e,a,n){n.r(a),n.d(a,{default:function(){return i}});var s=n(6768);function t(e,a,n,t,u,r){const o=(0,s.g2)("ImageCarousel");return(0,s.uX)(),(0,s.Wv)(o,{imageSource:"/devs-gallery.json",disableAutoplayOnInteraction:!1,autoplayDelay:7e3})}var u=n(4013),r=n(5251),o={name:"DevsGalleryPage",components:{ImageCarousel:u.A},mixins:[r.A]},l=n(1241);const c=(0,l.A)(o,[["render",t]]);var i=c}}]);
+//# sourceMappingURL=344.08909b52.js.map

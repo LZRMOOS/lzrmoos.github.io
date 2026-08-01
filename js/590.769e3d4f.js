@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvuejstest"]=self["webpackChunkvuejstest"]||[]).push([[590],{4396:function(e,n,r){r.r(n),r.d(n,{default:function(){return i}});var s=r(6768);function a(e,n,r,a,u,t){const o=(0,s.g2)("ImageCarousel");return(0,s.uX)(),(0,s.Wv)(o,{imageSource:"/monarchs-gallery.json"})}var u=r(4013),t=r(5251),o={name:"MonarchsGalleryPage",components:{ImageCarousel:u.A},mixins:[t.A]},c=r(1241);const l=(0,c.A)(o,[["render",a]]);var i=l}}]);
+//# sourceMappingURL=590.769e3d4f.js.map
