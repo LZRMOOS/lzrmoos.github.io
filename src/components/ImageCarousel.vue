@@ -142,6 +142,11 @@ export default {
     if (!this.showNavByDefault) {
       window.addEventListener('keydown', this.handleKeyDown);
     }
+    // Check thumbnail overflow on load and window resize
+    this.$nextTick(() => {
+      this.checkThumbnailOverflow();
+      window.addEventListener('resize', this.checkThumbnailOverflow);
+    });
   },
   computed: {
     // Memoize background styles to avoid recalculating inline styles
@@ -333,6 +338,20 @@ export default {
         this.hideTimeout = null;
       }
     },
+    checkThumbnailOverflow() {
+      const thumbnailContainer = this.$refs.thumbnailContainer;
+      if (!thumbnailContainer) return;
+
+      // Check if content width exceeds container width
+      const hasOverflow = thumbnailContainer.scrollWidth > thumbnailContainer.clientWidth;
+
+      // Set justify-content based on overflow
+      if (hasOverflow) {
+        thumbnailContainer.style.justifyContent = 'flex-start';
+      } else {
+        thumbnailContainer.style.justifyContent = 'center';
+      }
+    },
   },
   beforeUnmount() {
     this.clearHideTimeout();
@@ -343,6 +362,8 @@ export default {
     if (!this.showNavByDefault) {
       window.removeEventListener('keydown', this.handleKeyDown);
     }
+    // Remove resize listener
+    window.removeEventListener('resize', this.checkThumbnailOverflow);
   },
 };
 </script>
