@@ -42,6 +42,7 @@ p {
 @font-face {
   font-family: 'Anson';
   src: url(assets/Roboto-Regular.ttf);
+  font-display: block;
 }
 
 body {

@@ -1,5 +1,5 @@
 <template>
-  <ImageCarousel :imageSource="'/f1-images.json'" :showNavByDefault="true" />
+  <ImageCarousel :imageSource="'/f1-images.json'" />
 </template>
 
 <script>

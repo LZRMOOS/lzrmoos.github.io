@@ -1,5 +1,5 @@
 <template>
-  <ImageCarousel :imageSource="'/goodland-gallery.json'" :showNavByDefault="true" />
+  <ImageCarousel :imageSource="'/goodland-gallery.json'" />
 </template>
 
 <script>

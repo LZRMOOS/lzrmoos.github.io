@@ -1,7 +1,6 @@
 <template>
   <ImageCarousel
     :imageSource="'/outside-gallery.json'"
-    :showNavByDefault="true"
     :disableAutoplayOnInteraction="false"
     :autoplayDelay="7000"
   />

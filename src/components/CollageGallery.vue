@@ -158,12 +158,12 @@ export default {
 
         if (next1 < this.images.length) this.loadedIndices[next1] = true;
         if (next2 < this.images.length) this.loadedIndices[next2] = true;
-      }, 50);
+      }, 150);
 
       // PRIORITY 3: Progressive background loading
       const timer2 = setTimeout(() => {
         this.progressiveLoadImages(index);
-      }, 500);
+      }, 800);
 
       this.loadTimers.push(timer, timer2);
     },
@@ -190,7 +190,7 @@ export default {
         distance++;
 
         // Schedule next wave with increasing delay to avoid overwhelming the browser
-        const timer = setTimeout(loadWave, 200);
+        const timer = setTimeout(loadWave, 300);
         this.loadTimers.push(timer);
       };
 

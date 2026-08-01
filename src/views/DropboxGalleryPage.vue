@@ -1,5 +1,5 @@
 <template>
-  <ImageCarousel :imageSource="'/dropbox-gallery.json'" :showNavByDefault="true" />
+  <ImageCarousel :imageSource="'/dropbox-gallery.json'" />
 </template>
 
 <script>

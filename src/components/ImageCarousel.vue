@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="carousel-container"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
@@ -36,18 +36,26 @@
       </swiper-slide>
     </swiper>
     
+    <!-- Navigation hint indicator -->
+    <div
+      v-if="!loading && !error && images.length > 0 && !showNavByDefault"
+      class="nav-hint"
+      :class="{ 'hidden': showThumbnails }"
+    ></div>
+
     <!-- Navigation Card -->
-    <div 
+    <div
       v-if="!loading && !error && images.length > 0"
-      class="thumbnail-nav" 
+      class="thumbnail-nav"
       :class="{ 'visible': showThumbnails }"
     >
-      <div class="thumbnail-container">
+      <div class="thumbnail-container" ref="thumbnailContainer">
         <div
           v-for="(image, index) in images"
           :key="image.url"
           class="thumbnail-item"
           :class="{ 'active': index === currentRealIndex }"
+          :ref="el => setThumbnailRef(el, index)"
           @click="goToSlide(index)"
           :title="image.alt"
         >
@@ -125,10 +133,15 @@ export default {
       loadedSlides: {},
       loadedThumbnails: {},
       loadTimers: [],
+      thumbnailRefs: [],
     };
   },
   async mounted() {
     await this.loadImages();
+    // Add keyboard listener for arrow keys
+    if (!this.showNavByDefault) {
+      window.addEventListener('keydown', this.handleKeyDown);
+    }
   },
   computed: {
     // Memoize background styles to avoid recalculating inline styles
@@ -138,6 +151,14 @@ export default {
         cache[img.url] = { backgroundImage: `url(${img.url})` };
       });
       return cache;
+    },
+  },
+  watch: {
+    showThumbnails(newValue) {
+      // When thumbnails become visible, scroll to active one
+      if (newValue) {
+        this.scrollToActiveThumbnail();
+      }
     },
   },
   methods: {
@@ -168,6 +189,38 @@ export default {
       this.currentRealIndex = swiper.realIndex;
       // Load current slide and adjacent slides
       this.loadSlideAndAdjacent(swiper.realIndex);
+      // Scroll active thumbnail into view (only if thumbnails are visible)
+      if (this.showThumbnails) {
+        this.scrollToActiveThumbnail();
+      }
+    },
+    setThumbnailRef(el, index) {
+      if (el) {
+        this.thumbnailRefs[index] = el;
+      }
+    },
+    scrollToActiveThumbnail() {
+      // Wait for thumbnails to be visible and rendered
+      this.$nextTick(() => {
+        // Add a small delay to ensure the thumbnail nav is fully rendered
+        setTimeout(() => {
+          const activeThumbnail = this.thumbnailRefs[this.currentRealIndex];
+
+          if (!activeThumbnail) {
+            console.log('Active thumbnail not found at index:', this.currentRealIndex);
+            return;
+          }
+
+          console.log('Scrolling thumbnail into view, index:', this.currentRealIndex);
+
+          // Use scrollIntoView with inline: center to center the thumbnail
+          activeThumbnail.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          });
+        }, 200);
+      });
     },
     loadSlideAndAdjacent(index) {
       // Clear any pending load timers
@@ -187,12 +240,12 @@ export default {
         this.loadedSlides[next2] = true;
         this.loadedThumbnails[next1] = true;
         this.loadedThumbnails[next2] = true;
-      }, 50);
+      }, 150);
 
       // PRIORITY 3: Progressive background loading - expand outward from current position
       const timer2 = setTimeout(() => {
         this.progressiveLoadImages(index);
-      }, 300);
+      }, 600);
 
       this.loadTimers.push(timer1, timer2);
     },
@@ -219,7 +272,7 @@ export default {
         distance++;
 
         // Schedule next wave
-        const timer = setTimeout(loadWave, 150);
+        const timer = setTimeout(loadWave, 300);
         this.loadTimers.push(timer);
       };
 
@@ -236,10 +289,19 @@ export default {
         this.swiperInstance.slideToLoop(index);
       }
     },
+    handleKeyDown(event) {
+      // Show thumbnails on arrow key navigation
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' ||
+          event.key === 'Left' || event.key === 'Right') {
+        console.log('Arrow key detected, showing thumbnails');
+        this.showThumbnails = true;
+        this.resetHideTimeout();
+      }
+    },
     handleMouseMove(event) {
       // Skip mouse behavior for pages with showNavByDefault (nav always visible)
       if (this.showNavByDefault) return;
-      
+
       const windowHeight = window.innerHeight;
       const mouseY = event.clientY;
       const bottomThreshold = windowHeight - THUMBNAIL_REVEAL_ZONE_PX;
@@ -255,7 +317,7 @@ export default {
     handleMouseLeave() {
       // Skip mouse behavior for pages with showNavByDefault (nav always visible)
       if (this.showNavByDefault) return;
-      
+
       this.showThumbnails = false;
       this.clearHideTimeout();
     },
@@ -277,6 +339,10 @@ export default {
     // Clear all load timers
     this.loadTimers.forEach(timer => clearTimeout(timer));
     this.loadTimers = [];
+    // Remove keyboard listener
+    if (!this.showNavByDefault) {
+      window.removeEventListener('keydown', this.handleKeyDown);
+    }
   },
 };
 </script>
@@ -343,6 +409,26 @@ export default {
   background-position: center;
 }
 
+/* Navigation hint indicator */
+.nav-hint {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-left: 2px solid var(--tp-text-faint);
+  border-top: 2px solid var(--tp-text-faint);
+  transform: translateX(-50%) rotate(45deg);
+  z-index: 99;
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.nav-hint.hidden {
+  opacity: 0;
+}
+
 /* Thumbnail Navigation */
 .thumbnail-nav {
   position: absolute;
@@ -369,7 +455,7 @@ export default {
   overflow-x: auto;
   width: 100%;
   scrollbar-width: none;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .thumbnail-container::-webkit-scrollbar {
@@ -384,18 +470,18 @@ export default {
   border-radius: 0;
   overflow: hidden;
   cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid var(--tp-border-bright);
   transition: border-color 0.2s ease, opacity 0.2s ease;
   opacity: 0.6;
 }
 
 .thumbnail-item:hover {
   opacity: 1;
-  border-color: rgba(255, 255, 255, 0.8);
+  border-color: var(--tp-text-dim);
 }
 
 .thumbnail-item.active {
-  border-color: #0625ee;
+  border-color: var(--tp-accent);
   opacity: 1;
 }
 
