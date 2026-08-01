@@ -265,7 +265,7 @@ export default {
 .image-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  background: linear-gradient(135deg, var(--tp-bg-raised) 0%, var(--tp-bg-card) 100%);
   display: block;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -276,12 +276,6 @@ export default {
   }
   50% {
     opacity: 0.7;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .image-placeholder {
-    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
   }
 }
 

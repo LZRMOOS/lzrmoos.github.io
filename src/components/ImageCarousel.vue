@@ -281,12 +281,14 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100vh;
+  font-family: Anson, sans-serif;
   font-size: 1.5rem;
-  color: #666;
+  color: var(--tp-text-dim);
+  background: var(--tp-bg);
 }
 
 .error-message {
-  color: #dc3545;
+  color: var(--tp-pink);
 }
 
 .swiper-slide {
@@ -382,7 +384,7 @@ export default {
 .thumbnail-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+  background: linear-gradient(135deg, var(--tp-bg-raised) 0%, var(--tp-bg-card) 100%);
   animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -392,7 +394,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+  background: linear-gradient(135deg, var(--tp-bg-raised) 0%, var(--tp-bg-card) 100%);
   animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -402,13 +404,6 @@ export default {
   }
   50% {
     opacity: 0.7;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .thumbnail-placeholder,
-  .slide-placeholder {
-    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
   }
 }
 
