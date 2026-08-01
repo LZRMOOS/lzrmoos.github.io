@@ -151,13 +151,50 @@ export default {
       // PRIORITY 1: Load clicked image immediately
       this.loadedIndices[index] = true;
 
-      // PRIORITY 2: Load adjacent images for navigation after focused image starts
+      // PRIORITY 2: Load next 2 images for navigation
       const timer = setTimeout(() => {
-        if (index > 0) this.loadedIndices[index - 1] = true;
-        if (index < this.images.length - 1) this.loadedIndices[index + 1] = true;
-      }, 100);
+        const next1 = index + 1;
+        const next2 = index + 2;
 
-      this.loadTimers.push(timer);
+        if (next1 < this.images.length) this.loadedIndices[next1] = true;
+        if (next2 < this.images.length) this.loadedIndices[next2] = true;
+      }, 50);
+
+      // PRIORITY 3: Progressive background loading
+      const timer2 = setTimeout(() => {
+        this.progressiveLoadImages(index);
+      }, 500);
+
+      this.loadTimers.push(timer, timer2);
+    },
+    progressiveLoadImages(centerIndex) {
+      // Load images progressively in waves, starting from closest to centerIndex
+      const totalImages = this.images.length;
+      let distance = 3; // Start from distance 3 (we already loaded 0, 1, 2)
+
+      const loadWave = () => {
+        if (distance >= totalImages) return; // All images loaded
+
+        // Load forward and backward at this distance
+        const forwardIndex = centerIndex + distance;
+        const backwardIndex = centerIndex - distance;
+
+        if (forwardIndex < totalImages) {
+          this.loadedIndices[forwardIndex] = true;
+        }
+
+        if (backwardIndex >= 0 && backwardIndex !== forwardIndex) {
+          this.loadedIndices[backwardIndex] = true;
+        }
+
+        distance++;
+
+        // Schedule next wave with increasing delay to avoid overwhelming the browser
+        const timer = setTimeout(loadWave, 200);
+        this.loadTimers.push(timer);
+      };
+
+      loadWave();
     },
     closeLightbox() {
       this.lightboxIndex = null;
@@ -166,19 +203,21 @@ export default {
     nextImage() {
       if (this.lightboxIndex < this.images.length - 1) {
         this.lightboxIndex++;
-        // Preload next image for smooth navigation
-        if (this.lightboxIndex < this.images.length - 1) {
-          this.loadedIndices[this.lightboxIndex + 1] = true;
-        }
+        // Preload next 2 images for smooth navigation
+        const next1 = this.lightboxIndex + 1;
+        const next2 = this.lightboxIndex + 2;
+        if (next1 < this.images.length) this.loadedIndices[next1] = true;
+        if (next2 < this.images.length) this.loadedIndices[next2] = true;
       }
     },
     prevImage() {
       if (this.lightboxIndex > 0) {
         this.lightboxIndex--;
-        // Preload previous image for smooth navigation
-        if (this.lightboxIndex > 0) {
-          this.loadedIndices[this.lightboxIndex - 1] = true;
-        }
+        // Preload next 2 images forward for smooth navigation
+        const next1 = this.lightboxIndex + 1;
+        const next2 = this.lightboxIndex + 2;
+        if (next1 < this.images.length) this.loadedIndices[next1] = true;
+        if (next2 < this.images.length) this.loadedIndices[next2] = true;
       }
     },
   },

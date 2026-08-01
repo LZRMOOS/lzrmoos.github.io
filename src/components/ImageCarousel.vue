@@ -178,27 +178,52 @@ export default {
       this.loadedSlides[index] = true;
       this.loadedThumbnails[index] = true;
 
-      // PRIORITY 2: Load adjacent slides after a short delay (for preloading)
+      // PRIORITY 2: Load next 2 slides after short delay
       const timer1 = setTimeout(() => {
-        const prevIndex = index > 0 ? index - 1 : this.images.length - 1;
-        const nextIndex = index < this.images.length - 1 ? index + 1 : 0;
+        const next1 = (index + 1) % this.images.length;
+        const next2 = (index + 2) % this.images.length;
 
-        this.loadedSlides[prevIndex] = true;
-        this.loadedSlides[nextIndex] = true;
-        this.loadedThumbnails[prevIndex] = true;
-        this.loadedThumbnails[nextIndex] = true;
-      }, 100);
+        this.loadedSlides[next1] = true;
+        this.loadedSlides[next2] = true;
+        this.loadedThumbnails[next1] = true;
+        this.loadedThumbnails[next2] = true;
+      }, 50);
 
-      // PRIORITY 3: Load nearby thumbnails for navigation bar
+      // PRIORITY 3: Progressive background loading - expand outward from current position
       const timer2 = setTimeout(() => {
-        const range = 5; // Load thumbnails 5 positions away
-        for (let i = -range; i <= range; i++) {
-          const thumbIndex = (index + i + this.images.length) % this.images.length;
-          this.loadedThumbnails[thumbIndex] = true;
-        }
+        this.progressiveLoadImages(index);
       }, 300);
 
       this.loadTimers.push(timer1, timer2);
+    },
+    progressiveLoadImages(centerIndex) {
+      // Load images progressively in waves, starting from closest to centerIndex
+      const totalImages = this.images.length;
+      let distance = 3; // Start from distance 3 (we already loaded 0, 1, 2)
+
+      const loadWave = () => {
+        if (distance >= totalImages) return; // All images loaded
+
+        // Load forward and backward at this distance
+        const forwardIndex = (centerIndex + distance) % totalImages;
+        const backwardIndex = (centerIndex - distance + totalImages) % totalImages;
+
+        this.loadedSlides[forwardIndex] = true;
+        this.loadedThumbnails[forwardIndex] = true;
+
+        if (backwardIndex !== forwardIndex) {
+          this.loadedSlides[backwardIndex] = true;
+          this.loadedThumbnails[backwardIndex] = true;
+        }
+
+        distance++;
+
+        // Schedule next wave
+        const timer = setTimeout(loadWave, 150);
+        this.loadTimers.push(timer);
+      };
+
+      loadWave();
     },
     shouldLoadSlide(index) {
       return !!this.loadedSlides[index];
